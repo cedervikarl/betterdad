@@ -65,6 +65,38 @@
   object-fit: cover;
 }
 
+.info-slide-review {
+  order: 2;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f9f7f3;
+  border-radius: 12px;
+  border-left: 4px solid #1B3022;
+  text-align: center;
+}
+
+.info-slide-review-stars {
+  font-size: 1.25rem;
+  color: #FFA500;
+  margin-bottom: 1rem;
+  letter-spacing: 0.2rem;
+}
+
+.info-slide-review-text {
+  font-size: 1rem;
+  color: #2B2B2B;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.info-slide-review-name {
+  font-size: 0.9375rem;
+  color: #6a6a6a;
+  font-weight: 600;
+  margin: 0;
+}
+
 .info-slide-button {
   order: 3;
   background-color: #1a1a1a;
