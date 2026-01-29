@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import './ConfidenceQuestion.css'
 
 function ConfidenceQuestion({ onAnswer }) {
-  // Auto-scroll to top when component mounts
+  // Auto-scroll to top when component mounts (smooth, without showing URL bar)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
   const options = [
     "Not confident",

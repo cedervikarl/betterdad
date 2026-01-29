@@ -6,9 +6,12 @@ import bodyHigherFat from '../assets/images/body-higher-fat.jpg'
 import bodyVeryHighFat from '../assets/images/body-very-high-fat.jpg'
 
 function WellnessProfile({ userData, onNext }) {
-  // Auto-scroll to top when component mounts
+  // Auto-scroll to top when component mounts (smooth, without showing URL bar)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
   // Calculate BMI (simplified - assumes height in cm and weight in kg)
   const height = userData.height || 175

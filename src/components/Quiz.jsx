@@ -35,9 +35,13 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
 
   const totalSteps = steps.length
 
-  // Auto-scroll to top when step changes
+  // Auto-scroll to top when step changes (smooth, without showing URL bar)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Small delay to ensure DOM is ready, then smooth scroll
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return () => clearTimeout(timer)
   }, [currentStepIndex])
 
 

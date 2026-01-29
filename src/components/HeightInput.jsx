@@ -5,9 +5,12 @@ function HeightInput({ onNext, initialValue = '' }) {
   const [unit, setUnit] = useState('cm')
   const [value, setValue] = useState(initialValue)
 
-  // Auto-scroll to top when component mounts
+  // Auto-scroll to top when component mounts (smooth, without showing URL bar)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleSubmit = (e) => {

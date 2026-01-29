@@ -75,7 +75,7 @@
 }
 
 .projection-graph-wrapper {
-  margin: 3rem 0;
+  margin: 3rem 0 4rem 0;
 }
 
 .projection-graph {
@@ -155,7 +155,7 @@
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-  margin: 0 auto;
+  margin: 2rem auto 0 auto;
   display: block;
   min-height: 50px;
   display: flex;

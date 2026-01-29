@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import './ProjectionGraph.css'
 
 function ProjectionGraph({ userData, onNext }) {
-  // Auto-scroll to top when component mounts
+  // Auto-scroll to top when component mounts (smooth, without showing URL bar)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
   const currentWeight = userData.weight || 80
   const goalWeight = userData.goalWeight || 75
