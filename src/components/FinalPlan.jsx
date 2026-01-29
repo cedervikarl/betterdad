@@ -2,15 +2,11 @@ import { useEffect } from 'react'
 import './FinalPlan.css'
 
 function FinalPlan({ userData, onNext }) {
-  // Auto-scroll to top when component mounts (only if scrolled down)
+  // Auto-scroll to top when component mounts
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (window.scrollY > 200) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      } else if (window.scrollY > 0) {
-        window.scrollTo({ top: 0, behavior: 'auto' })
-      }
-    }, 150)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
     return () => clearTimeout(timer)
   }, [])
   const currentWeight = userData.weight || 80

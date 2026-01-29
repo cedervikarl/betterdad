@@ -6,15 +6,11 @@ import bodyHigherFat from '../assets/images/body-higher-fat.jpg'
 import bodyVeryHighFat from '../assets/images/body-very-high-fat.jpg'
 
 function WellnessProfile({ userData, onNext }) {
-  // Auto-scroll to top when component mounts (only if scrolled down)
+  // Auto-scroll to top when component mounts
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (window.scrollY > 200) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      } else if (window.scrollY > 0) {
-        window.scrollTo({ top: 0, behavior: 'auto' })
-      }
-    }, 150)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
     return () => clearTimeout(timer)
   }, [])
   // Calculate BMI (simplified - assumes height in cm and weight in kg)

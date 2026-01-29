@@ -155,12 +155,18 @@
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-  margin: 3rem auto 0 auto;
+  margin: 2rem auto 0 auto;
   display: block;
   min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .projection-graph-button {
+    margin: 4rem auto 0 auto;
+  }
 }
 
 .projection-graph-button:hover {
