@@ -69,6 +69,7 @@ function ProjectionGraph({ userData, onNext }) {
         <button className="projection-graph-button" onClick={onNext}>
           Continue
         </button>
+        {/* Text removed: "Based on the data of users..." */}
       </div>
     </div>
   )
