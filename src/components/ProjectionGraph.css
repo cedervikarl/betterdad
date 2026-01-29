@@ -1,0 +1,169 @@
+.projection-graph-container {
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background-color: #f5f3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projection-graph-content {
+  max-width: 800px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: slideIn 0.4s ease-out;
+}
+
+.projection-graph-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.projection-prediction {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.projection-text {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.projection-text strong {
+  color: #2B2B2B;
+  font-weight: 700;
+}
+
+.projection-badge {
+  display: inline-block;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.projection-graph-wrapper {
+  margin: 3rem 0;
+}
+
+.projection-graph {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  margin-bottom: 2rem;
+}
+
+.projection-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.projection-line {
+  animation: drawLine 1.5s ease-out;
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+}
+
+.projection-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.projection-label-left,
+.projection-label-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.projection-label-right {
+  align-items: flex-end;
+}
+
+.projection-label-weight {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 0.25rem;
+}
+
+.projection-label-text {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+}
+
+.projection-subtext {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.projection-graph-button {
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+  border: none;
+  padding: 1.125rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.projection-graph-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .projection-graph-content {
+    padding: 3rem 2.5rem;
+  }
+  
+  .projection-graph-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+
+

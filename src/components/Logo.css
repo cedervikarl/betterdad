@@ -1,0 +1,28 @@
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-image {
+  height: 90px; /* Balanced size for header */
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .logo-image {
+    height: 110px; /* Slightly larger on desktop */
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-better {
+    font-size: 1rem;
+  }
+  
+  .logo-dad {
+    font-size: 1.75rem;
+  }
+}
+

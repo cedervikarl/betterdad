@@ -1,0 +1,108 @@
+.age-input-container {
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background-color: #f5f3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.age-input-content {
+  max-width: 600px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: slideIn 0.4s ease-out;
+}
+
+.age-input-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.age-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.age-input-field {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2B2B2B;
+  border: none;
+  border-bottom: 2px solid #e0ddd8;
+  background-color: transparent;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.age-input-field:focus {
+  outline: none;
+  border-bottom-color: #1a1a1a;
+}
+
+.age-input-field::placeholder {
+  color: #9a9a9a;
+  font-weight: 400;
+}
+
+.age-input-subtext {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.age-input-button {
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+  border: none;
+  padding: 1.125rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.age-input-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .age-input-content {
+    padding: 3rem 2.5rem;
+  }
+  
+  .age-input-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+
+

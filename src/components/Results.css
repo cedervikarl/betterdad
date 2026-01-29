@@ -1,0 +1,143 @@
+.results-container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: #f5f3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-content {
+  max-width: 900px;
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.results-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.results-subtitle {
+  font-size: 1.125rem;
+  color: #4a4a4a;
+  margin-bottom: 3rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.plan-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.plan-subtitle {
+  font-size: 1rem;
+  color: #6a6a6a;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.plan-description {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.plan-button {
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: auto;
+}
+
+.plan-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.plan-button:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .results-container {
+    padding: 3rem 2rem;
+  }
+  
+  .results-title {
+    font-size: 2.75rem;
+  }
+  
+  .results-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .plans-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .plan-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .plan-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-title {
+    font-size: 3.25rem;
+  }
+}
+

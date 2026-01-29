@@ -1,0 +1,141 @@
+.info-slide-container {
+  min-height: auto;
+  padding: 0;
+  background-color: transparent;
+  display: block;
+}
+
+.info-slide-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: slideIn 0.4s ease-out;
+}
+
+.info-slide-content {
+  max-width: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.info-slide-text {
+  order: 1;
+}
+
+.info-slide-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.info-slide-image {
+  order: 2;
+  width: 100%;
+}
+
+.info-slide-image-placeholder {
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.67%;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+}
+
+.info-slide-image-placeholder svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.info-slide-image-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  object-fit: cover;
+}
+
+.info-slide-button {
+  order: 3;
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+  border: none;
+  padding: 1.125rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.info-slide-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.info-slide-button:active {
+  transform: translateY(0);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .info-slide-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .info-slide-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .info-slide-text {
+    order: 1;
+  }
+  
+  .info-slide-image {
+    order: 2;
+  }
+  
+  .info-slide-button {
+    order: 3;
+    grid-column: 1 / -1;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 0;
+  }
+  
+  .info-slide-message {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .info-slide-message {
+    font-size: 2rem;
+  }
+}
+

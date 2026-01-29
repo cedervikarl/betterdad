@@ -1,0 +1,260 @@
+.success-container {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  background-color: #F9F7F3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #52C41A;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 auto 2rem;
+  box-shadow: 0 4px 16px rgba(82, 196, 26, 0.3);
+}
+
+.success-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2D2D2D;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.success-message {
+  font-size: 1.125rem;
+  color: #4a4a4a;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.success-email-box {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.success-email-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success-email-text {
+  font-size: 1rem;
+  color: #4a4a4a;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.success-email-address {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1B3022;
+  margin-bottom: 1rem;
+  text-align: center;
+  word-break: break-all;
+}
+
+.success-email-note {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.success-email-button {
+  background-color: #1B3022;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.success-email-button:hover {
+  background-color: #2d4a3a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.success-next-steps {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.success-next-steps-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.success-next-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.success-next-steps-list li {
+  font-size: 1rem;
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.success-next-steps-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #52C41A;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-email-address {
+  display: block;
+  text-decoration: none;
+  color: #1B3022;
+}
+
+.success-email-address:hover {
+  text-decoration: underline;
+}
+
+.success-reviews {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.success-reviews-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.success-review-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.success-review-card {
+  background-color: #FAF7F2;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.success-review-stars {
+  color: #FFA500;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.success-review-text {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.success-review-author {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+  font-weight: 600;
+}
+
+.success-motivation {
+  background-color: #1B3022;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.success-motivation-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.success-motivation-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .success-title {
+    font-size: 3rem;
+  }
+  
+  .success-email-box {
+    padding: 3rem 2.5rem;
+  }
+  
+  .success-next-steps {
+    padding: 2.5rem 2rem;
+  }
+  
+  .success-review-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+

@@ -1,0 +1,229 @@
+.wellness-profile-container {
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background-color: #f5f3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wellness-profile-content {
+  max-width: 1200px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: slideIn 0.4s ease-out;
+}
+
+.wellness-profile-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.wellness-profile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.wellness-profile-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bmi-section {
+  margin-bottom: 2rem;
+}
+
+.bmi-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 1rem;
+}
+
+.bmi-bar-container {
+  margin-bottom: 0.5rem;
+}
+
+.bmi-bar {
+  position: relative;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.bmi-gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #4A90E2 0%, #52C41A 25%, #FAAD14 50%, #FF4D4F 100%);
+}
+
+.bmi-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.bmi-bubble {
+  background-color: #2B2B2B;
+  color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bmi-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #2B2B2B;
+}
+
+.bmi-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6a6a6a;
+  padding: 0 0.25rem;
+}
+
+.bmi-category {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  font-weight: 500;
+  text-align: center;
+}
+
+.wellness-box {
+  background-color: #FAF7F2;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wellness-box-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #6a6a6a;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wellness-box-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2B2B2B;
+}
+
+.wellness-box-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wellness-box-list li {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.wellness-box-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+.avatar-card {
+  background-color: #FAF7F2;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-type-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.wellness-profile-button {
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+  border: none;
+  padding: 1.125rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.wellness-profile-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .wellness-profile-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  
+  .wellness-profile-content {
+    padding: 3rem 2.5rem;
+  }
+  
+  .wellness-profile-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+
+
