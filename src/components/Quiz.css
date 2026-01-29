@@ -79,6 +79,9 @@
   transition: all 0.3s ease;
   text-align: left;
   width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .option-button:hover {
@@ -121,6 +124,17 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .image-options-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .image-option-img-wrapper {
+    padding-bottom: 50% !important; /* Mindre bilder på mobil */
+  }
 }
 
 .image-option-card {
@@ -252,6 +266,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-button:hover:not(:disabled) {

@@ -69,7 +69,7 @@
 .height-input-field {
   width: 100%;
   padding: 1rem 0;
-  font-size: 2rem;
+  font-size: 2rem; /* Större än 16px så ingen zoom */
   font-weight: 600;
   color: #2B2B2B;
   border: none;
@@ -77,6 +77,12 @@
   background-color: transparent;
   text-align: center;
   transition: border-color 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .height-input-field {
+    font-size: 1.5rem; /* Fortfarande större än 16px på mobil */
+  }
 }
 
 .height-input-field:focus {
@@ -108,6 +114,10 @@
   transition: all 0.3s ease;
   width: 100%;
   margin-top: 1rem;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .height-input-button:hover {

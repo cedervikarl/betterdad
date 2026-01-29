@@ -1,10 +1,18 @@
 .projection-graph-container {
   min-height: 100vh;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   background-color: #f5f3f0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .projection-graph-container {
+    align-items: center;
+    padding: 2rem 1.5rem;
+  }
 }
 
 .projection-graph-content {
@@ -12,18 +20,31 @@
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   animation: slideIn 0.4s ease-out;
 }
 
+@media (min-width: 768px) {
+  .projection-graph-content {
+    padding: 2.5rem 2rem;
+  }
+}
+
 .projection-graph-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #2B2B2B;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .projection-graph-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .projection-prediction {
@@ -135,6 +156,10 @@
   max-width: 300px;
   margin: 0 auto;
   display: block;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .projection-graph-button:hover {
