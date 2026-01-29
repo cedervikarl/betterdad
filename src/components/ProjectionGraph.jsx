@@ -63,10 +63,6 @@ function ProjectionGraph({ userData, onNext }) {
           </div>
         </div>
 
-        <p className="projection-subtext">
-          Based on the data of users who log their progress and follow the plan consistently
-        </p>
-
         <button className="projection-graph-button" onClick={onNext}>
           Continue
         </button>

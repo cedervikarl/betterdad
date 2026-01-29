@@ -140,6 +140,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
           <InfoSlide 
             text={currentStep.data.text}
             image={currentStep.data.image}
+            review={currentStep.data.review}
             onContinue={handleInfoContinue}
           />
         </div>

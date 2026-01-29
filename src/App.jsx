@@ -171,7 +171,12 @@ const INFO_SLIDES = [
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
     position: 9, // After question 9 (middle of quiz)
-    image: null // No image for this one
+    image: null, // No image for this one
+    review: {
+      name: "James, 38",
+      text: "I was skeptical at first, but this plan actually fits my life. Lost 8 kg in 6 weeks and finally feel like myself again.",
+      rating: 5
+    }
   }
 ]
 
