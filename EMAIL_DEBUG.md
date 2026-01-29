@@ -7,7 +7,7 @@
 Öppna `server/.env` och se till att dessa rader finns:
 
 ```env
-RESEND_API_KEY=re_KeW1QeLN_FMb1oYim8ExtpCBVdewD1VJ2
+RESEND_API_KEY=re_ditt_api_key_här
 EMAIL_FROM=onboarding@resend.dev
 ```
 
