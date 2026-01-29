@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './WellnessProfile.css'
 import bodyLowFat from '../assets/images/body-low-fat.jpg'
 import bodyMediumFat from '../assets/images/body-medium-fat.jpg'
@@ -5,6 +6,10 @@ import bodyHigherFat from '../assets/images/body-higher-fat.jpg'
 import bodyVeryHighFat from '../assets/images/body-very-high-fat.jpg'
 
 function WellnessProfile({ userData, onNext }) {
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   // Calculate BMI (simplified - assumes height in cm and weight in kg)
   const height = userData.height || 175
   const weight = userData.weight || 80

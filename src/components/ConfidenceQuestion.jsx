@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './ConfidenceQuestion.css'
 
 function ConfidenceQuestion({ onAnswer }) {
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   const options = [
     "Not confident",
     "Somewhat",

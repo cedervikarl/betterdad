@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './EmailCapture.css'
 
 function EmailCapture({ onNext }) {
   const [email, setEmail] = useState('')
   const [consent, setConsent] = useState(false)
+
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -1,8 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './AgeInput.css'
 
 function AgeInput({ onNext, initialValue = '' }) {
   const [value, setValue] = useState(initialValue)
+
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()

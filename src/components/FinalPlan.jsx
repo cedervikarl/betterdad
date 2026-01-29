@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './FinalPlan.css'
 
 function FinalPlan({ userData, onNext }) {
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   const currentWeight = userData.weight || 80
   const goalWeight = userData.goalWeight || 75
   const predictedDate = new Date()

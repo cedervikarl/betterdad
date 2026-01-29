@@ -166,6 +166,12 @@ const INFO_SLIDES = [
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
     position: 8, // After question 8 (was question 6)
     image: infoImage3
+  },
+  {
+    id: 'info-4',
+    text: "You're almost done! Hang in there — we're building something that actually works for you.",
+    position: 9, // After question 9 (middle of quiz)
+    image: null // No image for this one
   }
 ]
 

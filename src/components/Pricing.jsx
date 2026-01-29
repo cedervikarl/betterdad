@@ -16,6 +16,11 @@ function Pricing({ onSelectPlan, userData }) {
   const [selectedPlan, setSelectedPlan] = useState('4-week')
   const [timeLeft, setTimeLeft] = useState(5 * 60) // 5 minutes in seconds
   
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {

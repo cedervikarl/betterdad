@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './HeightInput.css'
 
 function HeightInput({ onNext, initialValue = '' }) {
   const [unit, setUnit] = useState('cm')
   const [value, setValue] = useState(initialValue)
+
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()

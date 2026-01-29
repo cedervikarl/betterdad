@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './WeightInput.css'
 
 function WeightInput({ onNext, initialValue = '' }) {
   const [unit, setUnit] = useState('kg')
   const [value, setValue] = useState(initialValue)
+
+  // Auto-scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
