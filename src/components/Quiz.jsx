@@ -35,12 +35,17 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
 
   const totalSteps = steps.length
 
-  // Auto-scroll to top when step changes (smooth, without showing URL bar)
+  // Auto-scroll to top when step changes (only if user scrolled down significantly)
   useEffect(() => {
-    // Small delay to ensure DOM is ready, then smooth scroll
     const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 100)
+      // Only scroll if user is more than 200px from top (prevents URL bar popup)
+      if (window.scrollY > 200) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else if (window.scrollY > 0) {
+        // If already near top, just scroll a tiny bit to ensure we're at top
+        window.scrollTo({ top: 0, behavior: 'auto' })
+      }
+    }, 150)
     return () => clearTimeout(timer)
   }, [currentStepIndex])
 

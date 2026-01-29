@@ -20,7 +20,7 @@
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 1.5rem 1.25rem 2rem 1.25rem;
+  padding: 1.5rem 1.25rem 3rem 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   animation: slideIn 0.4s ease-out;
 }
@@ -75,7 +75,7 @@
 }
 
 .projection-graph-wrapper {
-  margin: 3rem 0 4rem 0;
+  margin: 3rem 0 5rem 0;
 }
 
 .projection-graph {
@@ -155,7 +155,7 @@
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-  margin: 2rem auto 0 auto;
+  margin: 3rem auto 0 auto;
   display: block;
   min-height: 50px;
   display: flex;
