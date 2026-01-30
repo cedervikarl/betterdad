@@ -124,16 +124,6 @@ function Pricing({ onSelectPlan, userData }) {
 
   // Pricing in EUR and GBP
   const plansEUR = [
-    // TEST TIER - TA BORT EFTER TESTNING
-    {
-      id: 'test-tier',
-      name: 'Test Tier',
-      price: 0.99,
-      originalPrice: 0.99,
-      dailyPrice: 0.14,
-      duration: 'test',
-      popular: false
-    },
     {
       id: '1-week',
       name: '1-Week Trial',
@@ -164,16 +154,6 @@ function Pricing({ onSelectPlan, userData }) {
   ]
 
   const plansGBP = [
-    // TEST TIER - TA BORT EFTER TESTNING
-    {
-      id: 'test-tier',
-      name: 'Test Tier',
-      price: 0.79,
-      originalPrice: 0.79,
-      dailyPrice: 0.11,
-      duration: 'test',
-      popular: false
-    },
     {
       id: '1-week',
       name: '1-Week Trial',
