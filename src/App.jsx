@@ -194,8 +194,12 @@ function App() {
   const [successCurrency, setSuccessCurrency] = useState('EUR')
 
   useEffect(() => {
-    // Initialize Facebook Pixel
-    initFacebookPixel()
+    // Initialize Facebook Pixel (with error handling)
+    try {
+      initFacebookPixel()
+    } catch (error) {
+      console.error('Failed to initialize Facebook Pixel:', error)
+    }
     
     const open = () => setLegalOpen(true)
     window.addEventListener('betterdad:open-docs', open)
