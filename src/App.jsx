@@ -15,6 +15,7 @@ import FinalPlan from './components/FinalPlan'
 import Pricing from './components/Pricing'
 import Success from './components/Success'
 import LegalDrawer from './components/LegalDrawer'
+import { initFacebookPixel } from './utils/facebookPixel'
 import './App.css'
 
 // Importera bilder för body type questions
