@@ -15,6 +15,7 @@ import dreamSlimmer from '../assets/images/dream-slimmer-healthy.jpg'
 function Pricing({ onSelectPlan, userData }) {
   const [selectedPlan, setSelectedPlan] = useState('4-week')
   const [timeLeft, setTimeLeft] = useState(5 * 60) // 5 minutes in seconds
+  const [currency, setCurrency] = useState('EUR') // Default to EUR
   
   // Auto-scroll to top when component mounts
   useEffect(() => {
@@ -113,35 +114,77 @@ function Pricing({ onSelectPlan, userData }) {
     return 'Slimmer and healthier'
   }
 
-  const plans = [
+  // Auto-detect currency based on timezone (UK = GBP, else EUR)
+  useEffect(() => {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    if (timezone.includes('London') || timezone.includes('Europe/London')) {
+      setCurrency('GBP')
+    }
+  }, [])
+
+  // Pricing in EUR and GBP
+  const plansEUR = [
     {
       id: '1-week',
       name: '1-Week Trial',
-      price: 142.84,
-      originalPrice: 214.00,
-      dailyPrice: 20.41,
+      price: 29.99,
+      originalPrice: 39.99,
+      dailyPrice: 4.28,
       duration: '1 week',
       popular: false
     },
     {
       id: '4-week',
       name: '4-Week Plan',
-      price: 428.56,
-      originalPrice: 643.00,
-      dailyPrice: 15.31,
+      price: 39.99,
+      originalPrice: 49.99,
+      dailyPrice: 1.43,
       duration: '4 weeks',
       popular: true
     },
     {
       id: '12-week',
       name: '12-Week Plan',
-      price: 714.27,
-      originalPrice: 1071.00,
-      dailyPrice: 8.50,
+      price: 59.99,
+      originalPrice: 79.99,
+      dailyPrice: 0.71,
       duration: '12 weeks',
       popular: false
     }
   ]
+
+  const plansGBP = [
+    {
+      id: '1-week',
+      name: '1-Week Trial',
+      price: 24.99,
+      originalPrice: 34.99,
+      dailyPrice: 3.57,
+      duration: '1 week',
+      popular: false
+    },
+    {
+      id: '4-week',
+      name: '4-Week Plan',
+      price: 34.99,
+      originalPrice: 44.99,
+      dailyPrice: 1.25,
+      duration: '4 weeks',
+      popular: true
+    },
+    {
+      id: '12-week',
+      name: '12-Week Plan',
+      price: 49.99,
+      originalPrice: 69.99,
+      dailyPrice: 0.60,
+      duration: '12 weeks',
+      popular: false
+    }
+  ]
+
+  const plans = currency === 'GBP' ? plansGBP : plansEUR
+  const currencySymbol = currency === 'GBP' ? '£' : '€'
 
   return (
     <div className="pricing-container">
@@ -185,6 +228,21 @@ function Pricing({ onSelectPlan, userData }) {
         
         <h2 className="pricing-title">Get visible results in 4 weeks!</h2>
         
+        <div className="pricing-currency-selector">
+          <button
+            className={`currency-button ${currency === 'EUR' ? 'active' : ''}`}
+            onClick={() => setCurrency('EUR')}
+          >
+            € EUR
+          </button>
+          <button
+            className={`currency-button ${currency === 'GBP' ? 'active' : ''}`}
+            onClick={() => setCurrency('GBP')}
+          >
+            £ GBP
+          </button>
+        </div>
+        
         <div className="pricing-plans-grid">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id
@@ -201,11 +259,11 @@ function Pricing({ onSelectPlan, userData }) {
                 <h3 className="pricing-plan-name">{plan.name}</h3>
                 <div className="pricing-plan-price">
                   <div className="pricing-price-daily-large">
-                    kr{plan.dailyPrice.toFixed(2)} <span className="pricing-price-daily-label">per day</span>
+                    {currencySymbol}{plan.dailyPrice.toFixed(2)} <span className="pricing-price-daily-label">per day</span>
                   </div>
                   <div className="pricing-price-total">
-                    <span className="pricing-price-strikethrough-small">kr{plan.originalPrice.toFixed(2)}</span>
-                    <span className="pricing-price-amount-small">kr{plan.price.toFixed(2)}</span>
+                    <span className="pricing-price-strikethrough-small">{currencySymbol}{plan.originalPrice.toFixed(2)}</span>
+                    <span className="pricing-price-amount-small">{currencySymbol}{plan.price.toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="pricing-plan-radio">
@@ -241,7 +299,7 @@ function Pricing({ onSelectPlan, userData }) {
               const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ planId: plan.id, email }),
+                body: JSON.stringify({ planId: plan.id, email, currency }),
               })
               
               if (!res.ok) {

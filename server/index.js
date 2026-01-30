@@ -102,21 +102,31 @@ app.post('/api/create-checkout-session', async (req, res) => {
       return res.status(400).json({ error: 'Missing planId or email' })
     }
 
-    // Plan pricing in SEK (öre) - exact prices from design
-    const planPrices = {
-      '1-week': { amount: 14284, name: '1-Week Trial' }, // 142.84 SEK
-      '4-week': { amount: 42856, name: '4-Week Plan' }, // 428.56 SEK
-      '12-week': { amount: 71427, name: '12-Week Plan' } // 714.27 SEK
+    const currency = req.body.currency || 'EUR' // Default to EUR
+
+    // Plan pricing in EUR (cents) and GBP (pence)
+    const planPricesEUR = {
+      '1-week': { amount: 2999, name: '1-Week Trial' }, // 29.99 EUR
+      '4-week': { amount: 3999, name: '4-Week Plan' }, // 39.99 EUR
+      '12-week': { amount: 5999, name: '12-Week Plan' } // 59.99 EUR
     }
 
+    const planPricesGBP = {
+      '1-week': { amount: 2499, name: '1-Week Trial' }, // 24.99 GBP
+      '4-week': { amount: 3499, name: '4-Week Plan' }, // 34.99 GBP
+      '12-week': { amount: 4999, name: '12-Week Plan' } // 49.99 GBP
+    }
+
+    const planPrices = currency === 'GBP' ? planPricesGBP : planPricesEUR
     const plan = planPrices[planId]
+    
     if (!plan) {
       console.error('❌ Invalid plan ID:', planId)
       return res.status(400).json({ error: 'Invalid plan ID' })
     }
 
     console.log('Creating Stripe checkout session...')
-    console.log('Plan:', plan.name, 'Amount:', plan.amount, 'öre')
+    console.log('Plan:', plan.name, 'Amount:', plan.amount, currency === 'GBP' ? 'pence' : 'cents', 'Currency:', currency.toLowerCase())
     
     const session = await stripe.checkout.sessions.create({
       mode: 'payment', // One-time payment instead of subscription
@@ -125,7 +135,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: 'sek',
+            currency: currency.toLowerCase(),
             product_data: {
               name: `DadBod Elimination Protocol - ${plan.name}`,
               description: 'Personalized home workout plan for busy dads',
