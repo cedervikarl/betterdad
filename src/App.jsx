@@ -213,6 +213,11 @@ function App() {
         .then(data => {
           if (data.email) {
             setSuccessEmail(data.email)
+            // Get plan price from session for Facebook Pixel tracking
+            if (data.amount && data.currency) {
+              setSuccessPlanPrice(data.amount / 100) // Convert from cents
+              setSuccessCurrency(data.currency.toUpperCase())
+            }
             setCurrentStep('success')
           }
         })
