@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { trackEvent } from '../utils/facebookPixel'
 import './Pricing.css'
 import testimonialImage1 from '../assets/images/info-2-michael.jpg'
 import testimonialImage2 from '../assets/images/info-1-success.jpg'
@@ -337,6 +338,18 @@ function Pricing({ onSelectPlan, userData }) {
               
               const data = await res.json()
               console.log('Checkout session created:', data)
+              
+              // Track Facebook Pixel events
+              trackEvent('AddToCart', {
+                content_name: plan.name,
+                value: plan.price,
+                currency: currency
+              })
+              
+              trackEvent('InitiateCheckout', {
+                value: plan.price,
+                currency: currency
+              })
               
               if (data?.url) {
                 window.location.href = data.url

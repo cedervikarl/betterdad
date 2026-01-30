@@ -189,8 +189,13 @@ function App() {
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [legalOpen, setLegalOpen] = useState(false)
   const [successEmail, setSuccessEmail] = useState('')
+  const [successPlanPrice, setSuccessPlanPrice] = useState(null)
+  const [successCurrency, setSuccessCurrency] = useState('EUR')
 
   useEffect(() => {
+    // Initialize Facebook Pixel
+    initFacebookPixel()
+    
     const open = () => setLegalOpen(true)
     window.addEventListener('betterdad:open-docs', open)
     return () => window.removeEventListener('betterdad:open-docs', open)
@@ -370,7 +375,7 @@ function App() {
         <Pricing onSelectPlan={handlePricingSelect} userData={userData} />
       )}
       {currentStep === 'success' && (
-        <Success email={successEmail} />
+        <Success email={successEmail} planPrice={successPlanPrice} currency={successCurrency} />
       )}
 
       <LegalDrawer open={legalOpen} onClose={() => setLegalOpen(false)} />

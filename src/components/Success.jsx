@@ -1,6 +1,14 @@
+import { useEffect } from 'react'
+import { trackPurchase } from '../utils/facebookPixel'
 import './Success.css'
 
-function Success({ sessionId, email }) {
+function Success({ sessionId, email, planPrice, currency }) {
+  useEffect(() => {
+    // Track purchase when user lands on success page
+    if (planPrice && currency) {
+      trackPurchase(planPrice, currency)
+    }
+  }, [planPrice, currency])
   const handleOpenEmail = () => {
     // Open default email client
     window.location.href = `mailto:${email || ''}`
