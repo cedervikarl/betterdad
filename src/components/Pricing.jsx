@@ -308,9 +308,8 @@ function Pricing({ onSelectPlan, userData }) {
             onClick={async () => {
             const plan = plans.find(p => p.id === selectedPlan)
             if (!plan) return
-            // Here we assume you have already captured the user's email in userData/email state
-            // Always use likeikeab@gmail.com for now
-            const email = 'likeikeab@gmail.com'
+            // Get email from userData or localStorage, fallback to likeikeab@gmail.com for testing
+            const email = userData?.email || localStorage.getItem('betterdad_email') || 'likeikeab@gmail.com'
             try {
               const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
               
