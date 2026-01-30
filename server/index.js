@@ -135,8 +135,9 @@ app.post('/api/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment', // One-time payment instead of subscription
       payment_method_types: ['card'],
-      customer_email: email,
+      customer_email: email, // Pre-fill email, but user can change it
       allow_promotion_codes: true, // Enable promotion code input in checkout
+      customer_creation: 'always', // Allow customer to update email
       line_items: [
         {
           price_data: {
