@@ -106,12 +106,16 @@ app.post('/api/create-checkout-session', async (req, res) => {
 
     // Plan pricing in EUR (cents) and GBP (pence)
     const planPricesEUR = {
+      // TEST TIER - TA BORT EFTER TESTNING
+      'test-tier': { amount: 99, name: 'Test Tier' }, // 0.99 EUR
       '1-week': { amount: 2999, name: '1-Week Trial' }, // 29.99 EUR
       '4-week': { amount: 3999, name: '4-Week Plan' }, // 39.99 EUR
       '12-week': { amount: 5999, name: '12-Week Plan' } // 59.99 EUR
     }
 
     const planPricesGBP = {
+      // TEST TIER - TA BORT EFTER TESTNING
+      'test-tier': { amount: 79, name: 'Test Tier' }, // 0.79 GBP
       '1-week': { amount: 2499, name: '1-Week Trial' }, // 24.99 GBP
       '4-week': { amount: 3499, name: '4-Week Plan' }, // 34.99 GBP
       '12-week': { amount: 4999, name: '12-Week Plan' } // 49.99 GBP
