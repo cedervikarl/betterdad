@@ -4,8 +4,8 @@ export const initFacebookPixel = () => {
     return // Already initialized
   }
 
-  // Replace YOUR_PIXEL_ID with your actual Pixel ID from Facebook Events Manager
-  const PIXEL_ID = import.meta.env.VITE_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID'
+  // Facebook Pixel ID
+  const PIXEL_ID = import.meta.env.VITE_FACEBOOK_PIXEL_ID || '2044437109839927'
 
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
