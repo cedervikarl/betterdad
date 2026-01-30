@@ -214,12 +214,12 @@ app.post('/webhook', (req, res) => {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
     const planId = session.metadata?.planId
-    // Always send to likeikeab@gmail.com
-    const email = 'likeikeab@gmail.com'
+    // Get email from session (user may have changed it in checkout) or from metadata
+    const sessionEmail = session.customer_email || session.customer_details?.email || session.metadata?.email
 
     console.log('=== WEBHOOK: checkout.session.completed ===')
     console.log('Session ID:', session.id)
-    console.log('Email (fixed):', email)
+    console.log('Session email:', sessionEmail)
     console.log('Plan ID:', planId)
     console.log('Total profiles stored:', profiles.size)
     console.log('All profile emails:', Array.from(profiles.keys()))
@@ -241,6 +241,10 @@ app.post('/webhook', (req, res) => {
         console.error('❌ No profiles found in storage!')
         console.error('Make sure profile was saved before checkout')
       }
+      
+      // Use email from session (if user changed it) or from profile, fallback to likeikeab@gmail.com for testing
+      const email = sessionEmail || profile?.email || 'likeikeab@gmail.com'
+      console.log('Final email to send to:', email)
       
       console.log('Profile found:', !!profile)
       console.log('OpenAI configured:', !!openai)
