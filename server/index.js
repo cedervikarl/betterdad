@@ -132,6 +132,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       mode: 'payment', // One-time payment instead of subscription
       payment_method_types: ['card'],
       customer_email: email,
+      allow_promotion_codes: true, // Enable promotion code input in checkout
       line_items: [
         {
           price_data: {
