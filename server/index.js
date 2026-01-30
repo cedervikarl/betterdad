@@ -1301,7 +1301,9 @@ app.get('/api/session/:sessionId', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.params.sessionId)
     res.json({ 
       email: session.customer_email || session.metadata?.email,
-      planId: session.metadata?.planId 
+      planId: session.metadata?.planId,
+      amount: session.amount_total, // Total amount in cents
+      currency: session.currency // Currency code (eur, gbp, etc)
     })
   } catch (error) {
     console.error('Error retrieving session:', error)
