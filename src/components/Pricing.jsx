@@ -312,10 +312,30 @@ function Pricing({ onSelectPlan, userData }) {
             // Always use likeikeab@gmail.com for now
             const email = 'likeikeab@gmail.com'
             try {
+              const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
+              
+              // IMPORTANT: Save profile BEFORE creating checkout session
+              console.log('Saving profile before checkout...')
+              const profileToSave = {
+                ...userData,
+                email: email
+              }
+              
+              const saveRes = await fetch(`${backendUrl}/api/save-profile`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileToSave),
+              })
+              
+              if (!saveRes.ok) {
+                console.error('Failed to save profile, but continuing...')
+              } else {
+                console.log('✅ Profile saved successfully')
+              }
+              
               console.log('Creating checkout session for plan:', plan.id)
               console.log('Email:', email)
               
-              const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
               const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
