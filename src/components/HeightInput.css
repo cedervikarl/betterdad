@@ -102,6 +102,14 @@
   margin-top: -0.5rem;
 }
 
+.height-input-error {
+  font-size: 0.875rem;
+  color: #d32f2f;
+  text-align: center;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .height-input-button {
   background-color: #1a1a1a;
   color: #f5f3f0;
