@@ -51,11 +51,8 @@ function Hero({ onStart }) {
               <div className="testimonial-rating">★★★★★</div>
               <p className="testimonial-quote">"Lost 24 lbs in 8 weeks without giving up weekends"</p>
               <div className="testimonial-author">
-                <div className="testimonial-avatar"></div>
-                <div>
-                  <div className="testimonial-name">Michael, 34</div>
-                  <div className="testimonial-result">Lost 24 lbs</div>
-                </div>
+                <div className="testimonial-name">Michael, 34</div>
+                <div className="testimonial-result">Lost 24 lbs</div>
               </div>
             </div>
             <div className="testimonial-card">

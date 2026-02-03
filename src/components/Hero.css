@@ -119,11 +119,11 @@
 }
 
 .hero-title-divider {
-  width: 50px;
+  width: 80px;
   height: 3px;
   background: linear-gradient(90deg, var(--accent-orange) 0%, rgba(255, 107, 53, 0.3) 100%);
   border-radius: 2px;
-  margin: 0.75rem auto;
+  margin: 0.5rem auto;
 }
 
 .hero-guarantee {
@@ -218,11 +218,19 @@
   display: none;
 }
 
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hero-visual .hero-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 24px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
 }
 
 /* ============================================
@@ -263,16 +271,8 @@
 
 .testimonial-author {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .testimonial-name {
@@ -442,23 +442,24 @@
    ============================================ */
 @media (min-width: 768px) {
   .hero-section {
-    padding: 4rem 0;
+    padding: 5rem 0;
     min-height: 90vh;
     align-items: center;
   }
   
   .hero-container {
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
   
   .hero-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: center;
   }
   
   .hero-content {
     text-align: left;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
   
   .hero-badge {
@@ -472,9 +473,9 @@
   }
   
   .hero-title-divider {
-    width: 70px;
+    width: 120px;
     height: 4px;
-    margin: 1rem 0;
+    margin: 0.75rem 0;
     margin-left: 0;
   }
   
@@ -487,7 +488,13 @@
   }
   
   .hero-visual {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .hero-visual .hero-image {
+    max-width: 550px;
   }
   
   .hero-description {
@@ -568,24 +575,46 @@
    ============================================ */
 @media (min-width: 1024px) {
   .hero-section {
-    padding: 6rem 0;
+    padding: 7rem 0;
+  }
+  
+  .hero-container {
+    padding: 0 4rem;
+  }
+  
+  .hero-grid {
+    gap: 6rem;
+    max-width: 1300px;
+  }
+  
+  .hero-visual .hero-image {
+    max-width: 600px;
   }
   
   .hero-title {
-    font-size: 3.25rem;
+    font-size: 3.5rem;
+    line-height: 1.1;
   }
   
   .hero-title-divider {
-    width: 80px;
-    margin: 1.25rem 0;
+    width: 180px;
+    height: 5px;
+    margin: 0.75rem 0;
   }
   
   .hero-guarantee {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
   }
   
   .hero-description {
-    font-size: 1.1875rem;
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+  
+  .hero-cta {
+    font-size: 1.375rem;
+    padding: 1.75rem 4rem;
+    max-width: 450px;
   }
   
   .section-title {
@@ -594,14 +623,31 @@
   
   .testimonials-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .testimonial-card {
+    padding: 2.5rem;
+  }
+  
+  .guarantee-section {
+    padding: 6rem 0;
   }
   
   .guarantee-title {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
   
   .guarantee-text {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
+  }
+  
+  .how-it-works-section {
+    padding: 6rem 0;
+  }
+  
+  .faq-section {
+    padding: 6rem 0;
   }
 }
 
