@@ -1,20 +1,22 @@
 import './Hero.css'
-import heroImage from '../assets/images/hero-workout.jpg'
+import heroImage from '../assets/images/info-5-guarantee.jpg'
 
 function Hero({ onStart }) {
   return (
     <div className="hero-page">
       {/* HERO SECTION */}
       <section className="hero-section">
-        <div className="hero-container">
+      <div className="hero-container">
           <div className="hero-grid">
-            <div className="hero-content">
+        <div className="hero-content">
               <div className="hero-badge">100% Money-Back Guarantee</div>
               <h1 className="hero-title">
                 Get into the best shape of your life before summer
               </h1>
-              <div className="hero-title-divider"></div>
-              <p className="hero-guarantee">OR GET YOUR MONEY BACK</p>
+              <div className="hero-guarantee-wrapper">
+                <div className="hero-title-divider"></div>
+                <p className="hero-guarantee">OR GET YOUR MONEY BACK</p>
+              </div>
               <div className="hero-image-mobile">
                 <img src={heroImage} alt="Fit dad" className="hero-image" />
               </div>
@@ -143,15 +145,15 @@ function Hero({ onStart }) {
             <div className="faq-item">
               <div className="faq-question">Do I need a gym membership?</div>
               <div className="faq-answer">No, all workouts are designed to be done at home with minimal or no equipment.</div>
-            </div>
+              </div>
             <div className="faq-item">
               <div className="faq-question">How much time per day?</div>
               <div className="faq-answer">15-30 minutes is all you need. We respect your time and focus on maximum efficiency.</div>
-            </div>
+              </div>
             <div className="faq-item">
               <div className="faq-question">Will this work for me at 40+?</div>
               <div className="faq-answer">Yes, our plans are specifically designed for dads 35+ with busy schedules and real-life constraints.</div>
-            </div>
+              </div>
             <div className="faq-item">
               <div className="faq-question">What if I travel a lot?</div>
               <div className="faq-answer">Perfect! Our plans are built for busy schedules and can be adapted to work anywhere, anytime.</div>
