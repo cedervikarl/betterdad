@@ -188,7 +188,7 @@ const INFO_SLIDES = [
 ]
 
 function App() {
-  const [currentStep, setCurrentStep] = useState('quiz')
+  const [currentStep, setCurrentStep] = useState('hero')
   const [quizAnswers, setQuizAnswers] = useState({})
   const [userData, setUserData] = useState({})
   const [email, setEmail] = useState('')
@@ -364,6 +364,9 @@ function App() {
   return (
     <div className="app">
       <Header onOpenDocs={() => setLegalOpen(true)} />
+      {currentStep === 'hero' && (
+        <Hero onStart={handleStartQuiz} />
+      )}
       {currentStep === 'quiz' && (
         <Quiz
           config={QUIZ_CONFIG}

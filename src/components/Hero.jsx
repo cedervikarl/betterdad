@@ -7,13 +7,13 @@ function Hero({ onStart }) {
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-text">
-            <h1 className="hero-title">Unlock Your DadBod Blueprint</h1>
+            <h1 className="hero-title">Get in the best shape of your life before summer</h1>
             <p className="hero-subtitle">
-              Personal home workout plan for busy dads who want to lose the belly, build muscle and get their energy back – starting with a 60-second quiz.
+              Take the quiz and get your plan based on your stress, equipment, budget and hormones sent to you seconds after finishing quiz. Do your first workout tomorrow!
             </p>
             <div className="hero-social-proof">
               <span className="social-proof-item">
-                Trusted by Over 150,000 Dads
+                100,000+ dads have already changed their life
               </span>
               <div className="social-proof-avatars">
                 <div className="social-proof-avatar"></div>
@@ -24,44 +24,9 @@ function Hero({ onStart }) {
               </div>
             </div>
             
-            <div className="hero-features">
-              <div className="hero-feature">
-                <div className="hero-feature-icon">✓</div>
-                <div className="hero-feature-text">
-                  <strong>Personalized plans</strong> tailored to your schedule
-                </div>
-              </div>
-              <div className="hero-feature">
-                <div className="hero-feature-icon">✓</div>
-                <div className="hero-feature-text">
-                  <strong>No gym required</strong> – workout from home
-                </div>
-              </div>
-              <div className="hero-feature">
-                <div className="hero-feature-icon">✓</div>
-                <div className="hero-feature-text">
-                  <strong>Proven results</strong> in just 4 weeks
-                </div>
-              </div>
-            </div>
             <button className="hero-button" onClick={onStart}>
-              Start Your Quiz
+              Let's do it
             </button>
-            
-            <div className="hero-stats">
-              <div className="hero-stat">
-                <div className="hero-stat-number">150,000+</div>
-                <div className="hero-stat-label">Dads transformed</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">4.9/5</div>
-                <div className="hero-stat-label">Average rating</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">12 weeks</div>
-                <div className="hero-stat-label">To see results</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
