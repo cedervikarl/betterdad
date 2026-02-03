@@ -1,107 +1,162 @@
 .hero {
   min-height: 100vh;
   background-color: #f5f3f0;
-  padding: 2rem 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 0;
+  position: relative;
 }
 
-.hero-container {
-  max-width: 1200px;
+.hero-wrapper {
   width: 100%;
-  animation: fadeInUp 0.6s ease-out;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .hero-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.hero-text-section {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   text-align: center;
 }
 
-.hero-title {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FF6B35;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 107, 53, 0.1);
+  border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto;
   font-family: 'Inter', sans-serif;
 }
 
-.hero-offer {
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-subtitle {
   font-size: 1.125rem;
   font-weight: 700;
   color: #FF6B35;
   letter-spacing: 0.05em;
-  font-family: 'Inter', sans-serif;
   text-transform: uppercase;
-  margin-top: -0.5rem;
+  margin: -0.5rem 0 0 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .hero-description {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #4a4a4a;
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
+  margin: 0;
   max-width: 600px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Inter', sans-serif;
 }
 
-.hero-button {
+.hero-cta {
   background-color: #1a1a1a;
-  color: #f5f3f0;
+  color: #ffffff;
   border: none;
   padding: 1.25rem 3rem;
   font-size: 1.125rem;
   font-weight: 700;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0.5rem auto 0;
   min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
-  letter-spacing: 0.02em;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
-.hero-button:hover {
+.hero-cta:hover {
   background-color: #2d2d2d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
-.hero-button:active {
+.hero-cta:active {
   transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.hero-image-section {
-  display: none;
+.hero-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: #6a6a6a;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+.trust-icon {
+  color: #52C41A;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .hero-image {
   width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  display: block;
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -112,82 +167,109 @@
   }
 }
 
+.hero-wrapper {
+  animation: fadeIn 0.6s ease-out;
+}
+
 @media (min-width: 768px) {
-  .hero {
-    padding: 4rem 2rem;
+  .hero-wrapper {
+    padding: 6rem 2rem;
   }
   
-  .hero-content {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
     align-items: center;
   }
   
-  .hero-text-section {
+  .hero-content {
     text-align: left;
     gap: 2rem;
   }
   
-  .hero-title {
-    font-size: 3.5rem;
-    line-height: 1.1;
+  .hero-badge {
+    margin: 0;
   }
   
-  .hero-offer {
-    font-size: 1.5rem;
-    margin-top: -0.75rem;
+  .hero-title {
+    font-size: 3.5rem;
+    line-height: 1.05;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.375rem;
   }
   
   .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    margin: 0;
-    max-width: 100%;
+    font-size: 1.1875rem;
+    margin-left: 0;
+    margin-right: 0;
   }
   
-  .hero-button {
-    margin: 0;
-    max-width: 350px;
+  .hero-cta {
+    margin-left: 0;
+    margin-right: 0;
     font-size: 1.25rem;
     padding: 1.5rem 4rem;
   }
   
-  .hero-image-section {
-    display: block;
+  .hero-trust {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  
+  .hero-image-wrapper {
+    max-width: 100%;
   }
   
   .hero-image {
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   }
 }
 
 @media (min-width: 1024px) {
-  .hero {
-    padding: 6rem 3rem;
+  .hero-wrapper {
+    padding: 8rem 3rem;
+  }
+  
+  .hero-grid {
+    gap: 6rem;
   }
   
   .hero-content {
-    gap: 6rem;
+    gap: 2.5rem;
   }
   
   .hero-title {
     font-size: 4.5rem;
-    line-height: 1.05;
+    line-height: 1;
   }
   
-  .hero-offer {
-    font-size: 1.75rem;
+  .hero-subtitle {
+    font-size: 1.625rem;
   }
   
   .hero-description {
-    font-size: 1.25rem;
+    font-size: 1.3125rem;
+    line-height: 1.75;
   }
   
-  .hero-button {
+  .hero-cta {
     font-size: 1.375rem;
     padding: 1.75rem 5rem;
-    max-width: 400px;
+    max-width: 450px;
+  }
+  
+  .hero-trust {
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .trust-item {
+    font-size: 1rem;
   }
 }
 
@@ -196,7 +278,11 @@
     font-size: 5.5rem;
   }
   
-  .hero-offer {
-    font-size: 2rem;
+  .hero-subtitle {
+    font-size: 1.875rem;
+  }
+  
+  .hero-description {
+    font-size: 1.4375rem;
   }
 }
