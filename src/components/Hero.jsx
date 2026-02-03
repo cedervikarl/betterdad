@@ -26,16 +26,6 @@ function Hero({ onStart }) {
               <button className="hero-cta" onClick={onStart}>
                 Start Quiz
               </button>
-              <div className="hero-trust">
-                <div className="trust-item">
-                  <span className="trust-icon">✓</span>
-                  <span>100,000+ dads transformed</span>
-                </div>
-                <div className="trust-item">
-                  <span className="trust-icon">✓</span>
-                  <span>Results in 4 weeks</span>
-                </div>
-              </div>
             </div>
             <div className="hero-visual">
               <img src={heroImage} alt="Fit dad working out" className="hero-image" />

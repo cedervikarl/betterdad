@@ -228,12 +228,6 @@
   display: none;
 }
 
-.hero-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .hero-visual .hero-image {
   width: 100%;
   max-width: 100%;
@@ -506,7 +500,7 @@
   }
   
   .hero-visual {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: flex-end;
   }
