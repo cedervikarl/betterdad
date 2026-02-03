@@ -11,10 +11,9 @@ function Hero({ onStart }) {
             <div className="hero-content">
               <div className="hero-badge">100% Money-Back Guarantee</div>
               <h1 className="hero-title">
-                <span className="hero-title-main">Get into the best shape of your life</span>
-                <span className="hero-title-divider"></span>
-                <span className="hero-title-summer">before summer</span>
+                Get into the best shape of your life before summer
               </h1>
+              <div className="hero-title-divider"></div>
               <p className="hero-guarantee">OR GET YOUR MONEY BACK</p>
               <div className="hero-image-mobile">
                 <img src={heroImage} alt="Fit dad" className="hero-image" />
