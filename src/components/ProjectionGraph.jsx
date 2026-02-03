@@ -13,7 +13,7 @@ function ProjectionGraph({ userData, onNext }) {
   const goalWeight = userData.goalWeight || 75
   const weightLoss = currentWeight - goalWeight
   const predictedDate = new Date()
-  predictedDate.setMonth(predictedDate.getMonth() + 12) // 12 months prediction
+  predictedDate.setMonth(predictedDate.getMonth() + 2) // 2 months prediction
   
   const formatDate = (date) => {
     return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
