@@ -14,16 +14,51 @@ function HeightInput({ onNext, initialValue = '' }) {
     return () => clearTimeout(timer)
   }, [])
 
+  // Clear value when unit changes
+  useEffect(() => {
+    setValue('')
+    setError('')
+  }, [unit])
+
   const handleChange = (e) => {
     let inputValue = e.target.value
     
-    // Replace comma with period for decimal separator
-    inputValue = inputValue.replace(',', '.')
-    
-    // Allow empty, numbers, and one decimal point
-    if (inputValue === '' || /^\d*\.?\d*$/.test(inputValue)) {
-      setValue(inputValue)
+    if (unit === 'ft') {
+      // For feet: only allow digits, auto-format as "X ft Y"
+      // Remove any non-digit characters (but keep spaces and "ft" for parsing)
+      const digitsOnly = inputValue.replace(/\D/g, '')
+      
+      if (digitsOnly === '') {
+        setValue('')
+        setError('')
+        return
+      }
+      
+      // Format: if 1 digit, show "X ft"
+      // If 2+ digits, show "X ft Y" where X is first digit(s) and Y is last digit
+      if (digitsOnly.length === 1) {
+        setValue(`${digitsOnly} ft`)
+      } else if (digitsOnly.length === 2) {
+        // Two digits: first = feet, second = inches
+        const feet = digitsOnly[0]
+        const inches = digitsOnly[1]
+        setValue(`${feet} ft ${inches}`)
+      } else {
+        // 3+ digits: all but last = feet, last = inches
+        const feet = digitsOnly.slice(0, -1)
+        const inches = digitsOnly.slice(-1)
+        setValue(`${feet} ft ${inches}`)
+      }
       setError('')
+    } else {
+      // For cm: allow decimals with comma or period
+      inputValue = inputValue.replace(',', '.')
+      
+      // Allow empty, numbers, and one decimal point
+      if (inputValue === '' || /^\d*\.?\d*$/.test(inputValue)) {
+        setValue(inputValue)
+        setError('')
+      }
     }
   }
 
@@ -35,24 +70,57 @@ function HeightInput({ onNext, initialValue = '' }) {
       return
     }
 
-    // Convert comma to period if present
-    const normalizedValue = value.replace(',', '.')
-    const numValue = parseFloat(normalizedValue)
+    let numValue
 
-    if (isNaN(numValue)) {
-      setError('Please enter a valid number')
-      return
-    }
-
-    // Validate range based on unit
-    if (unit === 'cm') {
-      if (numValue < 100 || numValue > 250) {
-        setError('Height must be between 100 and 250 cm')
-        return
+    if (unit === 'ft') {
+      // Parse "6 ft 4" format
+      const match = value.match(/(\d+)\s*ft\s*(\d+)?/)
+      if (match) {
+        const feet = parseInt(match[1], 10)
+        const inches = match[2] ? parseInt(match[2], 10) : 0
+        
+        if (isNaN(feet) || feet < 3 || feet > 8) {
+          setError('Height must be between 3 and 8 ft')
+          return
+        }
+        
+        if (inches < 0 || inches > 11) {
+          setError('Inches must be between 0 and 11')
+          return
+        }
+        
+        // Convert to decimal feet: 6 ft 4 = 6.33 feet (4/12 = 0.33)
+        numValue = feet + (inches / 12)
+      } else {
+        // Try to parse as just digits (fallback)
+        const digitsOnly = value.replace(/\D/g, '')
+        if (digitsOnly.length >= 1) {
+          const feet = parseInt(digitsOnly.slice(0, -1) || digitsOnly, 10)
+          const inches = digitsOnly.length > 1 ? parseInt(digitsOnly.slice(-1), 10) : 0
+          
+          if (feet < 3 || feet > 8) {
+            setError('Height must be between 3 and 8 ft')
+            return
+          }
+          
+          numValue = feet + (inches / 12)
+        } else {
+          setError('Please enter a valid height')
+          return
+        }
       }
     } else {
-      if (numValue < 3 || numValue > 8) {
-        setError('Height must be between 3 and 8 ft')
+      // For cm: convert comma to period if present
+      const normalizedValue = value.replace(',', '.')
+      numValue = parseFloat(normalizedValue)
+
+      if (isNaN(numValue)) {
+        setError('Please enter a valid number')
+        return
+      }
+
+      if (numValue < 100 || numValue > 250) {
+        setError('Height must be between 100 and 250 cm')
         return
       }
     }
@@ -84,21 +152,21 @@ function HeightInput({ onNext, initialValue = '' }) {
               </button>
             </div>
             <input
-              type="number"
+              type={unit === 'ft' ? 'text' : 'number'}
               value={value}
               onChange={handleChange}
-              placeholder={unit === 'cm' ? '170' : '5.7'}
+              placeholder={unit === 'cm' ? '170' : '64'}
               className="height-input-field"
-              step="any"
-              min={unit === 'cm' ? 100 : 3}
-              max={unit === 'cm' ? 250 : 8}
+              step={unit === 'cm' ? 'any' : undefined}
+              min={unit === 'cm' ? 100 : undefined}
+              max={unit === 'cm' ? 250 : undefined}
             />
           </div>
           {error && (
             <p className="height-input-error">{error}</p>
           )}
           <p className="height-input-subtext">
-            {unit === 'cm' ? 'Range: 100-250 cm' : 'Range: 3-8 ft (decimals allowed)'}
+            {unit === 'cm' ? 'Range: 100-250 cm' : 'Enter like: 64 (becomes 6 ft 4)'}
           </p>
           <button type="submit" className="height-input-button">
             Continue

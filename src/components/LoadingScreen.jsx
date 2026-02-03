@@ -1,26 +1,72 @@
 import { useState, useEffect } from 'react'
+import ConfidenceQuestion from './ConfidenceQuestion'
 import './LoadingScreen.css'
 
-function LoadingScreen({ onComplete }) {
+function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
   const [progress, setProgress] = useState(0)
+  const [showConfidenceQuestion, setShowConfidenceQuestion] = useState(false)
+  const [confidenceAnswered, setConfidenceAnswered] = useState(false)
 
   useEffect(() => {
+    if (showConfidenceQuestion) {
+      return // Don't run progress when showing question
+    }
+
     const interval = setInterval(() => {
       setProgress((prev) => {
+        // Pause at 50% to show confidence question
+        if (prev >= 50 && !confidenceAnswered) {
+          setShowConfidenceQuestion(true)
+          return 50
+        }
+        
         if (prev >= 100) {
           clearInterval(interval)
           setTimeout(() => onComplete(), 500)
           return 100
         }
+        
         return prev + 2
       })
     }, 50)
 
     return () => clearInterval(interval)
-  }, [onComplete])
+  }, [onComplete, confidenceAnswered, showConfidenceQuestion])
+
+  // Continue progress after confidence is answered
+  useEffect(() => {
+    if (confidenceAnswered && !showConfidenceQuestion && progress === 50) {
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval)
+            setTimeout(() => onComplete(), 500)
+            return 100
+          }
+          return prev + 2
+        })
+      }, 50)
+
+      return () => clearInterval(interval)
+    }
+  }, [confidenceAnswered, showConfidenceQuestion, progress, onComplete])
+
+  const handleConfidenceAnswer = (answer) => {
+    onConfidenceAnswer(answer)
+    setConfidenceAnswered(true)
+    setShowConfidenceQuestion(false)
+  }
 
   const circumference = 2 * Math.PI * 45
   const offset = circumference - (progress / 100) * circumference
+
+  if (showConfidenceQuestion) {
+    return (
+      <div className="loading-screen-container">
+        <ConfidenceQuestion onAnswer={handleConfidenceAnswer} />
+      </div>
+    )
+  }
 
   return (
     <div className="loading-screen-container">

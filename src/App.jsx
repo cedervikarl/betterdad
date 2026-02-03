@@ -11,7 +11,6 @@ import WellnessProfile from './components/WellnessProfile'
 import ProjectionGraph from './components/ProjectionGraph'
 import ConfidenceQuestion from './components/ConfidenceQuestion'
 import LoadingScreen from './components/LoadingScreen'
-import FinalPlan from './components/FinalPlan'
 import Pricing from './components/Pricing'
 import Success from './components/Success'
 import LegalDrawer from './components/LegalDrawer'
@@ -34,6 +33,7 @@ import dreamSlimmer from './assets/images/dream-slimmer-healthy.jpg'
 import infoImage1 from './assets/images/info-1-success.jpg'
 import infoImage2 from './assets/images/info-2-michael.jpg'
 import infoImage3 from './assets/images/info-3-lifestyle.jpg'
+import infoImage5 from './assets/images/info-5-guarantee.jpg'
 
 const QUIZ_CONFIG = [
   {
@@ -178,6 +178,12 @@ const INFO_SLIDES = [
       text: "I was skeptical at first, but this plan actually fits my life. Lost 8 kg in 6 weeks and finally feel like myself again.",
       rating: 5
     }
+  },
+  {
+    id: 'info-5',
+    text: "Did you know? We offer a 100% Money-Back Guarantee. If you don't reach the goals you set in this quiz, you get all your money back. No questions asked.",
+    position: 17, // After question 17 (last question)
+    image: infoImage5
   }
 ]
 
@@ -289,12 +295,8 @@ function App() {
     setCurrentStep('projection-graph')
   }
 
-  const handleProjectionNext = () => {
-    setCurrentStep('confidence')
-  }
-
-  const handleConfidenceAnswer = async (answer) => {
-    const finalUserData = { ...userData, confidence: answer, ...quizAnswers }
+  const handleProjectionNext = async () => {
+    const finalUserData = { ...userData, ...quizAnswers }
     setUserData(finalUserData)
     
     // Save profile to backend before showing loading screen
@@ -325,11 +327,31 @@ function App() {
     setCurrentStep('loading')
   }
 
-  const handleLoadingComplete = () => {
-    setCurrentStep('final-plan')
+  const handleConfidenceAnswer = async (answer) => {
+    // Update userData with confidence answer
+    const updatedUserData = { ...userData, confidence: answer }
+    setUserData(updatedUserData)
+    
+    // Update profile in backend with confidence answer
+    try {
+      const profileToUpdate = {
+        ...updatedUserData,
+        email: updatedUserData.email || 'likeikeab@gmail.com'
+      }
+      
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
+      await fetch(`${backendUrl}/api/profile`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileToUpdate)
+      })
+    } catch (e) {
+      console.error('Failed to update profile with confidence:', e)
+    }
+    // Continue loading (this will be called from LoadingScreen)
   }
 
-  const handleFinalPlanNext = () => {
+  const handleLoadingComplete = () => {
     setCurrentStep('pricing')
   }
 
@@ -372,14 +394,12 @@ function App() {
       {currentStep === 'projection-graph' && (
         <ProjectionGraph userData={userData} onNext={handleProjectionNext} />
       )}
-      {currentStep === 'confidence' && (
-        <ConfidenceQuestion onAnswer={handleConfidenceAnswer} />
-      )}
       {currentStep === 'loading' && (
-        <LoadingScreen onComplete={handleLoadingComplete} />
-      )}
-      {currentStep === 'final-plan' && (
-        <FinalPlan userData={userData} onNext={handleFinalPlanNext} />
+        <LoadingScreen 
+          onComplete={handleLoadingComplete} 
+          onConfidenceAnswer={handleConfidenceAnswer}
+          userData={userData}
+        />
       )}
       {currentStep === 'pricing' && (
         <Pricing onSelectPlan={handlePricingSelect} userData={userData} />

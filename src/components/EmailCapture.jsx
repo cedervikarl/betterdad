@@ -24,7 +24,7 @@ function EmailCapture({ onNext }) {
   return (
     <div className="email-capture-container">
       <div className="email-capture-content">
-        <h2 className="email-capture-title">Where should we send your DADBOD TO LEANBODY plan?</h2>
+        <h2 className="email-capture-title">Where should we send your Better Dad Blueprint?</h2>
         <form onSubmit={handleSubmit} className="email-capture-form">
           <input
             type="email"
