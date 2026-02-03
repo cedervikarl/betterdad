@@ -166,7 +166,7 @@ function HeightInput({ onNext, initialValue = '' }) {
             <p className="height-input-error">{error}</p>
           )}
           <p className="height-input-subtext">
-            {unit === 'cm' ? 'Range: 100-250 cm' : 'Enter like: 64 (becomes 6 ft 4)'}
+            {unit === 'cm' ? 'Range: 100-250 cm' : 'Range: 3-8 ft'}
           </p>
           <button type="submit" className="height-input-button">
             Continue

@@ -26,9 +26,9 @@ function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
           return 100
         }
         
-        return prev + 2
+        return prev + 1
       })
-    }, 50)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [onComplete, confidenceAnswered, showConfidenceQuestion])
@@ -43,9 +43,9 @@ function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
             setTimeout(() => onComplete(), 500)
             return 100
           }
-          return prev + 2
+          return prev + 1
         })
-      }, 50)
+      }, 100)
 
       return () => clearInterval(interval)
     }

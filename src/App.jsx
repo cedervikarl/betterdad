@@ -182,7 +182,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Did you know? We offer a 100% Money-Back Guarantee. If you don't reach the goals you set in this quiz, you get all your money back. No questions asked.",
-    position: 17, // After question 17 (last question)
+    position: 16, // After question 17 (idx 15 in array, so position = 15 + 1 = 16)
     image: infoImage5
   }
 ]
