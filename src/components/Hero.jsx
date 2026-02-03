@@ -7,16 +7,17 @@ function Hero({ onStart }) {
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-text-section">
-            <h1 className="hero-title">Get in the best shape of your life before summer</h1>
-            <div className="hero-offer">OR GET YOUR MONEY BACK</div>
-            <div className="hero-image-section-mobile">
-              <img src={heroImage} alt="Fit dad" className="hero-image" />
+            <h1 className="hero-title">
+              Get into the best shape of your life before summer
+            </h1>
+            <div className="hero-offer">
+              OR GET YOUR MONEY BACK
             </div>
-            <p className="hero-subtitle">
-              Answer 21 questions to get a custom plan based on your stress, equipment, budget, and hormones. Sent to your inbox in seconds.
+            <p className="hero-description">
+              Take the 3 minute quiz and get your customized plan based on your life, stress, hormones and equipment sent to you in seconds.
             </p>
             <button className="hero-button" onClick={onStart}>
-              LET'S DO IT
+              Start Quiz
             </button>
           </div>
           <div className="hero-image-section">
@@ -29,4 +30,3 @@ function Hero({ onStart }) {
 }
 
 export default Hero
-
