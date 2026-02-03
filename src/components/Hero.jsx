@@ -1,32 +1,28 @@
 import './Hero.css'
+import heroImage from '../assets/images/hero-workout.jpg'
 
 function Hero({ onStart }) {
-
   return (
     <div className="hero">
       <div className="hero-container">
         <div className="hero-content">
-          <div className="hero-text">
+          <div className="hero-text-section">
             <h1 className="hero-title">Get in the best shape of your life before summer</h1>
             <p className="hero-subtitle">
-              Take the quiz and get your plan based on your stress, equipment, budget and hormones sent to you seconds after finishing quiz. Do your first workout tomorrow!
+              Answer 21 questions to get a custom plan based on your stress, equipment, budget, and hormones. Sent to your inbox in seconds.
             </p>
-            <div className="hero-social-proof">
-              <span className="social-proof-item">
-                100,000+ dads have already changed their life
-              </span>
-              <div className="social-proof-avatars">
-                <div className="social-proof-avatar"></div>
-                <div className="social-proof-avatar"></div>
-                <div className="social-proof-avatar"></div>
-                <div className="social-proof-avatar"></div>
-                <div className="social-proof-avatar-more">+</div>
-              </div>
+            <div className="hero-high-value-tag">
+              Do your first workout tomorrow!
             </div>
-            
             <button className="hero-button" onClick={onStart}>
-              Let's do it
+              LET'S DO IT
             </button>
+            <div className="hero-trust-bar">
+              100% Results or 100% Refund. Guaranteed.
+            </div>
+          </div>
+          <div className="hero-image-section">
+            <img src={heroImage} alt="Fit dad" className="hero-image" />
           </div>
         </div>
       </div>
