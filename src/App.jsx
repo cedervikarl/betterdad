@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
-import Hero from './components/Hero'
 import Quiz from './components/Quiz'
 import HeightInput from './components/HeightInput'
 import WeightInput from './components/WeightInput'
@@ -188,7 +187,7 @@ const INFO_SLIDES = [
 ]
 
 function App() {
-  const [currentStep, setCurrentStep] = useState('hero')
+  const [currentStep, setCurrentStep] = useState('quiz')
   const [quizAnswers, setQuizAnswers] = useState({})
   const [userData, setUserData] = useState({})
   const [email, setEmail] = useState('')
@@ -242,10 +241,6 @@ function App() {
         })
     }
   }, [])
-
-  const handleStartQuiz = () => {
-    setCurrentStep('quiz')
-  }
 
   const handleAnswer = (questionId, answer) => {
     setQuizAnswers(prev => ({
@@ -364,9 +359,6 @@ function App() {
   return (
     <div className="app">
       <Header onOpenDocs={() => setLegalOpen(true)} />
-      {currentStep === 'hero' && (
-        <Hero onStart={handleStartQuiz} />
-      )}
       {currentStep === 'quiz' && (
         <Quiz
           config={QUIZ_CONFIG}
