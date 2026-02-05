@@ -305,7 +305,6 @@ function Pricing({ onSelectPlan, userData }) {
                 </svg>
               </div>
               <h4 className="pricing-step-title">STEP 1: Take Quiz</h4>
-              <p className="pricing-step-time">60 seconds</p>
               <p className="pricing-step-description">
                 Answer 21 quick questions about your body, goals, and lifestyle. We'll analyze your answers to create your personalized plan.
               </p>
@@ -319,7 +318,6 @@ function Pricing({ onSelectPlan, userData }) {
                 </svg>
               </div>
               <h4 className="pricing-step-title">STEP 2: Get Your Plan</h4>
-              <p className="pricing-step-time">Instantly</p>
               <p className="pricing-step-description">
                 Your custom workout blueprint and nutrition plan are delivered to your inbox immediately. Start your first workout tomorrow.
               </p>
@@ -333,16 +331,11 @@ function Pricing({ onSelectPlan, userData }) {
                 </svg>
               </div>
               <h4 className="pricing-step-title">STEP 3: See Results</h4>
-              <p className="pricing-step-time">4 weeks</p>
               <p className="pricing-step-description">
                 Follow your personalized plan and see visible results in just 4 weeks. Track your progress and adjust as needed.
               </p>
             </div>
           </div>
-
-          <button className="pricing-cta-button" onClick={handlePurchase}>
-            Start Your Transformation →
-          </button>
         </div>
 
         {/* Guarantee Section */}

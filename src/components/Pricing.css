@@ -352,15 +352,14 @@
 .pricing-steps {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
 }
 
 .pricing-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -374,7 +373,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .pricing-step-icon svg {
@@ -387,13 +386,6 @@
   font-size: 1.125rem;
   font-weight: 700;
   color: #2B2B2B;
-  margin-bottom: 0.5rem;
-}
-
-.pricing-step-time {
-  font-size: 0.875rem;
-  color: #6a6a6a;
-  font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
@@ -405,41 +397,50 @@
   text-align: center;
 }
 
-.pricing-cta-button {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  border: none;
-  padding: 1.25rem 2.5rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 400px;
-  margin: 2rem auto 0 auto;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.pricing-cta-button:hover {
-  background-color: #2d2d2d;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.pricing-cta-button::after {
-  content: '→';
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.pricing-cta-button:hover::after {
-  transform: translateX(4px);
+@media (min-width: 768px) {
+  .pricing-how-it-works {
+    margin: 4rem 0 3rem;
+  }
+  
+  .pricing-how-it-works-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .pricing-steps {
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .pricing-step {
+    flex: 1;
+    padding: 2.5rem 2rem;
+    min-height: 280px;
+    justify-content: flex-start;
+  }
+  
+  .pricing-step-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pricing-step-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .pricing-step-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing-step-description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
 }
 
 /* Guarantee Section */
