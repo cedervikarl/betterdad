@@ -6,10 +6,7 @@ function AgeInput({ onNext, initialValue = '' }) {
 
   // Auto-scroll to top when component mounts
   useEffect(() => {
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 100)
-    return () => clearTimeout(timer)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
   const handleSubmit = (e) => {
