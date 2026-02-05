@@ -127,25 +127,25 @@ const INFO_SLIDES = [
   {
     id: 'info-1',
     text: "Over 100,000 dads have already started The DadBod Elimination Protocol.",
-    position: 4, // After question 4 (was question 2)
+    position: 3, // After question 3 (dream body) - index 2 in array
     image: infoImage1
   },
   {
     id: 'info-2',
     text: "Michael, 34, lost 6 kg in 4 weeks and finally has the energy to play with his kids after work.",
-    position: 7, // After question 7 (was question 5)
+    position: 4, // After question 5 (main goal) - index 3 in array
     image: infoImage2
   },
   {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 8, // After question 8 (was question 6)
+    position: 6, // After question 7 (equipment) - index 5 in array
     image: infoImage3
   },
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 9, // After question 9 (middle of quiz)
+    position: 8, // After question 10 (middle of quiz) - index 7 in array
     image: null, // No image for this one
     review: {
       name: "James, 38",
@@ -156,7 +156,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 13, // After question 16 (last question, now position 13 since we removed 4 questions)
+    position: 12, // After question 16 (last question) - index 11 in array
     image: infoImage5
   }
 ]
