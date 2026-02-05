@@ -1,9 +1,10 @@
 import './InfoSlide.css'
 
 function InfoSlide({ text, image, review, onContinue, autoDismiss }) {
+  // Always show Continue button (autoDismiss is now always null/undefined)
   return (
     <div className="info-slide-container">
-      <div className={`info-slide-card ${autoDismiss ? 'info-slide-auto-dismiss' : ''}`}>
+      <div className="info-slide-card">
         <div className="info-slide-content">
           <div className="info-slide-text">
             <p className="info-slide-message">{text}</p>
@@ -25,11 +26,9 @@ function InfoSlide({ text, image, review, onContinue, autoDismiss }) {
               />
             </div>
           ) : null}
-          {!autoDismiss && (
-            <button className="info-slide-button" onClick={onContinue}>
-              Continue
-            </button>
-          )}
+          <button className="info-slide-button" onClick={onContinue}>
+            Continue
+          </button>
         </div>
       </div>
     </div>
