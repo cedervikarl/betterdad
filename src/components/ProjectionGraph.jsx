@@ -19,55 +19,39 @@ function ProjectionGraph({ userData, onNext }) {
     return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
   }
 
+  // Calculate weight loss (handle both weight gain and loss)
+  const weightChange = Math.abs(weightLoss)
+  const unit = userData.weightUnit || userData.unit || 'kg'
+  
   return (
     <div className="projection-graph-container">
       <div className="projection-graph-content">
-        <h2 className="projection-graph-title">Your predicted timeline</h2>
-        
-        <p className="projection-intro">
-          Based on 100,000+ dad transformations, here's your predicted timeline...
-        </p>
-
         <div className="projection-graph-wrapper">
           <div className="projection-graph">
             <svg viewBox="0 0 400 200" className="projection-svg">
               <defs>
                 <linearGradient id="weightGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#FF4D4F" />
-                  <stop offset="50%" stopColor="#FAAD14" />
                   <stop offset="100%" stopColor="#52C41A" />
                 </linearGradient>
               </defs>
               <path
-                d="M 50 150 Q 150 100, 200 80 T 350 50"
+                d="M 50 150 Q 200 120, 350 50"
                 stroke="url(#weightGradient)"
-                strokeWidth="4"
+                strokeWidth="5"
                 fill="none"
                 className="projection-line"
               />
-              <circle cx="50" cy="150" r="6" fill="#FF4D4F" />
-              <circle cx="350" cy="50" r="6" fill="#52C41A" />
+              <circle cx="50" cy="150" r="8" fill="#FF4D4F" />
+              <circle cx="350" cy="50" r="8" fill="#52C41A" />
             </svg>
-            <div className="projection-labels">
-              <div className="projection-label-left">
-                <span className="projection-label-weight">{currentWeight} {userData.weightUnit || 'kg'}</span>
-                <span className="projection-label-text">Current</span>
-              </div>
-              <div className="projection-label-right">
-                <span className="projection-label-weight">{goalWeight} {userData.weightUnit || 'kg'}</span>
-                <span className="projection-label-text">Goal</span>
-              </div>
-            </div>
           </div>
         </div>
 
         <div className="projection-prediction">
           <p className="projection-text">
-            You could reach <strong>{goalWeight} {userData.weightUnit || 'kg'}</strong> by <strong>{formatDate(predictedDate)}</strong>
+            You could lose up to {weightChange.toFixed(1)} {unit} in the next 8 weeks
           </p>
-          <div className="projection-badge">
-            –{weightLoss.toFixed(1)} {userData.weightUnit || 'kg'} in 8 weeks
-          </div>
         </div>
 
         <button className="projection-graph-button" onClick={onNext}>
