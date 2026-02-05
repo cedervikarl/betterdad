@@ -4,6 +4,7 @@ import './GoalWeightInput.css'
 function GoalWeightInput({ onNext, initialValue = '' }) {
   const [unit, setUnit] = useState('kg')
   const [value, setValue] = useState(initialValue)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Auto-scroll to top when component mounts (desktop only)
   useEffect(() => {
@@ -15,8 +16,13 @@ function GoalWeightInput({ onNext, initialValue = '' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (isSubmitting) return // Prevent double submission
+    
     if (value) {
-      onNext({ goalWeight: value, unit })
+      setIsSubmitting(true)
+      setTimeout(() => {
+        onNext({ goalWeight: value, unit })
+      }, 100)
     }
   }
 
@@ -56,8 +62,12 @@ function GoalWeightInput({ onNext, initialValue = '' }) {
           <p className="goal-weight-input-subtext">
             {unit === 'kg' ? 'Range: 30-200 kg' : 'Range: 66-440 lbs'}
           </p>
-          <button type="submit" className="goal-weight-input-button">
-            Continue
+          <button 
+            type="submit" 
+            className="goal-weight-input-button"
+            disabled={isSubmitting || !value}
+          >
+            {isSubmitting ? 'Loading...' : 'Continue'}
           </button>
         </form>
       </div>

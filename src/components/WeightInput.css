@@ -120,10 +120,18 @@
   justify-content: center;
 }
 
-.weight-input-button:hover {
+.weight-input-button:hover:not(:disabled) {
   background-color: #2d2d2d;
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.weight-input-button:disabled {
+  background-color: #9a9a9a;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
 }
 
 @keyframes slideIn {

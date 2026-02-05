@@ -5,6 +5,7 @@ function HeightInput({ onNext, initialValue = '' }) {
   const [unit, setUnit] = useState('cm')
   const [value, setValue] = useState(initialValue)
   const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Auto-scroll to top when component mounts (desktop only)
   useEffect(() => {
@@ -64,6 +65,8 @@ function HeightInput({ onNext, initialValue = '' }) {
 
   const validateAndSubmit = (e) => {
     e.preventDefault()
+    
+    if (isSubmitting) return // Prevent double submission
     
     if (!value || value.trim() === '') {
       setError('Please enter your height')
@@ -126,7 +129,10 @@ function HeightInput({ onNext, initialValue = '' }) {
     }
 
     // Convert to number and send
-    onNext({ height: numValue, unit })
+    setIsSubmitting(true)
+    setTimeout(() => {
+      onNext({ height: numValue, unit })
+    }, 100)
   }
 
   return (
@@ -168,8 +174,12 @@ function HeightInput({ onNext, initialValue = '' }) {
           <p className="height-input-subtext">
             {unit === 'cm' ? 'Range: 100-250 cm' : 'Range: 3-8 ft'}
           </p>
-          <button type="submit" className="height-input-button">
-            Continue
+          <button 
+            type="submit" 
+            className="height-input-button"
+            disabled={isSubmitting || !value || error}
+          >
+            {isSubmitting ? 'Loading...' : 'Continue'}
           </button>
         </form>
       </div>

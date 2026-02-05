@@ -3,6 +3,7 @@ import './AgeInput.css'
 
 function AgeInput({ onNext, initialValue = '' }) {
   const [value, setValue] = useState(initialValue)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Auto-scroll to top when component mounts (desktop only)
   useEffect(() => {
@@ -14,8 +15,13 @@ function AgeInput({ onNext, initialValue = '' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (isSubmitting) return // Prevent double submission
+    
     if (value) {
-      onNext({ age: value })
+      setIsSubmitting(true)
+      setTimeout(() => {
+        onNext({ age: value })
+      }, 100)
     }
   }
 
@@ -37,8 +43,12 @@ function AgeInput({ onNext, initialValue = '' }) {
           <p className="age-input-subtext">
             Range: 18-100 years
           </p>
-          <button type="submit" className="age-input-button">
-            Continue
+          <button 
+            type="submit" 
+            className="age-input-button"
+            disabled={isSubmitting || !value}
+          >
+            {isSubmitting ? 'Loading...' : 'Continue'}
           </button>
         </form>
       </div>
