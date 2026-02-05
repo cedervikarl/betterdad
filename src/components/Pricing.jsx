@@ -291,6 +291,76 @@ function Pricing({ onSelectPlan, userData }) {
           </div>
         </div>
 
+        {/* How It Works */}
+        <div className="pricing-how-it-works">
+          <h3 className="pricing-how-it-works-title">How It Works</h3>
+          <div className="pricing-steps">
+            <div className="pricing-step">
+              <div className="pricing-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5C15 6.10457 14.1046 7 13 7H11C9.89543 7 9 6.10457 9 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9 12H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M9 16H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h4 className="pricing-step-title">STEP 1: Take Quiz</h4>
+              <p className="pricing-step-time">60 seconds</p>
+              <p className="pricing-step-description">
+                Answer 21 quick questions about your body, goals, and lifestyle. We'll analyze your answers to create your personalized plan.
+              </p>
+            </div>
+
+            <div className="pricing-step">
+              <div className="pricing-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h4 className="pricing-step-title">STEP 2: Get Your Plan</h4>
+              <p className="pricing-step-time">Instantly</p>
+              <p className="pricing-step-description">
+                Your custom workout blueprint and nutrition plan are delivered to your inbox immediately. Start your first workout tomorrow.
+              </p>
+            </div>
+
+            <div className="pricing-step">
+              <div className="pricing-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.7088 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h4 className="pricing-step-title">STEP 3: See Results</h4>
+              <p className="pricing-step-time">4 weeks</p>
+              <p className="pricing-step-description">
+                Follow your personalized plan and see visible results in just 4 weeks. Track your progress and adjust as needed.
+              </p>
+            </div>
+          </div>
+
+          <button className="pricing-cta-button" onClick={handlePurchase}>
+            Start Your Transformation →
+          </button>
+        </div>
+
+        {/* Guarantee Section */}
+        <div className="pricing-guarantee-section">
+          <div className="pricing-guarantee-content">
+            <div className="pricing-guarantee-icon-wrapper">
+              <svg className="pricing-guarantee-shield" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L4 5V11C4 16.55 7.16 21.74 12 23C16.84 21.74 20 16.55 20 11V5L12 2Z" stroke="#1B3022" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9 12L11 14L15 10" stroke="#52C41A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="pricing-guarantee-title">30-Day Money-Back Guarantee</h3>
+            <p className="pricing-guarantee-description">
+              We believe that our plan will work for you, and you should see visible results in only 4 weeks! We're even ready to return your money if you can demonstrate that you followed the plan but didn't see any results.
+            </p>
+          </div>
+        </div>
+
         {/* FAQ */}
         <div className="pricing-faq">
           <h3 className="pricing-faq-title">Frequently Asked Questions</h3>
