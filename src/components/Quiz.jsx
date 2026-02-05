@@ -207,10 +207,13 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     if (!slide.condition) return true
     
     // Find the question that this slide is positioned after
+    // questionIndex is 0-based, so position 7 means index 6
     const question = config[questionIndex]
     if (!question || question.id !== 7) return true // Only equipment question has conditions
     
     const equipmentAnswer = answers[question.id] || ''
+    if (!equipmentAnswer) return false // No answer yet, don't show
+    
     // Multi-select answers are stored as comma-separated strings
     const selectedOptions = equipmentAnswer.split(',').map(s => s.trim())
     const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
