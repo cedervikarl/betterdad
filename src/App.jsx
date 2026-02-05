@@ -187,16 +187,55 @@ const INFO_SLIDES = [
 ]
 
 function App() {
-  const [currentStep, setCurrentStep] = useState('quiz')
-  const [quizAnswers, setQuizAnswers] = useState({})
-  const [userData, setUserData] = useState({})
-  const [email, setEmail] = useState('')
-  const [consent, setConsent] = useState(false)
+  // Load from localStorage on mount
+  const loadFromStorage = () => {
+    try {
+      const storedStep = localStorage.getItem('betterdad_currentStep')
+      const storedQuizAnswers = localStorage.getItem('betterdad_quizAnswers')
+      const storedUserData = localStorage.getItem('betterdad_userData')
+      const storedEmail = localStorage.getItem('betterdad_email')
+      const storedConsent = localStorage.getItem('betterdad_consent')
+      
+      return {
+        step: storedStep ? JSON.parse(storedStep) : 'quiz',
+        quizAnswers: storedQuizAnswers ? JSON.parse(storedQuizAnswers) : {},
+        userData: storedUserData ? JSON.parse(storedUserData) : {},
+        email: storedEmail || '',
+        consent: storedConsent === 'true'
+      }
+    } catch (error) {
+      console.error('Error loading from localStorage:', error)
+      return {
+        step: 'quiz',
+        quizAnswers: {},
+        userData: {},
+        email: '',
+        consent: false
+      }
+    }
+  }
+
+  const savedData = loadFromStorage()
+  const [currentStep, setCurrentStepState] = useState(savedData.step)
+  const [quizAnswers, setQuizAnswers] = useState(savedData.quizAnswers)
+  const [userData, setUserData] = useState(savedData.userData)
+  const [email, setEmail] = useState(savedData.email)
+  const [consent, setConsent] = useState(savedData.consent)
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [legalOpen, setLegalOpen] = useState(false)
   const [successEmail, setSuccessEmail] = useState('')
   const [successPlanPrice, setSuccessPlanPrice] = useState(null)
   const [successCurrency, setSuccessCurrency] = useState('EUR')
+
+  // Wrapper for setCurrentStep that saves to localStorage
+  const setCurrentStep = (step) => {
+    setCurrentStepState(step)
+    try {
+      localStorage.setItem('betterdad_currentStep', JSON.stringify(step))
+    } catch (error) {
+      console.error('Error saving step to localStorage:', error)
+    }
+  }
 
   useEffect(() => {
     // Initialize Facebook Pixel (with error handling)
@@ -243,10 +282,17 @@ function App() {
   }, [])
 
   const handleAnswer = (questionId, answer) => {
-    setQuizAnswers(prev => ({
-      ...prev,
+    const newAnswers = {
+      ...quizAnswers,
       [questionId]: answer
-    }))
+    }
+    setQuizAnswers(newAnswers)
+    // Save to localStorage immediately
+    try {
+      localStorage.setItem('betterdad_quizAnswers', JSON.stringify(newAnswers))
+    } catch (error) {
+      console.error('Error saving quiz answers to localStorage:', error)
+    }
   }
 
   const handleEmailSubmit = (emailValue, consentValue) => {
@@ -255,22 +301,46 @@ function App() {
   }
 
   const handleHeightSubmit = (data) => {
-    setUserData(prev => ({ ...prev, ...data }))
+    const newUserData = { ...userData, ...data }
+    setUserData(newUserData)
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     setCurrentStep('weight')
   }
 
   const handleWeightSubmit = (data) => {
-    setUserData(prev => ({ ...prev, ...data }))
+    const newUserData = { ...userData, ...data }
+    setUserData(newUserData)
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     setCurrentStep('goal-weight')
   }
 
   const handleGoalWeightSubmit = (data) => {
-    setUserData(prev => ({ ...prev, ...data }))
+    const newUserData = { ...userData, ...data }
+    setUserData(newUserData)
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     setCurrentStep('age')
   }
 
   const handleAgeSubmit = (data) => {
-    setUserData(prev => ({ ...prev, ...data }))
+    const newUserData = { ...userData, ...data }
+    setUserData(newUserData)
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     setCurrentStep('email-capture')
   }
 
@@ -278,11 +348,19 @@ function App() {
     setEmail(emailValue)
     setConsent(consentValue)
     // Merge quiz answers into userData before showing wellness profile
-    setUserData(prev => ({ 
-      ...prev, 
+    const newUserData = { 
+      ...userData, 
       email: emailValue,
       ...quizAnswers // Include all quiz answers
-    }))
+    }
+    setUserData(newUserData)
+    try {
+      localStorage.setItem('betterdad_email', emailValue)
+      localStorage.setItem('betterdad_consent', String(consentValue))
+      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
+    } catch (error) {
+      console.error('Error saving email/consent to localStorage:', error)
+    }
     setCurrentStep('wellness-profile')
   }
 
@@ -293,6 +371,13 @@ function App() {
   const handleProjectionNext = async () => {
     const finalUserData = { ...userData, ...quizAnswers }
     setUserData(finalUserData)
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(finalUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     
     // Save profile to backend before showing loading screen
     // Use a consistent key so webhook can find it
@@ -326,6 +411,13 @@ function App() {
     // Update userData with confidence answer
     const updatedUserData = { ...userData, confidence: answer }
     setUserData(updatedUserData)
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('betterdad_userData', JSON.stringify(updatedUserData))
+    } catch (error) {
+      console.error('Error saving userData to localStorage:', error)
+    }
     
     // Update profile in backend with confidence answer
     try {
