@@ -190,7 +190,7 @@ function Pricing({ onSelectPlan, userData }) {
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">
-            You are <strong className="pricing-highlight-green">28 days</strong> away from a new you.
+            Congratulations, You are <strong className="pricing-highlight-green">28 days</strong> away from a new you!
           </h1>
           
           {/* Target Weight Visualization */}
