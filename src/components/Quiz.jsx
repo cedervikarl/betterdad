@@ -129,6 +129,10 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
 
   const currentStep = steps[currentStepIndex]
   const progress = ((currentStepIndex + 1) / totalSteps) * 100
+  const questionSteps = steps.filter(s => s.type === 'question')
+  const currentQuestionNumber = currentStep.type === 'question' ? currentStep.questionIndex + 1 : questionSteps.findIndex(s => s.questionIndex > (steps[currentStepIndex - 1]?.questionIndex || -1)) + 1
+  const totalQuestions = questionSteps.length
+  const isLastFewQuestions = currentStep.type === 'question' && currentStep.questionIndex >= totalQuestions - 3
 
   if (currentStep.type === 'info') {
     return (
@@ -138,7 +142,8 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
             <div className="progress-fill" style={{ width: `${progress}%` }}></div>
           </div>
           <div className="step-indicator">
-            Step {currentStepIndex + 1} of {totalSteps}
+            {isLastFewQuestions && <span style={{ color: '#52C41A', fontWeight: 600 }}>Almost there! </span>}
+            Question {currentQuestionNumber} of {totalQuestions}
           </div>
           <InfoSlide 
             text={currentStep.data.text}
@@ -162,7 +167,8 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
           <div className="progress-fill" style={{ width: `${progress}%` }}></div>
         </div>
         <div className="step-indicator">
-          Step {currentStepIndex + 1} of {totalSteps}
+          {isLastFewQuestions && <span style={{ color: '#52C41A', fontWeight: 600 }}>Almost there! </span>}
+          Question {currentStep.questionIndex + 1} of {totalQuestions}
         </div>
         <div className="question-card">
           {question.microcopy && (

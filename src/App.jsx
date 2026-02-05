@@ -61,12 +61,6 @@ const QUIZ_CONFIG = [
     ]
   },
   {
-    id: 4,
-    question: "Have you followed a structured home workout plan before?",
-    options: ["Yes, many times", "Yes, a few times", "No, never"],
-    microcopy: "This plan will be built around your real life, not a perfect fantasy."
-  },
-  {
     id: 5,
     question: "What's your main goal right now?",
     options: ["Lose fat", "Build muscle", "Lose fat and build muscle", "Have more energy"],
@@ -86,28 +80,10 @@ const QUIZ_CONFIG = [
     microcopy: "Select all that apply. We'll create the perfect plan based on what you actually have available."
   },
   {
-    id: 8,
-    question: "What's the hardest part for you right now?",
-    options: ["Motivation", "Time", "Consistency", "I don't know what to do"],
-    microcopy: "We've got your back. This is designed for dads, by dads."
-  },
-  {
     id: 9,
     question: "How do you usually feel after work?",
     options: ["Exhausted", "Low energy but push through", "Okay", "Still full of energy"],
     microcopy: "Your energy matters. We'll work with what you have."
-  },
-  {
-    id: 10,
-    question: "What frustrates you the most about your body right now?",
-    options: ["My belly", "Lack of muscle", "Low energy", "I don't feel confident with my shirt off"],
-    microcopy: "You're not alone. Every dad has been there."
-  },
-  {
-    id: 11,
-    question: "What would you like to improve the most for your family?",
-    options: ["Have more energy for my kids", "Be a better example", "Feel proud of how I look", "All of the above"],
-    microcopy: "This is about more than just you. It's about being the dad they deserve."
   },
   {
     id: 12,
@@ -138,12 +114,6 @@ const QUIZ_CONFIG = [
     question: "How many days per week can you realistically commit to working out?",
     options: ["2-3 days", "3-4 days", "4-5 days", "5-6 days"],
     microcopy: "Consistency beats perfection. We'll build a schedule you can actually stick to."
-  },
-  {
-    id: 17,
-    question: "What's your biggest challenge with nutrition right now?",
-    options: ["I don't know what to eat", "I don't have time to cook", "I eat too much junk food", "I skip meals"],
-    microcopy: "We'll make nutrition simple and practical for your lifestyle."
   }
 ]
 
@@ -151,25 +121,25 @@ const INFO_SLIDES = [
   {
     id: 'info-1',
     text: "Over 100,000 dads have already started The DadBod Elimination Protocol.",
-    position: 4, // After question 4 (was question 2)
+    position: 3, // After question 3 (dream body)
     image: infoImage1
   },
   {
     id: 'info-2',
     text: "Michael, 34, lost 6 kg in 4 weeks and finally has the energy to play with his kids after work.",
-    position: 7, // After question 7 (was question 5)
+    position: 4, // After question 5 (main goal)
     image: infoImage2
   },
   {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 8, // After question 8 (was question 6)
+    position: 6, // After question 7 (equipment)
     image: infoImage3
   },
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 9, // After question 9 (middle of quiz)
+    position: 7, // After question 9 (energy after work) - middle of quiz
     image: null, // No image for this one
     review: {
       name: "James, 38",
@@ -180,7 +150,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 16, // After question 17 (idx 15 in array, so position = 15 + 1 = 16)
+    position: 10, // After question 16 (last question)
     image: infoImage5
   }
 ]
