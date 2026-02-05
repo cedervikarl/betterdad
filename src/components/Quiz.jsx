@@ -231,16 +231,18 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   useEffect(() => {
     const currentStep = steps[currentStepIndex]
     if (currentStep?.type === 'info' && currentStep.data.autoDismiss) {
-      const timer = setTimeout(() => {
-        if (currentStepIndex < steps.length - 1) {
-          setTimeout(() => {
-            setCurrentStepIndex(prev => prev + 1)
-          }, 300)
-        } else {
-          setTimeout(() => {
-            onEmailSubmit('', false) // Quiz complete, move to data collection
-          }, 300)
+      // Check if this conditional slide should be shown
+      if (currentStep.data.condition) {
+        const shouldShow = checkConditionalSlide(currentStep.data, currentStep.data.position - 1)
+        if (!shouldShow) {
+          // Skip this slide immediately
+          handleInfoContinue()
+          return
         }
+      }
+      
+      const timer = setTimeout(() => {
+        handleInfoContinue()
       }, currentStep.data.autoDismiss)
       
       return () => clearTimeout(timer)
