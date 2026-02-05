@@ -1,8 +1,8 @@
 /* Pricing Container - EXACT match to Quiz structure */
 .pricing-container {
   min-height: 100vh;
-  margin-top: 90px; /* Push container down to make space for sticky header */
   padding: 1.5rem 1rem;
+  padding-top: calc(1.5rem + 90px); /* Space for sticky header (logo is ~90px on mobile) */
   padding-bottom: 100px; /* Space for sticky footer */
   background-color: #f5f3f0;
   display: flex;
@@ -71,8 +71,8 @@
 
 @media (min-width: 768px) {
   .pricing-container {
-    margin-top: 110px; /* Push container down to make space for sticky header on desktop */
     padding: 2rem 1.5rem;
+    padding-top: calc(2rem + 110px); /* Space for sticky header on desktop (logo is ~110px) */
     padding-bottom: 100px;
     align-items: flex-start;
   }

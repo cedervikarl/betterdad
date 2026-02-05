@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { trackEvent } from '../utils/facebookPixel'
+import Header from './Header'
 import './Pricing.css'
 import testimonialMichael from '../assets/images/testimonial-michael.jpg'
 import testimonialDavid from '../assets/images/testimonial-david.jpg'
 import testimonialRobert from '../assets/images/testimonial-robert.jpg'
 
-function Pricing({ onSelectPlan, userData }) {
+function Pricing({ onSelectPlan, userData, onStartOver }) {
   const [currency, setCurrency] = useState('EUR')
   const [timeLeft, setTimeLeft] = useState(5 * 60) // 5 minutes in seconds
   
@@ -16,6 +17,27 @@ function Pricing({ onSelectPlan, userData }) {
       window.scrollTo({ top: 0, behavior: 'auto' })
     }
   }, [])
+
+  const handleStartOver = () => {
+    // Clear all localStorage first
+    try {
+      localStorage.removeItem('betterdad_currentStep')
+      localStorage.removeItem('betterdad_quizAnswers')
+      localStorage.removeItem('betterdad_userData')
+      localStorage.removeItem('betterdad_email')
+      localStorage.removeItem('betterdad_consent')
+    } catch (error) {
+      console.error('Error clearing localStorage:', error)
+    }
+    
+    // Call the callback to reset to quiz
+    if (onStartOver) {
+      onStartOver()
+    } else {
+      // Fallback: reload the page
+      window.location.reload()
+    }
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -35,7 +57,7 @@ function Pricing({ onSelectPlan, userData }) {
     const secs = seconds % 60
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
-
+  
   // Get dynamic headline based on quiz answers
   const getCurrentShape = () => {
     const answer = userData?.['2'] || 'Medium body fat'
@@ -45,7 +67,7 @@ function Pricing({ onSelectPlan, userData }) {
     if (answer.includes('Very high')) return 'Very high body fat'
     return 'Medium body fat'
   }
-
+  
   const getDreamBody = () => {
     const answer = userData?.['3'] || 'Just slimmer and healthier'
     if (answer.includes('Lean')) return 'Lean and defined'
@@ -82,82 +104,95 @@ function Pricing({ onSelectPlan, userData }) {
   const handlePurchase = async () => {
     const email = userData?.email || localStorage.getItem('betterdad_email') || 'likeikeab@gmail.com'
     
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
-      
+            try {
+              const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4242'
+              
       // Save profile BEFORE creating checkout session
-      console.log('Saving profile before checkout...')
-      const profileToSave = {
-        ...userData,
-        email: email
-      }
-      
-      const saveRes = await fetch(`${backendUrl}/api/save-profile`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profileToSave),
-      })
-      
-      if (!saveRes.ok) {
-        console.error('Failed to save profile, but continuing...')
-      } else {
-        console.log('✅ Profile saved successfully')
-      }
-      
+              console.log('Saving profile before checkout...')
+              const profileToSave = {
+                ...userData,
+                email: email
+              }
+              
+              const saveRes = await fetch(`${backendUrl}/api/save-profile`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileToSave),
+              })
+              
+              if (!saveRes.ok) {
+                console.error('Failed to save profile, but continuing...')
+              } else {
+                console.log('✅ Profile saved successfully')
+              }
+              
       // Create checkout session with bundle plan
-      const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+              const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           planId: '4-week', // Use 4-week as bundle plan
           email, 
           currency 
         }),
-      })
-      
-      if (!res.ok) {
-        const errorText = await res.text()
-        let errorData
-        try {
-          errorData = JSON.parse(errorText)
-        } catch {
-          errorData = { error: errorText || 'Server error' }
-        }
-        console.error('Server error response:', errorData)
+              })
+              
+              if (!res.ok) {
+                const errorText = await res.text()
+                let errorData
+                try {
+                  errorData = JSON.parse(errorText)
+                } catch {
+                  errorData = { error: errorText || 'Server error' }
+                }
+                console.error('Server error response:', errorData)
         alert(`Error: ${errorData.error || 'Could not connect to server.'}`)
-        return
-      }
-      
-      const data = await res.json()
-      console.log('Checkout session created:', data)
-      
-      // Track Facebook Pixel events
-      trackEvent('AddToCart', {
+                return
+              }
+              
+              const data = await res.json()
+              console.log('Checkout session created:', data)
+              
+              // Track Facebook Pixel events
+              trackEvent('AddToCart', {
         content_name: 'All-in-One Transformation Bundle',
         value: bundlePrice,
-        currency: currency
-      })
-      
-      trackEvent('InitiateCheckout', {
+                currency: currency
+              })
+              
+              trackEvent('InitiateCheckout', {
         value: bundlePrice,
-        currency: currency
-      })
-      
-      if (data?.url) {
-        window.location.href = data.url
-      } else {
-        console.error('No URL in response:', data)
-        alert('Could not start checkout. Please try again.')
-      }
-    } catch (e) {
-      console.error('Fetch error:', e)
+                currency: currency
+              })
+              
+              if (data?.url) {
+                window.location.href = data.url
+              } else {
+                console.error('No URL in response:', data)
+                alert('Could not start checkout. Please try again.')
+              }
+            } catch (e) {
+              console.error('Fetch error:', e)
       alert(`Connection error: ${e.message}. Please try again.`)
     }
   }
 
+  const handleOpenDocs = () => {
+    window.dispatchEvent(new CustomEvent('betterdad:open-docs'))
+  }
+
   return (
-    <div className="pricing-container">
-      <div className="pricing-content">
+    <>
+      <Header onOpenDocs={handleOpenDocs} />
+      <div className="pricing-container">
+        <div className="pricing-content">
+        {/* Start Over Button */}
+        <div className="pricing-start-over">
+          <button onClick={handleStartOver} className="pricing-start-over-button">
+            ← Starta om quiz
+          </button>
+        </div>
+        
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">
@@ -235,7 +270,7 @@ function Pricing({ onSelectPlan, userData }) {
             onClick={() => setCurrency('GBP')}
           >
             £ GBP
-          </button>
+        </button>
         </div>
 
         {/* Scarcity Message */}
@@ -278,9 +313,13 @@ function Pricing({ onSelectPlan, userData }) {
           </div>
         </div>
 
+        {/* Social Proof */}
+        <div className="pricing-social-proof">
+          <h3 className="pricing-social-proof-title">Trusted by over <strong>100,000+ dads</strong> who have made the journey</h3>
+        </div>
+
         {/* Testimonials */}
         <div className="pricing-testimonials">
-          <h3 className="pricing-testimonials-title">Trusted by over <strong>100,000+ dads</strong> who have made the journey</h3>
           <div className="pricing-testimonials-grid">
             <div className="pricing-testimonial">
               <div className="pricing-testimonial-image-wrapper">
@@ -418,6 +457,7 @@ function Pricing({ onSelectPlan, userData }) {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
