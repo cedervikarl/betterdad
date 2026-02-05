@@ -288,6 +288,50 @@
   font-weight: 700;
 }
 
+/* Mobile Button (under scarcity) */
+.pricing-mobile-button-wrapper {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+}
+
+.pricing-mobile-button {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  padding: 1.125rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-mobile-button:hover {
+  background-color: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-trust-badge-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #4a4a4a;
+}
+
+.pricing-trust-badge-mobile .pricing-trust-icon {
+  font-size: 1rem;
+}
+
 /* Desktop Button Wrapper */
 .pricing-desktop-button-wrapper {
   display: none;
