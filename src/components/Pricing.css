@@ -138,15 +138,6 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
-  transition: all 0.2s ease;
-}
-
-.pricing-value-item:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateX(4px);
 }
 
 .pricing-value-icon {
@@ -251,18 +242,11 @@
 }
 
 .pricing-your-price-value {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
-  color: #52C41A;
+  color: #1B3022;
   line-height: 1;
   letter-spacing: -0.03em;
-  text-shadow: 0 2px 4px rgba(82, 196, 26, 0.2);
-}
-
-@media (min-width: 768px) {
-  .pricing-your-price-value {
-    font-size: 4rem;
-  }
 }
 
 .pricing-one-time {
