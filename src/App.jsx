@@ -145,7 +145,7 @@ const INFO_SLIDES = [
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 10, // After question 10 (middle of quiz)
+    position: 9, // Moved back 1 step
     image: null, // No image for this one
     review: {
       name: "James, 38",
