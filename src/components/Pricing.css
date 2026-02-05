@@ -18,14 +18,18 @@
   }
   
   /* Make all sections equal width on desktop and center them */
+  .pricing-hero,
   .pricing-social-proof,
   .pricing-value-stack,
   .pricing-bundle,
+  .pricing-currency-selector,
   .pricing-urgency-timer,
+  .pricing-desktop-button-wrapper,
   .pricing-testimonials,
   .pricing-how-it-works,
   .pricing-guarantee-section,
-  .pricing-faq {
+  .pricing-faq,
+  .pricing-legal {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -645,6 +649,7 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  background-color: #f5f3f0;
 }
 
 .pricing-testimonial-img {
@@ -652,6 +657,17 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media (min-width: 768px) {
+  .pricing-testimonial-image-wrapper {
+    aspect-ratio: 3 / 4;
+  }
+  
+  .pricing-testimonial-img {
+    object-fit: contain;
+    object-position: center;
+  }
 }
 
 .pricing-testimonial-overlay {
