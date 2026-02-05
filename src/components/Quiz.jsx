@@ -35,9 +35,12 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
 
   const totalSteps = steps.length
 
-  // Auto-scroll to top when step changes
+  // Auto-scroll to top when step changes (desktop only)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
   }, [currentStepIndex])
 
 

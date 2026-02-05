@@ -8,7 +8,10 @@ import bodyVeryHighFat from '../assets/images/body-very-high-fat.jpg'
 function WellnessProfile({ userData, onNext }) {
   // Auto-scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
   }, [])
   // Calculate BMI (simplified - assumes height in cm and weight in kg)
   const height = userData.height || 175

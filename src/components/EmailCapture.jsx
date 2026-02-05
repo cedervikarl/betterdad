@@ -5,9 +5,12 @@ function EmailCapture({ onNext }) {
   const [email, setEmail] = useState('')
   const [consent, setConsent] = useState(false)
 
-  // Auto-scroll to top when component mounts
+  // Auto-scroll to top when component mounts (desktop only)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
   }, [])
 
   const handleSubmit = (e) => {

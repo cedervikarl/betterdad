@@ -4,7 +4,10 @@ import './ProjectionGraph.css'
 function ProjectionGraph({ userData, onNext }) {
   // Auto-scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const isMobile = window.innerWidth <= 768
+    if (!isMobile) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
   }, [])
   const currentWeight = userData.weight || 80
   const goalWeight = userData.goalWeight || 75
