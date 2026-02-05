@@ -5,7 +5,6 @@ import HeightInput from './components/HeightInput'
 import WeightInput from './components/WeightInput'
 import AgeInput from './components/AgeInput'
 import EmailCapture from './components/EmailCapture'
-import WellnessProfile from './components/WellnessProfile'
 import ProjectionGraph from './components/ProjectionGraph'
 import ConfidenceQuestion from './components/ConfidenceQuestion'
 import LoadingScreen from './components/LoadingScreen'
@@ -335,7 +334,7 @@ function App() {
   const handleEmailCaptureSubmit = (emailValue, consentValue) => {
     setEmail(emailValue)
     setConsent(consentValue)
-    // Merge quiz answers into userData before showing wellness profile
+    // Merge quiz answers into userData before showing projection graph
     const newUserData = { 
       ...userData, 
       email: emailValue,
@@ -349,10 +348,6 @@ function App() {
     } catch (error) {
       console.error('Error saving email/consent to localStorage:', error)
     }
-    setCurrentStep('wellness-profile')
-  }
-
-  const handleWellnessNext = () => {
     setCurrentStep('projection-graph')
   }
 
@@ -463,9 +458,6 @@ function App() {
       )}
       {currentStep === 'email-capture' && (
         <EmailCapture onNext={handleEmailCaptureSubmit} />
-      )}
-      {currentStep === 'wellness-profile' && (
-        <WellnessProfile userData={userData} onNext={handleWellnessNext} />
       )}
       {currentStep === 'projection-graph' && (
         <ProjectionGraph userData={userData} onNext={handleProjectionNext} />
