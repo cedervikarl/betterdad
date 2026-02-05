@@ -161,7 +161,7 @@ function Pricing({ onSelectPlan, userData }) {
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">
-            We've analyzed your answers. Based on your <strong className="pricing-highlight-green">{getCurrentShape()}</strong> and goal to become <strong className="pricing-highlight-green">{getDreamBody()}</strong>, here is your <strong>All-in-One Transformation Bundle</strong>.
+            We've analyzed your answers. Based on your <strong className="pricing-highlight-green">{getCurrentShape()}</strong> and goal to become <strong className="pricing-highlight-green">{getDreamBody()}</strong>.
           </h1>
           
           {/* Target Weight Visualization */}
@@ -243,6 +243,17 @@ function Pricing({ onSelectPlan, userData }) {
           <p className="pricing-bonus-text">
             Due to high demand from our latest Facebook campaign, we only have <strong>7 spots left</strong> for new 'Better Dad' members today.
           </p>
+        </div>
+
+        {/* Mobile Button (under scarcity) */}
+        <div className="pricing-mobile-button-wrapper">
+          <button className="pricing-mobile-button" onClick={handlePurchase}>
+            GET MY PLAN - {currencySymbol}{bundlePrice.toFixed(2)}
+          </button>
+          <div className="pricing-trust-badge-mobile">
+            <span className="pricing-trust-icon">🛡️</span>
+            <span className="pricing-trust-text">30-day money-back guarantee</span>
+          </div>
         </div>
 
         {/* Desktop Button */}

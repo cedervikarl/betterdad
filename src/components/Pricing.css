@@ -4,9 +4,17 @@
   background-color: #f5f3f0;
 }
 
+.pricing-container {
+  min-height: 100vh;
+  padding-bottom: 100px;
+  background-color: #f5f3f0;
+  display: flex;
+  justify-content: center;
+}
+
 .pricing-content {
-  max-width: 600px;
   width: 100%;
+  max-width: 750px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   animation: fadeIn 0.4s ease-out;
@@ -19,41 +27,25 @@
 .pricing-bundle,
 .pricing-currency-selector,
 .pricing-bonus-window,
+.pricing-mobile-button-wrapper,
 .pricing-desktop-button-wrapper,
 .pricing-testimonials,
 .pricing-how-it-works,
 .pricing-guarantee-section,
 .pricing-faq,
 .pricing-legal {
-  max-width: 750px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .pricing-content {
-    max-width: 100%;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
   }
   
-  .pricing-hero,
-  .pricing-social-proof,
-  .pricing-value-stack,
-  .pricing-bundle,
-  .pricing-currency-selector,
-  .pricing-bonus-window,
-  .pricing-desktop-button-wrapper,
-  .pricing-testimonials,
-  .pricing-how-it-works,
-  .pricing-guarantee-section,
-  .pricing-faq,
-  .pricing-legal {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    width: 100%;
-    box-sizing: border-box;
+  .pricing-mobile-button-wrapper {
+    display: none;
   }
 }
   
