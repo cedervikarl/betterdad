@@ -16,18 +16,43 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
         questionIndex: questionIndex++
       })
       
-      // Check if an info slide should be added after this question
-      const infoSlide = infoSlides.find(slide => slide.position === idx + 1)
-      if (infoSlide) {
-        allSteps.push({
-          type: 'info',
-          data: infoSlide
-        })
-      }
+      // Check if info slides should be added after this question
+      const matchingSlides = infoSlides.filter(slide => slide.position === idx + 1)
+      
+      matchingSlides.forEach(slide => {
+        // For conditional slides, check if they should be shown
+        if (slide.condition) {
+          if (slide.condition === 'bodyweight-only') {
+            // Check if user selected only "Just bodyweight"
+            const equipmentAnswer = answers[question.id] || ''
+            if (equipmentAnswer.includes('Just bodyweight') && !equipmentAnswer.includes(',')) {
+              allSteps.push({
+                type: 'info',
+                data: slide
+              })
+            }
+          } else if (slide.condition === 'has-equipment') {
+            // Check if user selected any equipment (not just bodyweight, or bodyweight + other)
+            const equipmentAnswer = answers[question.id] || ''
+            if (!equipmentAnswer.includes('Just bodyweight') || equipmentAnswer.includes(',')) {
+              allSteps.push({
+                type: 'info',
+                data: slide
+              })
+            }
+          }
+        } else {
+          // Regular info slide, always show
+          allSteps.push({
+            type: 'info',
+            data: slide
+          })
+        }
+      })
     })
     
     return allSteps
-  }, [config, infoSlides])
+  }, [config, infoSlides, answers])
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [selectedImageOption, setSelectedImageOption] = useState(null)

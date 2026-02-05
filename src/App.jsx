@@ -144,15 +144,31 @@ const INFO_SLIDES = [
     image: infoImage2
   },
   {
+    id: 'info-2.5',
+    text: "Smart. Your own body weight is the most underrated gym on the planet. 65% of our top transformations started right in their living room with zero gear.",
+    position: 7, // After question 7 (equipment) - if bodyweight only
+    image: null,
+    autoDismiss: 2000, // 2 seconds
+    condition: 'bodyweight-only'
+  },
+  {
+    id: 'info-2.6',
+    text: "Solid. We'll use that extra resistance to skyrocket your metabolism. Get ready to build that 'Dad Strength' your kids will look up to.",
+    position: 7, // After question 7 (equipment) - if equipment selected
+    image: null,
+    autoDismiss: 2000, // 2 seconds
+    condition: 'has-equipment'
+  },
+  {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 7, // After question 7 (equipment)
+    position: 8, // After equipment pop-up
     image: infoImage3
   },
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 9, // After question 10 (middle of quiz)
+    position: 10, // After question 10 (middle of quiz)
     image: null, // No image for this one
     review: {
       name: "James, 38",
@@ -163,7 +179,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 12, // After question 15 (last question)
+    position: 13, // After question 15 (last question)
     image: infoImage5
   }
 ]
