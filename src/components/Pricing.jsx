@@ -254,14 +254,6 @@ function Pricing({ onSelectPlan, userData }) {
             <span className="pricing-trust-icon">🛡️</span>
             <span className="pricing-trust-text">30-day money-back guarantee</span>
           </div>
-          <div className="pricing-payment-methods">
-            <span className="pricing-payment-label">Säkra betalningar via:</span>
-            <div className="pricing-payment-logos">
-              <span className="pricing-payment-logo">Visa</span>
-              <span className="pricing-payment-logo">Stripe</span>
-              <span className="pricing-payment-logo">Klarna</span>
-            </div>
-          </div>
         </div>
 
         {/* Sticky Footer Button (Mobile) */}
@@ -273,21 +265,11 @@ function Pricing({ onSelectPlan, userData }) {
             <span className="pricing-trust-icon">🛡️</span>
             <span className="pricing-trust-text">30-day money-back guarantee</span>
           </div>
-          <div className="pricing-payment-methods-mobile">
-            <span className="pricing-payment-label">Säkra betalningar: Visa • Stripe • Klarna</span>
-          </div>
-        </div>
-
-        {/* Social Proof */}
-        <div className="pricing-social-proof">
-          <p className="pricing-social-proof-text">
-            Betrodd av över <strong>500+ pappor</strong> som gjort resan
-          </p>
         </div>
 
         {/* Testimonials */}
         <div className="pricing-testimonials">
-          <h3 className="pricing-testimonials-title">What dads are saying</h3>
+          <h3 className="pricing-testimonials-title">Trusted by over <strong>100,000+ dads</strong> who have made the journey</h3>
           <div className="pricing-testimonials-grid">
             <div className="pricing-testimonial">
               <div className="pricing-testimonial-image-wrapper">
