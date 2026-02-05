@@ -208,14 +208,21 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     
     // Use the stored questionIndex from the slide data
     const questionIndex = slide.questionIndex
-    if (questionIndex === undefined) return true
+    if (questionIndex === undefined) {
+      console.log('No questionIndex for conditional slide', slide)
+      return false
+    }
     
     const question = config[questionIndex]
-    if (!question || question.id !== 7) return true // Only equipment question has conditions
+    if (!question || question.id !== 7) {
+      // Not equipment question - shouldn't have condition
+      return false
+    }
     
     const equipmentAnswer = answers[question.id] || ''
     if (!equipmentAnswer) {
       // No answer yet - don't show conditional slides
+      console.log('No equipment answer yet')
       return false
     }
     
@@ -225,6 +232,8 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     // Check if only "Just bodyweight" is selected (and nothing else)
     const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
     
+    console.log('Equipment answer:', equipmentAnswer, 'Options:', selectedOptions, 'isBodyweightOnly:', isBodyweightOnly, 'Condition:', slide.condition)
+    
     if (slide.condition === 'bodyweight-only') {
       return isBodyweightOnly
     } else if (slide.condition === 'has-equipment') {
@@ -232,7 +241,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       return !isBodyweightOnly
     }
     
-    return true
+    return false
   }
 
   // Auto-dismiss removed - all info slides now use Continue button
@@ -246,8 +255,14 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     if (currentStep.data.condition) {
       const shouldShow = checkConditionalSlide(currentStep.data)
       if (!shouldShow) {
-        // Skip this slide and go to next
-        handleInfoContinue()
+        // Skip this slide and go to next immediately
+        // Use a small delay to avoid infinite loop
+        useEffect(() => {
+          const timer = setTimeout(() => {
+            handleInfoContinue()
+          }, 50)
+          return () => clearTimeout(timer)
+        }, [])
         return null
       }
     }
