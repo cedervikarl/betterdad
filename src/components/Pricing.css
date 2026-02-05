@@ -909,12 +909,12 @@
 
 @media (min-width: 768px) {
   .pricing-hero-title {
-    font-size: 2.25rem;
-    line-height: 1.25;
+    font-size: 2rem;
+    line-height: 1.3;
   }
   
   .pricing-hero {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
   
   .pricing-target-weight {
