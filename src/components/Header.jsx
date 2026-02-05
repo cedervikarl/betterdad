@@ -1,11 +1,11 @@
 import './Header.css'
 import Logo from './Logo'
 
-function Header({ onOpenDocs }) {
+function Header({ onOpenDocs, onHomeClick }) {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="header-logo">
+        <div className="header-logo" onClick={onHomeClick} style={{ cursor: 'pointer' }}>
           <Logo />
         </div>
         <div className="header-right">

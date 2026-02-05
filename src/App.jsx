@@ -436,9 +436,22 @@ function App() {
     console.log('Selected plan:', plan)
   }
 
+  const handleHomeClick = () => {
+    setCurrentStep('quiz')
+    // Clear localStorage to start fresh
+    try {
+      localStorage.removeItem('betterdad_currentStep')
+      localStorage.removeItem('betterdad_quizAnswers')
+      localStorage.removeItem('betterdad_userData')
+      localStorage.removeItem('betterdad_email')
+    } catch (error) {
+      console.error('Error clearing localStorage:', error)
+    }
+  }
+
   return (
     <div className="app">
-      <Header onOpenDocs={() => setLegalOpen(true)} />
+      <Header onOpenDocs={() => setLegalOpen(true)} onHomeClick={handleHomeClick} />
       {currentStep === 'quiz' && (
         <Quiz
           config={QUIZ_CONFIG}
