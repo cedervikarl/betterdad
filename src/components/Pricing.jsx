@@ -6,7 +6,7 @@ import testimonialMichael from '../assets/images/testimonial-michael.jpg'
 import testimonialDavid from '../assets/images/testimonial-david.jpg'
 import testimonialRobert from '../assets/images/testimonial-robert.jpg'
 
-function Pricing({ onSelectPlan, userData, onStartOver }) {
+function Pricing({ onSelectPlan, userData }) {
   const [currency, setCurrency] = useState('EUR')
   const [timeLeft, setTimeLeft] = useState(5 * 60) // 5 minutes in seconds
   
@@ -17,27 +17,6 @@ function Pricing({ onSelectPlan, userData, onStartOver }) {
       window.scrollTo({ top: 0, behavior: 'auto' })
     }
   }, [])
-
-  const handleStartOver = () => {
-    // Clear all localStorage first
-    try {
-      localStorage.removeItem('betterdad_currentStep')
-      localStorage.removeItem('betterdad_quizAnswers')
-      localStorage.removeItem('betterdad_userData')
-      localStorage.removeItem('betterdad_email')
-      localStorage.removeItem('betterdad_consent')
-    } catch (error) {
-      console.error('Error clearing localStorage:', error)
-    }
-    
-    // Call the callback to reset to quiz
-    if (onStartOver) {
-      onStartOver()
-    } else {
-      // Fallback: reload the page
-      window.location.reload()
-    }
-  }
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -186,13 +165,6 @@ function Pricing({ onSelectPlan, userData, onStartOver }) {
       <Header onOpenDocs={handleOpenDocs} />
       <div className="pricing-container">
         <div className="pricing-content">
-        {/* Start Over Button */}
-        <div className="pricing-start-over">
-          <button onClick={handleStartOver} className="pricing-start-over-button">
-            ← Starta om quiz
-          </button>
-        </div>
-        
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">

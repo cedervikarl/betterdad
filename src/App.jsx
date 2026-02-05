@@ -438,9 +438,7 @@ function App() {
 
   return (
     <div className="app">
-      {currentStep !== 'pricing' && (
-        <Header onOpenDocs={() => setLegalOpen(true)} />
-      )}
+      <Header onOpenDocs={() => setLegalOpen(true)} />
       {currentStep === 'quiz' && (
         <Quiz
           config={QUIZ_CONFIG}
@@ -480,7 +478,10 @@ function App() {
         />
       )}
       {currentStep === 'pricing' && (
-        <Pricing onSelectPlan={handlePricingSelect} userData={userData} />
+        <Pricing 
+          onSelectPlan={handlePricingSelect} 
+          userData={userData}
+        />
       )}
       {currentStep === 'success' && (
         <Success email={successEmail} planPrice={successPlanPrice} currency={successCurrency} />
