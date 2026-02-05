@@ -151,9 +151,6 @@ function HeightInput({ onNext, initialValue = '' }) {
             )}
           </div>
           {error && <p className="height-input-error">{error}</p>}
-          <p className="height-input-subtext">
-            {unit === 'cm' ? 'Range: 100-250 cm' : 'Range: 3-8 ft, 0-11 in'}
-          </p>
           <button 
             type="submit" 
             className="height-input-button" 
