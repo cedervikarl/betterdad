@@ -190,12 +190,20 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     const currentStep = steps[currentStepIndex]
     if (currentStep?.type === 'info' && currentStep.data.autoDismiss) {
       const timer = setTimeout(() => {
-        handleInfoContinue()
+        if (currentStepIndex < steps.length - 1) {
+          setTimeout(() => {
+            setCurrentStepIndex(prev => prev + 1)
+          }, 300)
+        } else {
+          setTimeout(() => {
+            onEmailSubmit('', false) // Quiz complete, move to data collection
+          }, 300)
+        }
       }, currentStep.data.autoDismiss)
       
       return () => clearTimeout(timer)
     }
-  }, [currentStepIndex, steps])
+  }, [currentStepIndex, steps, onEmailSubmit])
 
 
   const currentStep = steps[currentStepIndex]
