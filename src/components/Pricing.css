@@ -12,12 +12,31 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* Global wrapper for all content sections - 100% consistent */
+.pricing-hero,
+.pricing-social-proof,
+.pricing-value-stack,
+.pricing-bundle,
+.pricing-currency-selector,
+.pricing-urgency-timer,
+.pricing-desktop-button-wrapper,
+.pricing-testimonials,
+.pricing-how-it-works,
+.pricing-guarantee-section,
+.pricing-faq,
+.pricing-legal {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .pricing-content {
     max-width: 1200px;
   }
   
-  /* Make all sections equal width on desktop and center them */
   .pricing-hero,
   .pricing-social-proof,
   .pricing-value-stack,
@@ -30,10 +49,10 @@
   .pricing-guarantee-section,
   .pricing-faq,
   .pricing-legal {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
+}
   
   .pricing-testimonials-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -255,52 +274,22 @@
   border-color: #1a1a1a;
 }
 
-/* Urgency Timer */
-.pricing-urgency-timer {
+/* Bonus Window */
+.pricing-bonus-window {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.pricing-urgency-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
-  border: 2px solid #ffc107;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);
+.pricing-bonus-text {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.pricing-urgency-icon {
-  font-size: 1.5rem;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.pricing-urgency-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.pricing-urgency-label {
-  font-size: 0.8125rem;
-  color: #856404;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.pricing-urgency-time {
-  font-size: 1.5rem;
-  font-weight: 800;
+.pricing-bonus-text strong {
   color: #1a1a1a;
-  font-family: 'Courier New', monospace;
+  font-weight: 700;
 }
 
 /* Desktop Button Wrapper */
@@ -353,6 +342,44 @@
   .pricing-trust-badge-desktop .pricing-trust-icon {
     font-size: 1rem;
   }
+  
+  .pricing-payment-methods {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .pricing-payment-label {
+    display: block;
+    font-size: 0.8125rem;
+    color: #6a6a6a;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pricing-payment-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .pricing-payment-logo {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4a4a4a;
+    padding: 0.25rem 0.5rem;
+    background-color: #f5f3f0;
+    border-radius: 4px;
+  }
+}
+
+.pricing-payment-methods-mobile {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.pricing-payment-methods-mobile .pricing-payment-label {
+  font-size: 0.75rem;
+  color: #6a6a6a;
 }
 
 /* Sticky Footer Button (Mobile) */
@@ -430,14 +457,7 @@
   font-size: 0.9375rem;
   color: #4a4a4a;
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.pricing-social-proof-icon {
-  font-size: 1.25rem;
+  text-align: center;
 }
 
 .pricing-social-proof-text strong {
@@ -647,9 +667,8 @@
 .pricing-testimonial-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  background-color: #f5f3f0;
 }
 
 .pricing-testimonial-img {
@@ -657,17 +676,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-@media (min-width: 768px) {
-  .pricing-testimonial-image-wrapper {
-    aspect-ratio: 3 / 4;
-  }
-  
-  .pricing-testimonial-img {
-    object-fit: contain;
-    object-position: center;
-  }
 }
 
 .pricing-testimonial-overlay {

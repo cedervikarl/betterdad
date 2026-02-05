@@ -238,15 +238,11 @@ function Pricing({ onSelectPlan, userData }) {
           </button>
         </div>
 
-        {/* Urgency Timer */}
-        <div className="pricing-urgency-timer">
-          <div className="pricing-urgency-content">
-            <span className="pricing-urgency-icon">⏰</span>
-            <div className="pricing-urgency-text">
-              <span className="pricing-urgency-label">Limited time offer expires in:</span>
-              <span className="pricing-urgency-time">{formatTime(timeLeft)}</span>
-            </div>
-          </div>
+        {/* Bonus Window */}
+        <div className="pricing-bonus-window">
+          <p className="pricing-bonus-text">
+            <strong>Bonus included today:</strong> Order now to include the Recovery Guide at no extra cost
+          </p>
         </div>
 
         {/* Desktop Button */}
@@ -257,6 +253,14 @@ function Pricing({ onSelectPlan, userData }) {
           <div className="pricing-trust-badge-desktop">
             <span className="pricing-trust-icon">🛡️</span>
             <span className="pricing-trust-text">30-day money-back guarantee</span>
+          </div>
+          <div className="pricing-payment-methods">
+            <span className="pricing-payment-label">Säkra betalningar via:</span>
+            <div className="pricing-payment-logos">
+              <span className="pricing-payment-logo">Visa</span>
+              <span className="pricing-payment-logo">Stripe</span>
+              <span className="pricing-payment-logo">Klarna</span>
+            </div>
           </div>
         </div>
 
@@ -269,13 +273,15 @@ function Pricing({ onSelectPlan, userData }) {
             <span className="pricing-trust-icon">🛡️</span>
             <span className="pricing-trust-text">30-day money-back guarantee</span>
           </div>
+          <div className="pricing-payment-methods-mobile">
+            <span className="pricing-payment-label">Säkra betalningar: Visa • Stripe • Klarna</span>
+          </div>
         </div>
 
         {/* Social Proof */}
         <div className="pricing-social-proof">
           <p className="pricing-social-proof-text">
-            <span className="pricing-social-proof-icon">👥</span>
-            Joined by <strong>42 other dads</strong> in the last hour
+            Betrodd av över <strong>500+ pappor</strong> som gjort resan
           </p>
         </div>
 
