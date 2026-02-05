@@ -183,7 +183,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       const nextStep = steps[nextIndex]
       if (nextStep.type === 'info' && nextStep.data.condition) {
         // Check if this conditional slide should be shown
-        const shouldShow = checkConditionalSlide(nextStep.data, nextStep.data.position - 1)
+        const shouldShow = checkConditionalSlide(nextStep.data)
         if (!shouldShow) {
           nextIndex++
           continue
@@ -203,11 +203,13 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     }
   }
 
-  const checkConditionalSlide = (slide, questionIndex) => {
+  const checkConditionalSlide = (slide) => {
     if (!slide.condition) return true
     
-    // Find the question that this slide is positioned after
-    // questionIndex is 0-based, so position 7 means index 6
+    // Use the stored questionIndex from the slide data
+    const questionIndex = slide.questionIndex
+    if (questionIndex === undefined) return true
+    
     const question = config[questionIndex]
     if (!question || question.id !== 7) return true // Only equipment question has conditions
     
@@ -236,7 +238,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   if (currentStep.type === 'info') {
     // Check if this conditional slide should be shown
     if (currentStep.data.condition) {
-      const shouldShow = checkConditionalSlide(currentStep.data, currentStep.data.position - 1)
+      const shouldShow = checkConditionalSlide(currentStep.data)
       if (!shouldShow) {
         // Skip this slide and go to next
         handleInfoContinue()
@@ -246,13 +248,10 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     
     // Get slider values for dynamic text replacement
     let displayText = currentStep.data.text
-    if (displayText.includes('{minutes}')) {
-      // Find the slider question (id 4) and get the minutes value
-      const sliderQuestion = config.find(q => q.id === 4)
-      if (sliderQuestion) {
-        const sliderValues = sliderAnswers[4] || {
-          minutes: sliderQuestion.sliderB?.defaultValue || 20
-        }
+    if (displayText && displayText.includes('{minutes}')) {
+      // Get the actual slider values from state
+      const sliderValues = sliderAnswers[4]
+      if (sliderValues && sliderValues.minutes !== undefined) {
         const minutes = sliderValues.minutes
         
         // Customize message based on minutes
@@ -265,6 +264,9 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
         } else {
           displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. That's serious dedication.`
         }
+      } else {
+        // Fallback if slider values not available yet
+        displayText = displayText.replace('{minutes}', '20')
       }
     }
     

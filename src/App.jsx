@@ -146,23 +146,21 @@ const INFO_SLIDES = [
   {
     id: 'info-2.5',
     text: "Smart. Your own body weight is the most underrated gym on the planet. 65% of our top transformations started right in their living room with zero gear.",
-    position: 7, // After question 7 (equipment) - if bodyweight only
+    position: 5, // After question 7 (equipment) - if bodyweight only. Question 7 is at index 4, so position is 5
     image: null, // Add image: infoImageBodyweight (or your image name)
     condition: 'bodyweight-only'
-    // autoDismiss removed - now uses Continue button
   },
   {
     id: 'info-2.6',
     text: "Solid. We'll use that extra resistance to skyrocket your metabolism. Get ready to build that 'Dad Strength' your kids will look up to.",
-    position: 7, // After question 7 (equipment) - if equipment selected
+    position: 5, // After question 7 (equipment) - if equipment selected. Question 7 is at index 4, so position is 5
     image: null, // Add image: infoImageEquipment (or your image name)
     condition: 'has-equipment'
-    // autoDismiss removed - now uses Continue button
   },
   {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 8, // After equipment pop-up
+    position: 6, // After equipment pop-up (question 7 is at index 4, so after equipment popup would be position 6)
     image: infoImage3
   },
   {
