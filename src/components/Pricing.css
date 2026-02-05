@@ -12,6 +12,12 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+@media (min-width: 768px) {
+  .pricing-content {
+    max-width: 1200px;
+  }
+}
+
 .pricing-hero {
   text-align: center;
   margin-bottom: 2rem;
@@ -355,6 +361,15 @@
   gap: 1.5rem;
 }
 
+@media (min-width: 768px) {
+  .pricing-steps {
+    flex-direction: row !important;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
 .pricing-step {
   display: flex;
   flex-direction: column;
@@ -363,6 +378,15 @@
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .pricing-step {
+    flex: 1 !important;
+    padding: 2.5rem 2rem;
+    min-height: 280px;
+    justify-content: flex-start;
+  }
 }
 
 .pricing-step-icon {
@@ -374,6 +398,19 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .pricing-step-icon {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pricing-step-icon svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
 
 .pricing-step-icon svg {
@@ -389,12 +426,26 @@
   margin-bottom: 0.75rem;
 }
 
+@media (min-width: 768px) {
+  .pricing-step-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem;
+  }
+}
+
 .pricing-step-description {
   font-size: 0.9375rem;
   color: #4a4a4a;
   line-height: 1.6;
   margin: 0;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .pricing-step-description {
+    font-size: 1rem !important;
+    line-height: 1.7;
+  }
 }
 
 @media (min-width: 768px) {
@@ -405,41 +456,6 @@
   .pricing-how-it-works-title {
     font-size: 2rem;
     margin-bottom: 3rem;
-  }
-  
-  .pricing-steps {
-    flex-direction: row;
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .pricing-step {
-    flex: 1;
-    padding: 2.5rem 2rem;
-    min-height: 280px;
-    justify-content: flex-start;
-  }
-  
-  .pricing-step-icon {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1.5rem;
-  }
-  
-  .pricing-step-icon svg {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .pricing-step-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  
-  .pricing-step-description {
-    font-size: 1rem;
-    line-height: 1.7;
   }
 }
 
