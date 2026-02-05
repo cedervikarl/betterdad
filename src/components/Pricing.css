@@ -285,12 +285,12 @@
 }
 
 .pricing-bonus-window {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
   border: 2px solid #ffcdd2;
   border-radius: 12px;
-  padding: 1.5rem 1rem;
+  padding: 1.25rem 1rem;
   box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
   position: relative;
   overflow: hidden;
