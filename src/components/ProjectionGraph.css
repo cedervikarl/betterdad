@@ -1,10 +1,11 @@
 .projection-graph-container {
   min-height: 100vh;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   background-color: #f5f3f0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 2rem;
 }
 
 .projection-graph-content {
@@ -12,13 +13,24 @@
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   animation: slideIn 0.4s ease-out;
 }
 
+@media (min-width: 768px) {
+  .projection-graph-container {
+    align-items: center;
+    padding: 2rem 1.5rem;
+  }
+  
+  .projection-graph-content {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .projection-graph-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #2B2B2B;
   margin-bottom: 0.75rem;
@@ -27,39 +39,74 @@
 }
 
 .projection-intro {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: #6a6a6a;
   text-align: center;
-  margin-bottom: 2rem;
-  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .projection-graph-title {
+    font-size: 1.75rem;
+  }
+  
+  .projection-intro {
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .projection-prediction {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .projection-prediction {
+    margin-top: 2rem;
+  }
 }
 
 .projection-text {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #4a4a4a;
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 
 .projection-text strong {
   color: #2B2B2B;
   font-weight: 700;
+  display: inline;
 }
 
 .projection-badge {
   display: inline-block;
   background-color: #1a1a1a;
   color: #ffffff;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .projection-text {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+  
+  .projection-badge {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.875rem;
+  }
 }
 
 .projection-graph-wrapper {
@@ -117,15 +164,30 @@
 }
 
 .projection-label-weight {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #2B2B2B;
   margin-bottom: 0.25rem;
+  white-space: nowrap;
 }
 
 .projection-label-text {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: #6a6a6a;
+}
+
+@media (max-width: 480px) {
+  .projection-label-weight {
+    font-size: 0.9375rem;
+  }
+  
+  .projection-label-text {
+    font-size: 0.75rem;
+  }
+  
+  .projection-labels {
+    margin-top: 0.75rem;
+  }
 }
 
 .projection-subtext {
@@ -172,19 +234,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .projection-graph-content {
-    padding: 2.5rem 2rem;
-  }
-  
-  .projection-graph-title {
-    font-size: 2rem;
-  }
-  
-  .projection-intro {
-    font-size: 1rem;
-  }
-}
 
 
 

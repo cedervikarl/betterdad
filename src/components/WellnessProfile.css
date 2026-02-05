@@ -1,10 +1,11 @@
 .wellness-profile-container {
   min-height: 100vh;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   background-color: #f5f3f0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 2rem;
 }
 
 .wellness-profile-content {
@@ -12,18 +13,37 @@
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   animation: slideIn 0.4s ease-out;
 }
 
+@media (min-width: 768px) {
+  .wellness-profile-container {
+    align-items: center;
+    padding: 2rem 1.5rem;
+  }
+  
+  .wellness-profile-content {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .wellness-profile-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #2B2B2B;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   text-align: center;
   line-height: 1.2;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .wellness-profile-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .wellness-profile-grid {
