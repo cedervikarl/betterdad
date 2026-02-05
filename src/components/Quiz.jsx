@@ -273,7 +273,18 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
         const sliderValues = sliderAnswers[4] || {
           minutes: sliderQuestion.sliderB?.defaultValue || 20
         }
-        displayText = displayText.replace('{minutes}', sliderValues.minutes)
+        const minutes = sliderValues.minutes
+        
+        // Customize message based on minutes
+        if (minutes <= 10) {
+          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. Even 10 minutes can transform your day.`
+        } else if (minutes <= 20) {
+          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before.`
+        } else if (minutes <= 30) {
+          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. You're committing to real change.`
+        } else {
+          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. That's serious dedication.`
+        }
       }
     }
     
@@ -291,7 +302,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
             image={currentStep.data.image}
             review={currentStep.data.review}
             onContinue={handleInfoContinue}
-            autoDismiss={currentStep.data.autoDismiss}
+            autoDismiss={null} // Always show Continue button
           />
         </div>
       </div>

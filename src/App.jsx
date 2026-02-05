@@ -134,8 +134,8 @@ const INFO_SLIDES = [
     id: 'info-1.5',
     text: "Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those {minutes} minutes count so you have more energy after the workout than before.",
     position: 4, // After question 4 (slider - time & days)
-    image: null,
-    autoDismiss: 1500 // 1.5 seconds
+    image: null, // Add image: infoImageSlider (or your image name)
+    // autoDismiss removed - now uses Continue button
   },
   {
     id: 'info-2',
@@ -147,17 +147,17 @@ const INFO_SLIDES = [
     id: 'info-2.5',
     text: "Smart. Your own body weight is the most underrated gym on the planet. 65% of our top transformations started right in their living room with zero gear.",
     position: 7, // After question 7 (equipment) - if bodyweight only
-    image: null,
-    autoDismiss: 2000, // 2 seconds
+    image: null, // Add image: infoImageBodyweight (or your image name)
     condition: 'bodyweight-only'
+    // autoDismiss removed - now uses Continue button
   },
   {
     id: 'info-2.6',
     text: "Solid. We'll use that extra resistance to skyrocket your metabolism. Get ready to build that 'Dad Strength' your kids will look up to.",
     position: 7, // After question 7 (equipment) - if equipment selected
-    image: null,
-    autoDismiss: 2000, // 2 seconds
+    image: null, // Add image: infoImageEquipment (or your image name)
     condition: 'has-equipment'
+    // autoDismiss removed - now uses Continue button
   },
   {
     id: 'info-3',
