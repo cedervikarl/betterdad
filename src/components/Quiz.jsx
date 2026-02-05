@@ -209,7 +209,6 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     // Use the stored questionIndex from the slide data
     const questionIndex = slide.questionIndex
     if (questionIndex === undefined) {
-      console.log('No questionIndex for conditional slide', slide)
       return false
     }
     
@@ -219,10 +218,22 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       return false
     }
     
-    const equipmentAnswer = answers[question.id] || ''
+    // Check both answers prop and multiSelectAnswers state
+    // multiSelectAnswers has the most up-to-date value
+    const questionId = question.id
+    const multiSelectSelections = multiSelectAnswers[questionId] || []
+    const answersPropValue = answers[questionId] || ''
+    
+    // Use multiSelectAnswers if available, otherwise fall back to answers prop
+    let equipmentAnswer = ''
+    if (multiSelectSelections.length > 0) {
+      equipmentAnswer = multiSelectSelections.join(', ')
+    } else if (answersPropValue) {
+      equipmentAnswer = answersPropValue
+    }
+    
     if (!equipmentAnswer) {
       // No answer yet - don't show conditional slides
-      console.log('No equipment answer yet')
       return false
     }
     
@@ -231,8 +242,6 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     
     // Check if only "Just bodyweight" is selected (and nothing else)
     const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
-    
-    console.log('Equipment answer:', equipmentAnswer, 'Options:', selectedOptions, 'isBodyweightOnly:', isBodyweightOnly, 'Condition:', slide.condition)
     
     if (slide.condition === 'bodyweight-only') {
       return isBodyweightOnly
