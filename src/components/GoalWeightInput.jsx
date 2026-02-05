@@ -55,6 +55,7 @@ function GoalWeightInput({ onNext, initialValue = '' }) {
               placeholder={unit === 'kg' ? '75' : '165'}
               className="goal-weight-input-field"
               required
+              step="any"
               min={unit === 'kg' ? 30 : 66}
               max={unit === 'kg' ? 200 : 440}
             />

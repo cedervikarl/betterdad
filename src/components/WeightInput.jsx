@@ -56,6 +56,7 @@ function WeightInput({ onNext, initialValue = '' }) {
               placeholder={unit === 'kg' ? '80' : '176'}
               className="weight-input-field"
               required
+              step="any"
               min={unit === 'kg' ? 30 : 66}
               max={unit === 'kg' ? 200 : 440}
             />

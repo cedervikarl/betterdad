@@ -25,8 +25,15 @@ function HeightInput({ onNext, initialValue = '' }) {
     let inputValue = e.target.value
     
     if (unit === 'ft') {
+      // Handle backspace/delete: if user is deleting and value becomes just " ft" or similar, clear it
+      if (inputValue.trim() === 'ft' || inputValue.trim() === '' || inputValue.match(/^\s*ft\s*$/)) {
+        setValue('')
+        setError('')
+        return
+      }
+      
       // For feet: only allow digits, auto-format as "X ft Y"
-      // Remove any non-digit characters (but keep spaces and "ft" for parsing)
+      // Remove any non-digit characters
       const digitsOnly = inputValue.replace(/\D/g, '')
       
       if (digitsOnly === '') {
@@ -35,19 +42,17 @@ function HeightInput({ onNext, initialValue = '' }) {
         return
       }
       
-      // Format: if 1 digit, show "X ft"
-      // If 2+ digits, show "X ft Y" where X is first digit(s) and Y is last digit
-      if (digitsOnly.length === 1) {
-        setValue(`${digitsOnly} ft`)
-      } else if (digitsOnly.length === 2) {
-        // Two digits: first = feet, second = inches
-        const feet = digitsOnly[0]
-        const inches = digitsOnly[1]
-        setValue(`${feet} ft ${inches}`)
+      // Limit to max 2 digits: first = feet (3-8), second = inches (0-11)
+      // If more than 2 digits, only take the first 2
+      const limitedDigits = digitsOnly.slice(0, 2)
+      
+      if (limitedDigits.length === 1) {
+        // Single digit: show "X ft"
+        setValue(`${limitedDigits} ft`)
       } else {
-        // 3+ digits: all but last = feet, last = inches
-        const feet = digitsOnly.slice(0, -1)
-        const inches = digitsOnly.slice(-1)
+        // Two digits: first = feet, second = inches
+        const feet = limitedDigits[0]
+        const inches = limitedDigits[1]
         setValue(`${feet} ft ${inches}`)
       }
       setError('')
@@ -59,6 +64,16 @@ function HeightInput({ onNext, initialValue = '' }) {
       if (inputValue === '' || /^\d*\.?\d*$/.test(inputValue)) {
         setValue(inputValue)
         setError('')
+      }
+    }
+  }
+  
+  const handleKeyDown = (e) => {
+    if (unit === 'ft') {
+      // If user selects all text (Ctrl+A / Cmd+A) and presses backspace/delete, clear the value
+      if ((e.key === 'Backspace' || e.key === 'Delete') && e.target.selectionStart === 0 && e.target.selectionEnd === e.target.value.length) {
+        setValue('')
+        e.preventDefault()
       }
     }
   }
@@ -161,6 +176,7 @@ function HeightInput({ onNext, initialValue = '' }) {
               type={unit === 'ft' ? 'text' : 'number'}
               value={value}
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
               placeholder={unit === 'cm' ? '170' : '64'}
               className="height-input-field"
               step={unit === 'cm' ? 'any' : undefined}
