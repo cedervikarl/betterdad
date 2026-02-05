@@ -106,7 +106,7 @@ const QUIZ_CONFIG = [
   {
     id: 11,
     question: "What would you like to improve the most for your family?",
-    options: ["Energy to actually play with my kids after work.", "Being a fit role model for my children.", "The confidence to take my shirt off at the beach.", "Living a long, healthy life for my family."],
+    options: ["Energy to actually play with my kids after work", "Being a fit role model for my children", "The confidence to take my shirt off at the beach", "Living a long, healthy life for my family"],
     microcopy: "This is about more than just you. It's about being the dad they deserve."
   },
   {
