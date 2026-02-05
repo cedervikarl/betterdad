@@ -238,10 +238,10 @@ function Pricing({ onSelectPlan, userData }) {
           </button>
         </div>
 
-        {/* Bonus Window */}
+        {/* Scarcity Message */}
         <div className="pricing-bonus-window">
           <p className="pricing-bonus-text">
-            <strong>Bonus included today:</strong> Order now to include the Recovery Guide at no extra cost
+            Due to high demand from our latest Facebook campaign, we only have <strong>7 spots left</strong> for new 'Better Dad' members today.
           </p>
         </div>
 

@@ -34,7 +34,8 @@
 
 @media (min-width: 768px) {
   .pricing-content {
-    max-width: 1200px;
+    max-width: 100%;
+    padding: 2rem 0;
   }
   
   .pricing-hero,
@@ -51,6 +52,8 @@
   .pricing-legal {
     padding-left: 2rem;
     padding-right: 2rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
   
@@ -109,6 +112,7 @@
   font-size: 1rem;
   color: #4a4a4a;
   margin-top: 1rem;
+  margin-bottom: 2.5rem;
   padding: 0.75rem 1rem;
   background-color: #FAF7F2;
   border-radius: 8px;
