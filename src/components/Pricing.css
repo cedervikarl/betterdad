@@ -114,6 +114,12 @@
   text-align: center;
 }
 
+@media (min-width: 768px) {
+  .pricing-value-title {
+    text-align: left;
+  }
+}
+
 .pricing-value-list {
   display: flex;
   flex-direction: column;
