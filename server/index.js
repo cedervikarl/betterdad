@@ -815,23 +815,24 @@ async function sendPlanEmail(email, plan, planId, profile = {}) {
         <body>
           <div class="container">
             <div class="header">
-              <h1>Your DadBod Elimination Protocol is Ready!</h1>
+              <h1>🎯 Your Personalized Plan is Ready!</h1>
             </div>
             <div class="content">
-              <p>Hey ${profile && profile.name ? profile.name.split(' ')[0] : 'there'},</p>
-              <p>Congratulations on taking the first step! Your personalized BetterDad Blueprint has been created based on your quiz answers.</p>
-              ${profile && profile['5'] ? `<p>Based on your goal to <strong>${profile['5']}</strong>, we've designed a plan that fits your lifestyle.` : ''}
-              ${profile && profile['7'] ? `You mentioned you have <strong>${profile['7']}</strong> available, so we've tailored every exercise to work with what you actually have.` : ''}
-              ${profile && profile['6'] ? `With <strong>${profile['6']}</strong> per day, we've created efficient workouts that deliver maximum results in minimal time.` : ''}
-              ${profile && profile['9'] ? `We've also considered that you feel <strong>${String(profile['9']).toLowerCase()}</strong> after work, so the intensity and timing are matched to your energy levels.` : ''}
-              </p>
+              <p style="font-size: 18px; font-weight: 600; color: #1B3022; margin-bottom: 20px;">Hey ${profile && profile.name ? profile.name.split(' ')[0] : 'there'}!</p>
+              <p style="font-size: 16px; margin-bottom: 20px;">Congratulations on taking the first step! Your personalized BetterDad Blueprint has been created based on your quiz answers.</p>
+              <div style="background: #f0f7f4; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #52C41A;">
+                ${profile && profile['5'] ? `<p style="margin: 0 0 10px 0;"><strong>Your Goal:</strong> ${profile['5']}</p>` : ''}
+                ${profile && profile['7'] ? `<p style="margin: 0 0 10px 0;"><strong>Your Equipment:</strong> ${profile['7']}</p>` : ''}
+                ${profile && profile['6'] ? `<p style="margin: 0 0 10px 0;"><strong>Time Available:</strong> ${profile['6']} per day</p>` : ''}
+                ${profile && profile['9'] ? `<p style="margin: 0;"><strong>Energy Level:</strong> ${String(profile['9']).toLowerCase()} after work</p>` : ''}
+              </div>
               
               ${planHtml}
               
-              <div class="plan-section">
-                <h2>Let's Get Started</h2>
-                <p>Start with Week 1, Day 1 today. Remember, consistency beats perfection. Even 10 minutes is better than nothing.</p>
-                <p>You've got this! 💪</p>
+              <div class="plan-section" style="background: linear-gradient(135deg, #1B3022 0%, #2d4a3a 100%); color: white; border: none;">
+                <h2 style="color: white; margin-bottom: 15px;">🚀 Let's Get Started</h2>
+                <p style="color: white; font-size: 16px; margin-bottom: 15px;"><strong>Start with Week 1, Day 1 today.</strong></p>
+                <p style="color: white; margin: 0;">Remember, consistency beats perfection. Even 10 minutes is better than nothing. You've got this! 💪</p>
               </div>
               
               <div class="footer">
