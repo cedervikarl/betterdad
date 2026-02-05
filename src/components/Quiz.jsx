@@ -20,8 +20,6 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       const matchingSlides = infoSlides.filter(slide => slide.position === idx + 1)
       
       matchingSlides.forEach(slide => {
-        // For conditional slides, always add them - we'll filter when displaying
-        // Regular info slides, always add
         allSteps.push({
           type: 'info',
           data: slide
@@ -188,7 +186,6 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     }
   }
 
-  // Auto-dismiss removed - all info slides now use Continue button
 
 
   const currentStep = steps[currentStepIndex]
