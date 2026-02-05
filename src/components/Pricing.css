@@ -1,23 +1,53 @@
+/* Pricing Container - EXACT match to Quiz structure */
 .pricing-container {
   min-height: 100vh;
+  padding: 1.5rem 1rem;
+  padding-top: calc(1.5rem + 90px); /* Space for sticky header (logo is ~90px on mobile) */
   padding-bottom: 100px; /* Space for sticky footer */
   background-color: #f5f3f0;
-}
-
-.pricing-container {
-  min-height: 100vh;
-  padding-bottom: 100px;
-  background-color: #f5f3f0;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
+  position: static;
+  z-index: auto;
 }
 
 .pricing-content {
-  width: 100%;
   max-width: 750px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  width: 100%;
   animation: fadeIn 0.4s ease-out;
+}
+
+.pricing-start-over {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.pricing-start-over-button {
+  background: transparent;
+  border: 1px solid #e0ddd8;
+  color: #4a4a4a;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pricing-start-over-button:hover {
+  background-color: #f5f3f0;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+@media (min-width: 768px) {
+  .pricing-start-over {
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Global wrapper for all content sections - 100% consistent */
@@ -40,27 +70,14 @@
 }
 
 @media (min-width: 768px) {
-  .pricing-content {
-    padding: 2rem 2rem;
+  .pricing-container {
+    padding: 2rem 1.5rem;
+    padding-top: calc(2rem + 110px); /* Space for sticky header on desktop */
+    align-items: flex-start;
   }
   
   .pricing-mobile-button-wrapper {
     display: none;
-  }
-}
-  
-  .pricing-testimonials-grid {
-    grid-template-columns: repeat(3, 1fr);
-    display: grid;
-    gap: 1.5rem;
-  }
-  
-  .pricing-testimonial-overlay {
-    padding: 2.5rem 2rem 2rem;
-  }
-  
-  .pricing-testimonial-text {
-    font-size: 1.0625rem;
   }
 }
 
@@ -112,13 +129,12 @@
 }
 
 .pricing-target-weight strong {
-  color: #2B2B2B;
+  color: #2b2b2b;
   font-weight: 700;
 }
 
-/* Value Stack */
 .pricing-value-stack {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 16px;
   padding: 2rem 1.5rem;
   margin-bottom: 2rem;
@@ -128,7 +144,7 @@
 .pricing-value-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #2B2B2B;
+  color: #2b2b2b;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -156,7 +172,7 @@
   height: 28px;
   border-radius: 50%;
   background-color: #1a1a1a;
-  color: #ffffff;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,7 +192,7 @@
 .pricing-value-text strong {
   font-size: 1rem;
   font-weight: 700;
-  color: #2B2B2B;
+  color: #2b2b2b;
   line-height: 1.3;
 }
 
@@ -186,9 +202,8 @@
   line-height: 1.4;
 }
 
-/* Bundle Pricing */
 .pricing-bundle {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 16px;
   padding: 2rem 1.5rem;
   margin-bottom: 1.5rem;
@@ -240,7 +255,6 @@
   font-weight: 500;
 }
 
-/* Currency Selector */
 .pricing-currency-selector {
   display: flex;
   justify-content: center;
@@ -251,7 +265,7 @@
 .currency-button {
   padding: 0.5rem 1.5rem;
   border: 2px solid #e0ddd8;
-  background-color: #ffffff;
+  background-color: #fff;
   color: #4a4a4a;
   border-radius: 8px;
   font-size: 0.9375rem;
@@ -266,11 +280,10 @@
 
 .currency-button.active {
   background-color: #1a1a1a;
-  color: #ffffff;
+  color: #fff;
   border-color: #1a1a1a;
 }
 
-/* Bonus Window */
 .pricing-bonus-window {
   margin-bottom: 2rem;
   text-align: center;
@@ -288,7 +301,6 @@
   font-weight: 700;
 }
 
-/* Mobile Button (under scarcity) */
 .pricing-mobile-button-wrapper {
   margin: 1.5rem 0 2rem;
   text-align: center;
@@ -296,7 +308,7 @@
 
 .pricing-mobile-button {
   background-color: #1a1a1a;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 1.125rem 2rem;
   font-size: 1.125rem;
@@ -309,7 +321,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.75rem auto;
+  margin: 0 auto 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -319,7 +331,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.pricing-trust-badge-mobile {
+.pricing-trust-badge-mobile-inline {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,11 +340,10 @@
   color: #4a4a4a;
 }
 
-.pricing-trust-badge-mobile .pricing-trust-icon {
+.pricing-trust-badge-mobile-inline .pricing-trust-icon {
   font-size: 1rem;
 }
 
-/* Desktop Button Wrapper */
 .pricing-desktop-button-wrapper {
   display: none;
 }
@@ -343,10 +354,10 @@
     text-align: center;
     margin: 2rem 0;
   }
-  
+
   .pricing-desktop-button {
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #fff;
     border: none;
     padding: 1.25rem 2rem;
     font-size: 1.25rem;
@@ -356,20 +367,20 @@
     transition: all 0.3s ease;
     width: 100%;
     max-width: 500px;
-    margin: 0 auto 0.75rem auto;
+    margin: 0 auto 0.75rem;
     min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
-  
+
   .pricing-desktop-button:hover {
     background-color: #2d2d2d;
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
-  
+
   .pricing-trust-badge-desktop {
     display: flex;
     align-items: center;
@@ -378,7 +389,7 @@
     font-size: 0.875rem;
     color: #4a4a4a;
   }
-  
+
   .pricing-trust-badge-desktop .pricing-trust-icon {
     font-size: 1rem;
   }
@@ -405,7 +416,7 @@
 
 .pricing-button-sticky {
   background-color: #1a1a1a;
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 1.125rem 2rem;
   font-size: 1.125rem;
@@ -445,7 +456,6 @@
   font-weight: 500;
 }
 
-/* Testimonials */
 /* Social Proof */
 .pricing-social-proof {
   text-align: center;
@@ -455,20 +465,100 @@
   border-radius: 12px;
 }
 
-.pricing-social-proof-text {
-  font-size: 0.9375rem;
-  color: #4a4a4a;
+.pricing-social-proof-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2b2b2b;
   margin: 0;
   text-align: center;
 }
 
-.pricing-social-proof-text strong {
+.pricing-social-proof-title strong {
   color: #1a1a1a;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .pricing-testimonials {
   margin: 3rem 0 2rem;
+}
+
+.pricing-testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pricing-testimonial {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-testimonial-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.pricing-testimonial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pricing-testimonial-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-testimonial-stars {
+  font-size: 1rem;
+  color: #faad14;
+  letter-spacing: 1px;
+}
+
+.pricing-testimonial-text {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pricing-testimonial-name {
+  font-size: 0.875rem;
+  color: #6a6a6a;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .pricing-testimonial-content {
+    padding: 1.75rem;
+  }
+
+  .pricing-testimonial-stars {
+    font-size: 1.125rem;
+  }
+
+  .pricing-testimonial-text {
+    font-size: 1rem;
+  }
+
+  .pricing-testimonial-name {
+    font-size: 0.9375rem;
+  }
+
+  .pricing-testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    gap: 1.5rem;
+  }
 }
 
 /* How It Works */
@@ -504,7 +594,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem 1.5rem;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
@@ -521,7 +611,7 @@
 .pricing-step-icon {
   width: 64px;
   height: 64px;
-  background-color: #FAF7F2;
+  background-color: #faf7f2;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -535,7 +625,7 @@
     height: 80px !important;
     margin-bottom: 1.5rem;
   }
-  
+
   .pricing-step-icon svg {
     width: 40px !important;
     height: 40px !important;
@@ -551,7 +641,7 @@
 .pricing-step-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #2B2B2B;
+  color: #2b2b2b;
   margin-bottom: 0.75rem;
 }
 
@@ -581,14 +671,13 @@
   .pricing-how-it-works {
     margin: 4rem 0 3rem;
   }
-  
+
   .pricing-how-it-works-title {
     font-size: 2rem;
     margin-bottom: 3rem;
   }
 }
 
-/* Guarantee Section */
 .pricing-guarantee-section {
   margin: 3rem 0 2rem;
 }
@@ -596,7 +685,7 @@
 .pricing-guarantee-content {
   width: 100%;
   padding: 2rem 1.5rem;
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #E5E1DA;
   border-radius: 16px;
   text-align: center;
@@ -617,8 +706,8 @@
 .pricing-guarantee-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #2B2B2B;
-  margin: 0 0 1rem 0;
+  color: #2b2b2b;
+  margin: 0 0 1rem;
   line-height: 1.3;
 }
 
@@ -631,108 +720,11 @@
 }
 
 @media (min-width: 768px) {
-  .pricing-steps {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-  
-  .pricing-step {
-    flex: 1;
-  }
-  
   .pricing-guarantee-description {
     text-align: center;
   }
 }
 
-.pricing-testimonials-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2B2B2B;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.pricing-testimonials-title strong {
-  color: #1a1a1a;
-  font-weight: 800;
-}
-
-.pricing-testimonials-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.pricing-testimonial {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.pricing-testimonial-image-wrapper {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-}
-
-.pricing-testimonial-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.pricing-testimonial-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.pricing-testimonial-stars {
-  font-size: 1rem;
-  color: #FAAD14;
-  letter-spacing: 1px;
-}
-
-.pricing-testimonial-text {
-  font-size: 0.9375rem;
-  color: #4a4a4a;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.pricing-testimonial-name {
-  font-size: 0.875rem;
-  color: #6a6a6a;
-  font-weight: 600;
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .pricing-testimonial-content {
-    padding: 1.75rem;
-  }
-  
-  .pricing-testimonial-stars {
-    font-size: 1.125rem;
-  }
-  
-  .pricing-testimonial-text {
-    font-size: 1rem;
-  }
-  
-  .pricing-testimonial-name {
-    font-size: 0.9375rem;
-  }
-}
-
-/* FAQ */
 .pricing-faq {
   margin: 3rem 0 2rem;
 }
@@ -740,7 +732,7 @@
 .pricing-faq-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2B2B2B;
+  color: #2b2b2b;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -753,7 +745,7 @@
 
 .pricing-faq-item {
   padding: 1.25rem;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
@@ -761,7 +753,7 @@
 .pricing-faq-question {
   font-size: 1rem;
   font-weight: 700;
-  color: #2B2B2B;
+  color: #2b2b2b;
   margin-bottom: 0.75rem;
 }
 
@@ -772,7 +764,6 @@
   margin: 0;
 }
 
-/* Legal */
 .pricing-legal {
   margin-top: 2rem;
   padding-top: 1.5rem;
@@ -787,7 +778,7 @@
 }
 
 .pricing-legal-link {
-  color: #2B2B2B;
+  color: #2b2b2b;
   font-weight: 700;
   text-decoration: none;
 }
@@ -797,7 +788,7 @@
 }
 
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
   to {
@@ -806,21 +797,11 @@
 }
 
 @media (min-width: 768px) {
-  .pricing-content {
-    padding: 2.5rem 2rem;
-  }
-  
   .pricing-hero-title {
     font-size: 2rem;
   }
   
   .pricing-container {
     padding-bottom: 2rem;
-  }
-  
-  .pricing-testimonials-grid {
-    grid-template-columns: repeat(3, 1fr);
-    display: grid;
-    gap: 1.5rem;
   }
 }
