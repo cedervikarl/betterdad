@@ -438,15 +438,6 @@ function App() {
 
   const handleHomeClick = () => {
     setCurrentStep('quiz')
-    // Clear localStorage to start fresh
-    try {
-      localStorage.removeItem('betterdad_currentStep')
-      localStorage.removeItem('betterdad_quizAnswers')
-      localStorage.removeItem('betterdad_userData')
-      localStorage.removeItem('betterdad_email')
-    } catch (error) {
-      console.error('Error clearing localStorage:', error)
-    }
   }
 
   return (
