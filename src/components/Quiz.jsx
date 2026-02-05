@@ -195,46 +195,6 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   const progress = ((currentStepIndex + 1) / totalSteps) * 100
 
   if (currentStep.type === 'info') {
-    // Check if this conditional slide should be shown
-    if (currentStep.data.condition) {
-      const shouldShow = checkConditionalSlide(currentStep.data)
-      if (!shouldShow) {
-        // Skip this slide and go to next immediately
-        // Use a small delay to avoid infinite loop
-        useEffect(() => {
-          const timer = setTimeout(() => {
-            handleInfoContinue()
-          }, 50)
-          return () => clearTimeout(timer)
-        }, [])
-        return null
-      }
-    }
-    
-    // Get slider values for dynamic text replacement
-    let displayText = currentStep.data.text
-    if (displayText && displayText.includes('{minutes}')) {
-      // Get the actual slider values from state
-      const sliderValues = sliderAnswers[4]
-      if (sliderValues && sliderValues.minutes !== undefined) {
-        const minutes = sliderValues.minutes
-        
-        // Customize message based on minutes
-        if (minutes <= 10) {
-          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. Even 10 minutes can transform your day.`
-        } else if (minutes <= 20) {
-          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before.`
-        } else if (minutes <= 30) {
-          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. You're committing to real change.`
-        } else {
-          displayText = `Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those ${minutes} minutes count so you have more energy after the workout than before. That's serious dedication.`
-        }
-      } else {
-        // Fallback if slider values not available yet
-        displayText = displayText.replace('{minutes}', '20')
-      }
-    }
-    
     return (
       <div className="quiz-container">
         <div className="quiz-content">
@@ -245,11 +205,10 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
             Step {currentStepIndex + 1} of {totalSteps}
           </div>
           <InfoSlide 
-            text={displayText}
+            text={currentStep.data.text}
             image={currentStep.data.image}
             review={currentStep.data.review}
             onContinue={handleInfoContinue}
-            autoDismiss={null} // Always show Continue button
           />
         </div>
       </div>
