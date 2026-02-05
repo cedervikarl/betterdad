@@ -20,39 +20,17 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       const matchingSlides = infoSlides.filter(slide => slide.position === idx + 1)
       
       matchingSlides.forEach(slide => {
-        // For conditional slides, check if they should be shown
-        if (slide.condition) {
-          // Only check condition for equipment question (id 7)
-          if (question.id === 7) {
-            const equipmentAnswer = answers[question.id] || ''
-            // Multi-select answers are stored as comma-separated strings
-            const selectedOptions = equipmentAnswer.split(',').map(s => s.trim())
-            const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
-            
-            if (slide.condition === 'bodyweight-only' && isBodyweightOnly) {
-              allSteps.push({
-                type: 'info',
-                data: slide
-              })
-            } else if (slide.condition === 'has-equipment' && !isBodyweightOnly) {
-              allSteps.push({
-                type: 'info',
-                data: slide
-              })
-            }
-          }
-        } else {
-          // Regular info slide, always show
-          allSteps.push({
-            type: 'info',
-            data: slide
-          })
-        }
+        // For conditional slides, always add them - we'll filter when displaying
+        // Regular info slides, always add
+        allSteps.push({
+          type: 'info',
+          data: slide
+        })
       })
     })
     
     return allSteps
-  }, [config, infoSlides, answers])
+  }, [config, infoSlides])
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [selectedImageOption, setSelectedImageOption] = useState(null)
@@ -199,15 +177,51 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   }
 
   const handleInfoContinue = () => {
-    if (currentStepIndex < steps.length - 1) {
+    // Skip conditional info slides that shouldn't be shown
+    let nextIndex = currentStepIndex + 1
+    while (nextIndex < steps.length) {
+      const nextStep = steps[nextIndex]
+      if (nextStep.type === 'info' && nextStep.data.condition) {
+        // Check if this conditional slide should be shown
+        const shouldShow = checkConditionalSlide(nextStep.data, nextStep.data.position - 1)
+        if (!shouldShow) {
+          nextIndex++
+          continue
+        }
+      }
+      break
+    }
+    
+    if (nextIndex < steps.length) {
       setTimeout(() => {
-        setCurrentStepIndex(prev => prev + 1)
+        setCurrentStepIndex(nextIndex)
       }, 300)
     } else {
       setTimeout(() => {
         onEmailSubmit('', false) // Quiz complete, move to data collection
       }, 300)
     }
+  }
+
+  const checkConditionalSlide = (slide, questionIndex) => {
+    if (!slide.condition) return true
+    
+    // Find the question that this slide is positioned after
+    const question = config[questionIndex]
+    if (!question || question.id !== 7) return true // Only equipment question has conditions
+    
+    const equipmentAnswer = answers[question.id] || ''
+    // Multi-select answers are stored as comma-separated strings
+    const selectedOptions = equipmentAnswer.split(',').map(s => s.trim())
+    const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
+    
+    if (slide.condition === 'bodyweight-only') {
+      return isBodyweightOnly
+    } else if (slide.condition === 'has-equipment') {
+      return !isBodyweightOnly
+    }
+    
+    return true
   }
 
   // Auto-dismiss info slides with autoDismiss property
@@ -235,6 +249,16 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   const progress = ((currentStepIndex + 1) / totalSteps) * 100
 
   if (currentStep.type === 'info') {
+    // Check if this conditional slide should be shown
+    if (currentStep.data.condition) {
+      const shouldShow = checkConditionalSlide(currentStep.data, currentStep.data.position - 1)
+      if (!shouldShow) {
+        // Skip this slide and go to next
+        handleInfoContinue()
+        return null
+      }
+    }
+    
     // Get slider values for dynamic text replacement
     let displayText = currentStep.data.text
     if (displayText.includes('{minutes}')) {
