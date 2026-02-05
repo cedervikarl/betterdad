@@ -79,9 +79,53 @@
   transition: border-color 0.3s ease;
 }
 
+/* Dual input container for feet/inches */
+.dual-input-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 150px;
+}
+
+.height-input-field.split {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.input-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6a6a6a;
+  margin-top: 0.5rem;
+  text-transform: lowercase;
+}
+
 @media (max-width: 480px) {
   .height-input-field {
     font-size: 1.5rem; /* Fortfarande större än 16px på mobil */
+  }
+  
+  .height-input-field.split {
+    font-size: 1.5rem;
+  }
+  
+  .dual-input-container {
+    gap: 0.75rem;
+  }
+  
+  .input-box {
+    max-width: 120px;
   }
 }
 
