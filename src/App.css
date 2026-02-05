@@ -2,5 +2,13 @@
   width: 100%;
   min-height: 100vh;
   background-color: #f5f3f0;
+  position: relative;
+}
+
+/* Ensure header is always visible */
+.app > .header {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 

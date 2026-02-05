@@ -8,8 +8,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  position: static;
-  z-index: auto;
+  position: relative; /* Changed from static to ensure proper stacking */
+  z-index: 1; /* Lower than header's z-index: 9999 */
 }
 
 .pricing-content {
@@ -794,6 +794,16 @@
   to {
     opacity: 1;
   }
+}
+
+/* Ensure header is always visible on pricing page */
+.app .header {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
 }
 
 @media (min-width: 768px) {
