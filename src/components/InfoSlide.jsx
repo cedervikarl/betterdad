@@ -1,9 +1,9 @@
 import './InfoSlide.css'
 
-function InfoSlide({ text, image, review, onContinue }) {
+function InfoSlide({ text, image, review, onContinue, autoDismiss }) {
   return (
     <div className="info-slide-container">
-      <div className="info-slide-card">
+      <div className={`info-slide-card ${autoDismiss ? 'info-slide-auto-dismiss' : ''}`}>
         <div className="info-slide-content">
           <div className="info-slide-text">
             <p className="info-slide-message">{text}</p>
@@ -25,9 +25,11 @@ function InfoSlide({ text, image, review, onContinue }) {
               />
             </div>
           ) : null}
-          <button className="info-slide-button" onClick={onContinue}>
-            Continue
-          </button>
+          {!autoDismiss && (
+            <button className="info-slide-button" onClick={onContinue}>
+              Continue
+            </button>
+          )}
         </div>
       </div>
     </div>

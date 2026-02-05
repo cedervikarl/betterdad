@@ -131,21 +131,28 @@ const INFO_SLIDES = [
     image: infoImage1
   },
   {
+    id: 'info-1.5',
+    text: "Perfect. Most dads burn out because they try to train like they're 19 again. We'll make those {minutes} minutes count so you have more energy after the workout than before.",
+    position: 4, // After question 4 (slider - time & days)
+    image: null,
+    autoDismiss: 1500 // 1.5 seconds
+  },
+  {
     id: 'info-2',
     text: "Michael, 34, lost 6 kg in 4 weeks and finally has the energy to play with his kids after work.",
-    position: 5, // After question 4 (slider - time & days)
+    position: 5, // After question 5 (main goal)
     image: infoImage2
   },
   {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 6, // After question 7 (equipment)
+    position: 7, // After question 7 (equipment)
     image: infoImage3
   },
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 8, // After question 10 (middle of quiz)
+    position: 9, // After question 10 (middle of quiz)
     image: null, // No image for this one
     review: {
       name: "James, 38",
@@ -156,7 +163,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 11, // After question 15 (last question)
+    position: 12, // After question 15 (last question)
     image: infoImage5
   }
 ]

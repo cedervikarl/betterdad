@@ -185,6 +185,18 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     }
   }
 
+  // Auto-dismiss info slides with autoDismiss property
+  useEffect(() => {
+    const currentStep = steps[currentStepIndex]
+    if (currentStep?.type === 'info' && currentStep.data.autoDismiss) {
+      const timer = setTimeout(() => {
+        handleInfoContinue()
+      }, currentStep.data.autoDismiss)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [currentStepIndex, steps])
+
 
   const currentStep = steps[currentStepIndex]
   const progress = ((currentStepIndex + 1) / totalSteps) * 100
