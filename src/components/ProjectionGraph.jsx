@@ -19,15 +19,15 @@ function ProjectionGraph({ userData, onNext }) {
     return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
   }
 
-  const unit = userData.unit || 'kg'
-  const currentWeightDisplay = `${currentWeight} ${unit}`
-  const goalWeightDisplay = `${goalWeight} ${unit}`
-
   return (
     <div className="projection-graph-container">
       <div className="projection-graph-content">
-        <p className="projection-subtitle">Based on 100,000+ dad transformations, here's your predicted timeline...</p>
+        <h2 className="projection-graph-title">Your predicted timeline</h2>
         
+        <p className="projection-intro">
+          Based on 100,000+ dad transformations, here's your predicted timeline...
+        </p>
+
         <div className="projection-graph-wrapper">
           <div className="projection-graph">
             <svg viewBox="0 0 400 200" className="projection-svg">
@@ -50,12 +50,12 @@ function ProjectionGraph({ userData, onNext }) {
             </svg>
             <div className="projection-labels">
               <div className="projection-label-left">
-                <span className="projection-label-weight">{currentWeightDisplay}</span>
-                <span className="projection-label-text">Current weight</span>
+                <span className="projection-label-weight">{currentWeight} {userData.weightUnit || 'kg'}</span>
+                <span className="projection-label-text">Current</span>
               </div>
               <div className="projection-label-right">
-                <span className="projection-label-weight">{goalWeightDisplay}</span>
-                <span className="projection-label-text">Goal weight</span>
+                <span className="projection-label-weight">{goalWeight} {userData.weightUnit || 'kg'}</span>
+                <span className="projection-label-text">Goal</span>
               </div>
             </div>
           </div>
@@ -63,8 +63,11 @@ function ProjectionGraph({ userData, onNext }) {
 
         <div className="projection-prediction">
           <p className="projection-text">
-            You could reach <strong>{goalWeightDisplay}</strong> by <strong>{formatDate(predictedDate)}</strong>
+            You could reach <strong>{goalWeight} {userData.weightUnit || 'kg'}</strong> by <strong>{formatDate(predictedDate)}</strong>
           </p>
+          <div className="projection-badge">
+            –{weightLoss.toFixed(1)} {userData.weightUnit || 'kg'} in 8 weeks
+          </div>
         </div>
 
         <button className="projection-graph-button" onClick={onNext}>

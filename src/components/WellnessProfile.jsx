@@ -79,54 +79,50 @@ function WellnessProfile({ userData, onNext }) {
     return bodyMediumFat
   }
 
+  // Get optimal workout window based on time and energy
+  const getWorkoutWindow = () => {
+    const timeAnswer = userData['6'] // How much time per day?
+    const energyAnswer = userData['9'] // How do you usually feel after work?
+    
+    if (energyAnswer === 'Still full of energy' || energyAnswer === 'Okay') {
+      return timeAnswer === '20 minutes' ? 'Morning (20 min)' : 
+             timeAnswer === '30 minutes' ? 'Morning (30 min)' :
+             timeAnswer === '45 minutes' ? 'Morning (45 min)' : 'Morning (1h+)'
+    }
+    if (energyAnswer === 'Low energy but push through') {
+      return 'Afternoon (moderate energy)'
+    }
+    return 'Morning (best energy)'
+  }
+
   return (
     <div className="wellness-profile-container">
       <div className="wellness-profile-content">
-        <h2 className="wellness-profile-title">Here's your profile</h2>
+        <h2 className="wellness-profile-title">Here's what we found about your body</h2>
         
-        <div className="bmi-section">
-          <h3 className="bmi-title">BMI</h3>
-          <div className="bmi-bar-container">
-            <div className="bmi-bar">
-              <div className="bmi-gradient"></div>
-              <div 
-                className="bmi-indicator"
-                style={{ left: `${bmiPosition}%` }}
-              >
-                <div className="bmi-bubble">
-                  {bmi.toFixed(1)}
-                </div>
-              </div>
-            </div>
-            <div className="bmi-labels">
-              <span>15</span>
-              <span>25</span>
-              <span>30</span>
-              <span>40</span>
-            </div>
-          </div>
-          <p className="bmi-category">{bmiCategory.label}</p>
-        </div>
-
-        <div className="wellness-profile-stats-row">
+        <div className="wellness-grid">
           <div className="wellness-box">
-            <h4 className="wellness-box-title">Body type</h4>
+            <h4 className="wellness-box-title">Current body composition</h4>
             <p className="wellness-box-value">{getBodyType()}</p>
+            <div className="wellness-box-badge">BMI: {bmi.toFixed(1)}</div>
           </div>
 
           <div className="wellness-box">
-            <h4 className="wellness-box-title">Lifestyle</h4>
+            <h4 className="wellness-box-title">Stress profile</h4>
             <p className="wellness-box-value">{getLifestyle()}</p>
+            <div className="wellness-box-subtext">Based on your energy levels</div>
           </div>
 
           <div className="wellness-box">
-            <h4 className="wellness-box-title">Fitness level</h4>
-            <p className="wellness-box-value">{getFitnessLevel()}</p>
-          </div>
-
-          <div className="wellness-box">
-            <h4 className="wellness-box-title">Metabolism</h4>
+            <h4 className="wellness-box-title">Metabolic age</h4>
             <p className="wellness-box-value">{getMetabolism()}</p>
+            <div className="wellness-box-subtext">Age {userData.age || 35} + lifestyle</div>
+          </div>
+
+          <div className="wellness-box">
+            <h4 className="wellness-box-title">Optimal workout window</h4>
+            <p className="wellness-box-value">{getWorkoutWindow()}</p>
+            <div className="wellness-box-subtext">Based on time & energy</div>
           </div>
         </div>
 
