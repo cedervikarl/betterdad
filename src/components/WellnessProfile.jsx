@@ -98,8 +98,6 @@ function WellnessProfile({ userData, onNext }) {
   return (
     <div className="wellness-profile-container">
       <div className="wellness-profile-content">
-        <h2 className="wellness-profile-title">Here's what we found about your body</h2>
-        
         <div className="wellness-grid">
           <div className="wellness-box">
             <h4 className="wellness-box-title">Current body composition</h4>
