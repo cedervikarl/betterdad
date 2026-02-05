@@ -235,6 +235,19 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   const progress = ((currentStepIndex + 1) / totalSteps) * 100
 
   if (currentStep.type === 'info') {
+    // Get slider values for dynamic text replacement
+    let displayText = currentStep.data.text
+    if (displayText.includes('{minutes}')) {
+      // Find the slider question (id 4) and get the minutes value
+      const sliderQuestion = config.find(q => q.id === 4)
+      if (sliderQuestion) {
+        const sliderValues = sliderAnswers[4] || {
+          minutes: sliderQuestion.sliderB?.defaultValue || 20
+        }
+        displayText = displayText.replace('{minutes}', sliderValues.minutes)
+      }
+    }
+    
     return (
       <div className="quiz-container">
         <div className="quiz-content">
@@ -245,10 +258,11 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
             Step {currentStepIndex + 1} of {totalSteps}
           </div>
           <InfoSlide 
-            text={currentStep.data.text}
+            text={displayText}
             image={currentStep.data.image}
             review={currentStep.data.review}
             onContinue={handleInfoContinue}
+            autoDismiss={currentStep.data.autoDismiss}
           />
         </div>
       </div>
