@@ -26,6 +26,8 @@ function ProjectionGraph({ userData, onNext }) {
   return (
     <div className="projection-graph-container">
       <div className="projection-graph-content">
+        <h2 className="projection-title">Based on all your answers, this is what we predict</h2>
+        
         <div className="projection-graph-wrapper">
           <div className="projection-graph">
             <svg viewBox="0 0 400 200" className="projection-svg">
@@ -50,7 +52,7 @@ function ProjectionGraph({ userData, onNext }) {
 
         <div className="projection-prediction">
           <p className="projection-text">
-            You could lose up to {weightChange.toFixed(1)} {unit} in the next 8 weeks
+            You could lose up to <strong>{weightChange.toFixed(1)} {unit}</strong> in the next 8 weeks
           </p>
         </div>
 

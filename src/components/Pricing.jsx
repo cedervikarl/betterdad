@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { trackEvent } from '../utils/facebookPixel'
 import './Pricing.css'
+import testimonialMichael from '../assets/images/testimonial-michael.jpg'
+import testimonialDavid from '../assets/images/testimonial-david.jpg'
+import testimonialRobert from '../assets/images/testimonial-robert.jpg'
 
 function Pricing({ onSelectPlan, userData }) {
   const [currency, setCurrency] = useState('EUR')
@@ -158,7 +161,7 @@ function Pricing({ onSelectPlan, userData }) {
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">
-            We've analyzed your answers. Based on your <strong>{getCurrentShape()}</strong> and goal to become <strong>{getDreamBody()}</strong>, here is your 4-week blueprint.
+            We've analyzed your answers. Based on your <strong className="pricing-highlight-green">{getCurrentShape()}</strong> and goal to become <strong className="pricing-highlight-green">{getDreamBody()}</strong>, here is your <strong>All-in-One Transformation Bundle</strong>.
           </h1>
           
           {/* Target Weight Visualization */}
@@ -237,8 +240,13 @@ function Pricing({ onSelectPlan, userData }) {
 
         {/* Urgency Timer */}
         <div className="pricing-urgency-timer">
-          <span className="pricing-urgency-label">Limited time offer expires in:</span>
-          <span className="pricing-urgency-time">{formatTime(timeLeft)}</span>
+          <div className="pricing-urgency-content">
+            <span className="pricing-urgency-icon">⏰</span>
+            <div className="pricing-urgency-text">
+              <span className="pricing-urgency-label">Limited time offer expires in:</span>
+              <span className="pricing-urgency-time">{formatTime(timeLeft)}</span>
+            </div>
+          </div>
         </div>
 
         {/* Desktop Button */}
@@ -263,30 +271,53 @@ function Pricing({ onSelectPlan, userData }) {
           </div>
         </div>
 
+        {/* Social Proof */}
+        <div className="pricing-social-proof">
+          <p className="pricing-social-proof-text">
+            <span className="pricing-social-proof-icon">👥</span>
+            Joined by <strong>42 other dads</strong> in the last hour
+          </p>
+        </div>
+
         {/* Testimonials */}
         <div className="pricing-testimonials">
           <h3 className="pricing-testimonials-title">What dads are saying</h3>
           <div className="pricing-testimonials-grid">
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-stars">★★★★★</div>
-              <p className="pricing-testimonial-text">
-                "Lost 8kg in 6 weeks and finally have energy to play with my kids after work. Best investment I've made."
-              </p>
-              <p className="pricing-testimonial-name">Michael J., 34</p>
+              <div className="pricing-testimonial-image">
+                <img src={testimonialMichael} alt="Michael" className="pricing-testimonial-img" />
+              </div>
+              <div className="pricing-testimonial-content">
+                <div className="pricing-testimonial-stars">★★★★★</div>
+                <p className="pricing-testimonial-text">
+                  "Lost 8kg in 6 weeks and finally have energy to play with my kids after work. Best investment I've made."
+                </p>
+                <p className="pricing-testimonial-name">Michael J., 34</p>
+              </div>
             </div>
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-stars">★★★★★</div>
-              <p className="pricing-testimonial-text">
-                "The workouts fit perfectly into my busy schedule. No excuses anymore - I can do this at home!"
-              </p>
-              <p className="pricing-testimonial-name">David S., 41</p>
+              <div className="pricing-testimonial-image">
+                <img src={testimonialDavid} alt="David" className="pricing-testimonial-img" />
+              </div>
+              <div className="pricing-testimonial-content">
+                <div className="pricing-testimonial-stars">★★★★★</div>
+                <p className="pricing-testimonial-text">
+                  "The workouts fit perfectly into my busy schedule. No excuses anymore - I can do this at home!"
+                </p>
+                <p className="pricing-testimonial-name">David S., 41</p>
+              </div>
             </div>
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-stars">★★★★★</div>
-              <p className="pricing-testimonial-text">
-                "Finally a plan that understands dads. Simple, effective, and I'm seeing results faster than I expected."
-              </p>
-              <p className="pricing-testimonial-name">Robert K., 38</p>
+              <div className="pricing-testimonial-image">
+                <img src={testimonialRobert} alt="Robert" className="pricing-testimonial-img" />
+              </div>
+              <div className="pricing-testimonial-content">
+                <div className="pricing-testimonial-stars">★★★★★</div>
+                <p className="pricing-testimonial-text">
+                  "Finally a plan that understands dads. Simple, effective, and I'm seeing results faster than I expected."
+                </p>
+                <p className="pricing-testimonial-name">Robert K., 38</p>
+              </div>
             </div>
           </div>
         </div>
@@ -306,7 +337,7 @@ function Pricing({ onSelectPlan, userData }) {
               </div>
               <h4 className="pricing-step-title">STEP 1: Take Quiz</h4>
               <p className="pricing-step-description">
-                Answer 21 quick questions about your body, goals, and lifestyle. We'll analyze your answers to create your personalized plan.
+                Answer a few quick questions about your body, goals, and lifestyle. We'll analyze your answers to create your personalized plan.
               </p>
             </div>
 
