@@ -33,48 +33,142 @@ function Pricing({ onSelectPlan, userData }) {
     return () => clearInterval(timer)
   }, [])
 
-  // Exit intent detection
+  // Exit intent detection (desktop + mobile)
   useEffect(() => {
     if (showExitIntent) return // Don't set up if already shown
     
     const pageLoadTime = Date.now()
     let hasShownPopup = false
+    let lastScrollTop = 0
+    let scrollTimeout = null
+    const isMobile = window.innerWidth <= 768
 
+    // Desktop: Mouse leave detection
     const handleMouseOut = (e) => {
-      // Check if mouse is leaving the window (going to top)
-      if (!e.relatedTarget && e.clientY < 10 && !hasShownPopup) {
+      if (!isMobile && !e.relatedTarget && e.clientY < 10 && !hasShownPopup) {
         const timeOnPage = Date.now() - pageLoadTime
-        // Show after 20 seconds (reduced from 30 for better testing)
         if (timeOnPage > 20000) {
           hasShownPopup = true
           setShowExitIntent(true)
           trackEvent('ExitIntent', {
-            content_name: 'Exit Intent Popup Shown'
+            content_name: 'Exit Intent Popup Shown',
+            device: 'desktop'
           })
         }
       }
     }
 
-    // Also listen for mouseleave on document
     const handleMouseLeave = (e) => {
-      if (e.clientY <= 0 && !hasShownPopup) {
+      if (!isMobile && e.clientY <= 0 && !hasShownPopup) {
         const timeOnPage = Date.now() - pageLoadTime
         if (timeOnPage > 20000) {
           hasShownPopup = true
           setShowExitIntent(true)
           trackEvent('ExitIntent', {
-            content_name: 'Exit Intent Popup Shown'
+            content_name: 'Exit Intent Popup Shown',
+            device: 'desktop'
           })
         }
       }
     }
 
+    // Mobile: Scroll up detection (user scrolling back to top quickly)
+    const handleScroll = () => {
+      if (!isMobile || hasShownPopup) return
+      
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop
+      const scrollDifference = lastScrollTop - currentScrollTop
+      
+      // If scrolling up quickly and near top of page
+      if (scrollDifference > 50 && currentScrollTop < 100) {
+        const timeOnPage = Date.now() - pageLoadTime
+        if (timeOnPage > 20000) {
+          hasShownPopup = true
+          setShowExitIntent(true)
+          trackEvent('ExitIntent', {
+            content_name: 'Exit Intent Popup Shown',
+            device: 'mobile'
+          })
+        }
+      }
+      
+      lastScrollTop = currentScrollTop
+      
+      // Clear timeout and set new one
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        // If user stops scrolling near top, might be leaving
+        if (currentScrollTop < 50 && !hasShownPopup) {
+          const timeOnPage = Date.now() - pageLoadTime
+          if (timeOnPage > 30000) { // Longer wait on mobile
+            hasShownPopup = true
+            setShowExitIntent(true)
+            trackEvent('ExitIntent', {
+              content_name: 'Exit Intent Popup Shown',
+              device: 'mobile'
+            })
+          }
+        }
+      }, 2000)
+    }
+
+    // Mobile: Touch start near top of screen
+    const handleTouchStart = (e) => {
+      if (!isMobile || hasShownPopup) return
+      
+      const touchY = e.touches[0].clientY
+      // If touch starts very close to top (user might be trying to swipe down/close)
+      if (touchY < 50) {
+        const timeOnPage = Date.now() - pageLoadTime
+        if (timeOnPage > 20000) {
+          hasShownPopup = true
+          setShowExitIntent(true)
+          trackEvent('ExitIntent', {
+            content_name: 'Exit Intent Popup Shown',
+            device: 'mobile'
+          })
+        }
+      }
+    }
+
+    // Page visibility API - when user switches tabs/apps
+    const handleVisibilityChange = () => {
+      if (!isMobile || hasShownPopup) return
+      
+      if (document.hidden) {
+        // User switched away, show popup when they come back
+        const timeOnPage = Date.now() - pageLoadTime
+        if (timeOnPage > 20000) {
+          setTimeout(() => {
+            if (!document.hidden && !hasShownPopup) {
+              hasShownPopup = true
+              setShowExitIntent(true)
+              trackEvent('ExitIntent', {
+                content_name: 'Exit Intent Popup Shown',
+                device: 'mobile'
+              })
+            }
+          }, 1000)
+        }
+      }
+    }
+
+    // Desktop events
     document.addEventListener('mouseout', handleMouseOut)
     document.addEventListener('mouseleave', handleMouseLeave)
+    
+    // Mobile events
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    document.addEventListener('touchstart', handleTouchStart, { passive: true })
+    document.addEventListener('visibilitychange', handleVisibilityChange)
     
     return () => {
       document.removeEventListener('mouseout', handleMouseOut)
       document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      clearTimeout(scrollTimeout)
     }
   }, [showExitIntent])
   
