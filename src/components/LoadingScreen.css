@@ -45,6 +45,41 @@
   color: #2B2B2B;
 }
 
+.loading-message-container {
+  min-height: 3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-message {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a4a4a;
+  animation: fadeInOut 1s ease-in-out;
+  text-align: center;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 .loading-title {
   font-size: 1.5rem;
   font-weight: 700;

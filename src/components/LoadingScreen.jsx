@@ -7,6 +7,23 @@ function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
   const [showConfidenceQuestion, setShowConfidenceQuestion] = useState(false)
   const [confidenceAnswered, setConfidenceAnswered] = useState(false)
 
+  const loadingMessages = [
+    "Analyzing your stress levels...",
+    "Calculating optimal recovery for 35+...",
+    "Customizing meal plan for your budget...",
+    "Optimizing workout schedule...",
+    "Finalizing your personalized plan..."
+  ]
+
+  // Get current message based on progress
+  const getCurrentMessage = () => {
+    if (progress < 20) return loadingMessages[0]
+    if (progress < 40) return loadingMessages[1]
+    if (progress < 60) return loadingMessages[2]
+    if (progress < 80) return loadingMessages[3]
+    return loadingMessages[4]
+  }
+
   useEffect(() => {
     if (showConfidenceQuestion) {
       return // Don't run progress when showing question
@@ -98,7 +115,10 @@ function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
           </svg>
           <div className="loading-percentage">{progress}%</div>
         </div>
-        <h2 className="loading-title">Creating your personalized DadBod Elimination Protocol…</h2>
+        <div className="loading-message-container">
+          <p className="loading-message">{getCurrentMessage()}</p>
+        </div>
+        <h2 className="loading-title">Creating your personalized Better Dad Blueprint…</h2>
         
         <div className="loading-testimonial">
           <p className="loading-testimonial-text">150 million people have chosen BetterDad</p>
