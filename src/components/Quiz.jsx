@@ -177,80 +177,15 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   }
 
   const handleInfoContinue = () => {
-    // Skip conditional info slides that shouldn't be shown
-    let nextIndex = currentStepIndex + 1
-    while (nextIndex < steps.length) {
-      const nextStep = steps[nextIndex]
-      if (nextStep.type === 'info' && nextStep.data.condition) {
-        // Check if this conditional slide should be shown
-        const shouldShow = checkConditionalSlide(nextStep.data)
-        if (!shouldShow) {
-          nextIndex++
-          continue
-        }
-      }
-      break
-    }
-    
-    if (nextIndex < steps.length) {
+    if (currentStepIndex < steps.length - 1) {
       setTimeout(() => {
-        setCurrentStepIndex(nextIndex)
+        setCurrentStepIndex(prev => prev + 1)
       }, 300)
     } else {
       setTimeout(() => {
         onEmailSubmit('', false) // Quiz complete, move to data collection
       }, 300)
     }
-  }
-
-  const checkConditionalSlide = (slide) => {
-    if (!slide.condition) return true
-    
-    // Use the stored questionIndex from the slide data
-    const questionIndex = slide.questionIndex
-    if (questionIndex === undefined) {
-      return false
-    }
-    
-    const question = config[questionIndex]
-    if (!question || question.id !== 7) {
-      // Not equipment question - shouldn't have condition
-      return false
-    }
-    
-    // Check both answers prop and multiSelectAnswers state
-    // multiSelectAnswers has the most up-to-date value
-    const questionId = question.id
-    const multiSelectSelections = multiSelectAnswers[questionId] || []
-    const answersPropValue = answers[questionId] || ''
-    
-    // Use multiSelectAnswers if available, otherwise fall back to answers prop
-    let equipmentAnswer = ''
-    if (multiSelectSelections.length > 0) {
-      equipmentAnswer = multiSelectSelections.join(', ')
-    } else if (answersPropValue) {
-      equipmentAnswer = answersPropValue
-    }
-    
-    if (!equipmentAnswer) {
-      // No answer yet - don't show conditional slides
-      return false
-    }
-    
-    // Multi-select answers are stored as comma-separated strings
-    const selectedOptions = equipmentAnswer.split(',').map(s => s.trim()).filter(s => s.length > 0)
-    
-    // Check if only "Just bodyweight" is selected (and nothing else)
-    const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
-    
-    if (slide.condition === 'bodyweight-only') {
-      return isBodyweightOnly
-    } else if (slide.condition === 'has-equipment') {
-      // Show if NOT bodyweight-only (either has equipment OR bodyweight + other equipment)
-      return !isBodyweightOnly
-    }
-    
-    return false
   }
 
   // Auto-dismiss removed - all info slides now use Continue button
