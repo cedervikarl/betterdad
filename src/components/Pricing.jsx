@@ -180,6 +180,7 @@ function Pricing({ onSelectPlan, userData }) {
               <div className="pricing-value-text">
                 <strong>Custom Workout Blueprint</strong>
                 <span>Tailored to your equipment and available time</span>
+                <span className="pricing-item-value">(Value: {currencySymbol}{currency === 'GBP' ? '39' : '49'})</span>
               </div>
             </div>
 
@@ -188,6 +189,7 @@ function Pricing({ onSelectPlan, userData }) {
               <div className="pricing-value-text">
                 <strong>Personalized Nutrition Plan</strong>
                 <span>Based on your current weight and goal</span>
+                <span className="pricing-item-value">(Value: {currencySymbol}{currency === 'GBP' ? '32' : '39'})</span>
               </div>
             </div>
 
@@ -196,6 +198,7 @@ function Pricing({ onSelectPlan, userData }) {
               <div className="pricing-value-text">
                 <strong>The "Dad-Body" Recovery Guide</strong>
                 <span>How to maintain shape despite sleep deprivation and stress</span>
+                <span className="pricing-item-value">(Value: {currencySymbol}{currency === 'GBP' ? '24' : '29'})</span>
               </div>
             </div>
 

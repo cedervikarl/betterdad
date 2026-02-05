@@ -173,6 +173,14 @@
   line-height: 1.4;
 }
 
+.pricing-item-value {
+  font-size: 0.8125rem;
+  color: #4a4a4a;
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 0.125rem;
+}
+
 .pricing-bundle {
   background-color: #fff;
   border-radius: 16px;
