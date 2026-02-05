@@ -61,12 +61,6 @@ const QUIZ_CONFIG = [
     ]
   },
   {
-    id: 4,
-    question: "Have you followed a structured home workout plan before?",
-    options: ["Yes, many times", "Yes, a few times", "No, never"],
-    microcopy: "This plan will be built around your real life, not a perfect fantasy."
-  },
-  {
     id: 5,
     question: "What's your main goal right now?",
     options: ["Lose fat", "Build muscle", "Lose fat and build muscle", "Have more energy"],
@@ -90,12 +84,6 @@ const QUIZ_CONFIG = [
     question: "What's the hardest part for you right now?",
     options: ["Motivation", "Time", "Consistency", "I don't know what to do"],
     microcopy: "We've got your back. This is designed for dads, by dads."
-  },
-  {
-    id: 9,
-    question: "How do you usually feel after work?",
-    options: ["Exhausted", "Low energy but push through", "Okay", "Still full of energy"],
-    microcopy: "Your energy matters. We'll work with what you have."
   },
   {
     id: 10,
@@ -122,12 +110,6 @@ const QUIZ_CONFIG = [
     microcopy: "Your safety comes first. We'll adapt exercises to work around any issues."
   },
   {
-    id: 14,
-    question: "When do you usually work out?",
-    options: ["Morning (before work)", "Lunch break", "After work", "Evening", "It varies"],
-    microcopy: "Timing matters. We'll match your workouts to your energy levels."
-  },
-  {
     id: 15,
     question: "What's your current fitness level?",
     options: ["Complete beginner", "Some experience but out of shape", "Moderately fit", "Already quite fit"],
@@ -139,12 +121,6 @@ const QUIZ_CONFIG = [
     options: ["2-3 days", "3-4 days", "4-5 days", "5-6 days"],
     microcopy: "Consistency beats perfection. We'll build a schedule you can actually stick to."
   },
-  {
-    id: 17,
-    question: "What's your biggest challenge with nutrition right now?",
-    options: ["I don't know what to eat", "I don't have time to cook", "I eat too much junk food", "I skip meals"],
-    microcopy: "We'll make nutrition simple and practical for your lifestyle."
-  }
 ]
 
 const INFO_SLIDES = [
