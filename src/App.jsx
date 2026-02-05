@@ -73,13 +73,13 @@ const QUIZ_CONFIG = [
     microcopy: "Be honest with yourself. Small commitments lead to big results.",
     sliderA: {
       label: "Days per week",
-      min: 2,
+      min: 1,
       max: 5,
       defaultValue: 3
     },
     sliderB: {
       label: "Minutes per session",
-      min: 15,
+      min: 5,
       max: 45,
       defaultValue: 20
     }
