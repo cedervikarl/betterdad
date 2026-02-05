@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { trackEvent } from '../utils/facebookPixel'
-import Header from './Header'
 import './Pricing.css'
 import testimonialMichael from '../assets/images/testimonial-michael.jpg'
 import testimonialDavid from '../assets/images/testimonial-david.jpg'
@@ -156,14 +155,8 @@ function Pricing({ onSelectPlan, userData }) {
     }
   }
 
-  const handleOpenDocs = () => {
-    window.dispatchEvent(new CustomEvent('betterdad:open-docs'))
-  }
-
   return (
-    <>
-      <Header onOpenDocs={handleOpenDocs} />
-      <div className="pricing-container">
+    <div className="pricing-container">
         <div className="pricing-content">
         {/* Dynamic Headline */}
         <div className="pricing-hero">
@@ -429,7 +422,6 @@ function Pricing({ onSelectPlan, userData }) {
         </div>
       </div>
     </div>
-    </>
   )
 }
 
