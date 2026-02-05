@@ -408,7 +408,7 @@ Nutrition targets:
 
 Create a "BetterDad Blueprint" as JSON with this EXACT structure:
 {
-  "overview": "One short, action-oriented paragraph (2-3 sentences max). Start with 'Based on your goal to [goal] and [equipment] available, here's your 4-week plan.' Reference their quiz answers: goal (${profile['5'] || 'unknown'}), equipment (${profile['7'] || 'unknown'}), time available (${profile['6'] || 'unknown'}), fitness level (${profile['15'] || 'unknown'}). End with 'Let's get started.' Make it personal, direct, and motivating. No fluff.",
+  "overview": "One short, personalized paragraph about their specific situation. Reference their quiz answers: goal (${profile['5'] || 'unknown'}), equipment (${profile['7'] || 'unknown'}), time available (${profile['6'] || 'unknown'}), fitness level (${profile['15'] || 'unknown'}), and biggest challenge (${profile['17'] || 'unknown'}). Explain how this plan addresses their unique needs. Make it personal and relevant. No fluff.",
   "daily_nutrition": {
     "calories": ${dailyCalories},
     "protein_grams": ${protein},
@@ -797,42 +797,40 @@ async function sendPlanEmail(email, plan, planId, profile = {}) {
           <meta charset="utf-8">
           <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 650px; margin: 0 auto; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
-            .header { background: linear-gradient(135deg, #1B3022 0%, #2d4a3a 100%); color: white; padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0; }
-            .header h1 { margin: 0; font-size: 28px; font-weight: 800; line-height: 1.3; }
-            .content { background: #ffffff; padding: 40px 30px; border-radius: 0 0 12px 12px; line-height: 1.6; color: #2b2b2b; }
-            .plan-section { margin: 30px 0; padding: 25px; background: #fafafa; border-radius: 12px; border: 1px solid #e5e1da; }
-            .plan-section h2 { color: #1B3022; margin-top: 0; margin-bottom: 20px; font-size: 22px; font-weight: 700; }
-            .workout-day { margin: 20px 0; padding: 20px; background: white; border-left: 4px solid #52C41A; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-            .exercise-list { list-style: none; padding-left: 0; margin: 15px 0 0 0; }
-            .exercise-list li { padding: 8px 0; color: #4a4a4a; font-size: 15px; }
-            .exercise-list li:before { content: "✓ "; color: #52C41A; font-weight: bold; font-size: 16px; margin-right: 8px; }
-            .footer { text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid #e5e1da; color: #6a6a6a; font-size: 14px; }
-            .nutrition-box { background: linear-gradient(135deg, #f0f7f4 0%, #e8f5e9 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border: 2px solid #52C41A; }
-            .meal-plan { margin: 15px 0; padding: 18px; background: white; border-radius: 8px; border: 1px solid #e5e1da; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #1B3022; color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
+            .plan-section { margin: 20px 0; padding: 20px; background: white; border-radius: 8px; }
+            .plan-section h2 { color: #1B3022; margin-top: 0; }
+            .workout-day { margin: 15px 0; padding: 15px; background: #f5f5f5; border-left: 4px solid #1B3022; }
+            .exercise-list { list-style: none; padding-left: 0; }
+            .exercise-list li { padding: 5px 0; }
+            .exercise-list li:before { content: "✓ "; color: #52C41A; font-weight: bold; }
+            .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+            .nutrition-box { background: #f0f7ff; padding: 15px; border-radius: 8px; margin: 15px 0; }
+            .meal-plan { margin: 10px 0; padding: 10px; background: white; border-radius: 6px; }
           </style>
         </head>
         <body>
           <div class="container">
             <div class="header">
-              <h1>🎯 Your Personalized Plan is Ready!</h1>
+              <h1>Your DadBod Elimination Protocol is Ready!</h1>
             </div>
             <div class="content">
-              <p style="font-size: 18px; font-weight: 600; color: #1B3022; margin-bottom: 20px;">Hey ${profile && profile.name ? profile.name.split(' ')[0] : 'there'}!</p>
-              <p style="font-size: 16px; margin-bottom: 20px;">Congratulations on taking the first step! Your personalized BetterDad Blueprint has been created based on your quiz answers.</p>
-              <div style="background: #f0f7f4; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #52C41A;">
-                ${profile && profile['5'] ? `<p style="margin: 0 0 10px 0;"><strong>Your Goal:</strong> ${profile['5']}</p>` : ''}
-                ${profile && profile['7'] ? `<p style="margin: 0 0 10px 0;"><strong>Your Equipment:</strong> ${profile['7']}</p>` : ''}
-                ${profile && profile['6'] ? `<p style="margin: 0 0 10px 0;"><strong>Time Available:</strong> ${profile['6']} per day</p>` : ''}
-                ${profile && profile['9'] ? `<p style="margin: 0;"><strong>Energy Level:</strong> ${String(profile['9']).toLowerCase()} after work</p>` : ''}
-              </div>
+              <p>Hey ${profile && profile.name ? profile.name.split(' ')[0] : 'there'},</p>
+              <p>Congratulations on taking the first step! Your personalized BetterDad Blueprint has been created based on your quiz answers.</p>
+              ${profile && profile['5'] ? `<p>Based on your goal to <strong>${profile['5']}</strong>, we've designed a plan that fits your lifestyle.` : ''}
+              ${profile && profile['7'] ? `You mentioned you have <strong>${profile['7']}</strong> available, so we've tailored every exercise to work with what you actually have.` : ''}
+              ${profile && profile['6'] ? `With <strong>${profile['6']}</strong> per day, we've created efficient workouts that deliver maximum results in minimal time.` : ''}
+              ${profile && profile['9'] ? `We've also considered that you feel <strong>${String(profile['9']).toLowerCase()}</strong> after work, so the intensity and timing are matched to your energy levels.` : ''}
+              </p>
               
               ${planHtml}
               
-              <div class="plan-section" style="background: linear-gradient(135deg, #1B3022 0%, #2d4a3a 100%); color: white; border: none;">
-                <h2 style="color: white; margin-bottom: 15px;">🚀 Let's Get Started</h2>
-                <p style="color: white; font-size: 16px; margin-bottom: 15px;"><strong>Start with Week 1, Day 1 today.</strong></p>
-                <p style="color: white; margin: 0;">Remember, consistency beats perfection. Even 10 minutes is better than nothing. You've got this! 💪</p>
+              <div class="plan-section">
+                <h2>Let's Get Started</h2>
+                <p>Start with Week 1, Day 1 today. Remember, consistency beats perfection. Even 10 minutes is better than nothing.</p>
+                <p>You've got this! 💪</p>
               </div>
               
               <div class="footer">
