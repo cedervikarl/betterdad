@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import './WeightInput.css'
 
-function WeightInput({ onNext, initialValue = '' }) {
+function WeightInput({ onNext, initialWeight = '', initialGoalWeight = '' }) {
   const [unit, setUnit] = useState('kg')
-  const [value, setValue] = useState(initialValue)
+  const [weight, setWeight] = useState(initialWeight)
+  const [goalWeight, setGoalWeight] = useState(initialGoalWeight)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Auto-scroll to top when component mounts (desktop only)
@@ -14,15 +15,21 @@ function WeightInput({ onNext, initialValue = '' }) {
     }
   }, [])
 
+  // Clear values when unit changes
+  useEffect(() => {
+    setWeight('')
+    setGoalWeight('')
+  }, [unit])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSubmitting) return // Prevent double submission
     
-    if (value) {
+    if (weight && goalWeight) {
       setIsSubmitting(true)
       // Small delay to show feedback before navigation
       setTimeout(() => {
-        onNext({ weight: value, unit })
+        onNext({ weight, goalWeight, unit })
       }, 100)
     }
   }
@@ -30,44 +37,61 @@ function WeightInput({ onNext, initialValue = '' }) {
   return (
     <div className="weight-input-container">
       <div className="weight-input-content">
-        <h2 className="weight-input-title">What's your current weight?</h2>
+        <h2 className="weight-input-title">What's your weight?</h2>
         <form onSubmit={handleSubmit} className="weight-input-form">
-          <div className="weight-input-wrapper">
-            <div className="unit-toggle">
-              <button
-                type="button"
-                className={`unit-button ${unit === 'kg' ? 'active' : ''}`}
-                onClick={() => setUnit('kg')}
-              >
-                kg
-              </button>
-              <button
-                type="button"
-                className={`unit-button ${unit === 'lbs' ? 'active' : ''}`}
-                onClick={() => setUnit('lbs')}
-              >
-                lbs
-              </button>
-            </div>
-            <input
-              type="number"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder={unit === 'kg' ? '80' : '176'}
-              className="weight-input-field"
-              required
-              step="any"
-              min={unit === 'kg' ? 30 : 66}
-              max={unit === 'kg' ? 200 : 440}
-            />
+          <div className="unit-toggle">
+            <button
+              type="button"
+              className={`unit-button ${unit === 'kg' ? 'active' : ''}`}
+              onClick={() => setUnit('kg')}
+            >
+              kg
+            </button>
+            <button
+              type="button"
+              className={`unit-button ${unit === 'lbs' ? 'active' : ''}`}
+              onClick={() => setUnit('lbs')}
+            >
+              lbs
+            </button>
           </div>
-          <p className="weight-input-subtext">
-            {unit === 'kg' ? 'Range: 30-200 kg' : 'Range: 66-440 lbs'}
-          </p>
+          
+          <div className="weight-input-wrapper">
+            <div className="weight-input-group">
+              <label className="weight-input-label">Current Weight</label>
+              <input
+                type="number"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                placeholder={unit === 'kg' ? '80' : '176'}
+                className="weight-input-field"
+                required
+                step="any"
+                min={unit === 'kg' ? 30 : 66}
+                max={unit === 'kg' ? 200 : 440}
+              />
+            </div>
+            
+            <div className="weight-input-group">
+              <label className="weight-input-label">Goal Weight</label>
+              <input
+                type="number"
+                value={goalWeight}
+                onChange={(e) => setGoalWeight(e.target.value)}
+                placeholder={unit === 'kg' ? '75' : '165'}
+                className="weight-input-field"
+                required
+                step="any"
+                min={unit === 'kg' ? 30 : 66}
+                max={unit === 'kg' ? 200 : 440}
+              />
+            </div>
+          </div>
+          
           <button 
             type="submit" 
             className="weight-input-button"
-            disabled={isSubmitting || !value}
+            disabled={isSubmitting || !weight || !goalWeight}
           >
             {isSubmitting ? 'Loading...' : 'Continue'}
           </button>

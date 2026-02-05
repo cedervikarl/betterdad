@@ -3,7 +3,6 @@ import Header from './components/Header'
 import Quiz from './components/Quiz'
 import HeightInput from './components/HeightInput'
 import WeightInput from './components/WeightInput'
-import GoalWeightInput from './components/GoalWeightInput'
 import AgeInput from './components/AgeInput'
 import EmailCapture from './components/EmailCapture'
 import WellnessProfile from './components/WellnessProfile'
@@ -319,17 +318,6 @@ function App() {
     } catch (error) {
       console.error('Error saving userData to localStorage:', error)
     }
-    setCurrentStep('goal-weight')
-  }
-
-  const handleGoalWeightSubmit = (data) => {
-    const newUserData = { ...userData, ...data }
-    setUserData(newUserData)
-    try {
-      localStorage.setItem('betterdad_userData', JSON.stringify(newUserData))
-    } catch (error) {
-      console.error('Error saving userData to localStorage:', error)
-    }
     setCurrentStep('age')
   }
 
@@ -464,10 +452,11 @@ function App() {
         <HeightInput onNext={handleHeightSubmit} initialValue={userData.height} />
       )}
       {currentStep === 'weight' && (
-        <WeightInput onNext={handleWeightSubmit} initialValue={userData.weight} />
-      )}
-      {currentStep === 'goal-weight' && (
-        <GoalWeightInput onNext={handleGoalWeightSubmit} initialValue={userData.goalWeight} />
+        <WeightInput 
+          onNext={handleWeightSubmit} 
+          initialWeight={userData.weight} 
+          initialGoalWeight={userData.goalWeight} 
+        />
       )}
       {currentStep === 'age' && (
         <AgeInput onNext={handleAgeSubmit} initialValue={userData.age} />

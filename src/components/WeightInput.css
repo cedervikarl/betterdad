@@ -35,7 +35,23 @@
 .weight-input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.weight-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.weight-input-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .unit-toggle {
