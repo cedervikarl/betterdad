@@ -35,18 +35,19 @@ function Pricing({ onSelectPlan, userData }) {
 
   // Exit intent detection
   useEffect(() => {
-    let pageLoadTime = Date.now()
+    if (showExitIntent) return // Don't set up if already shown
+    
+    const pageLoadTime = Date.now()
     let hasShownPopup = false
 
-    const handleMouseLeave = (e) => {
-      // Only trigger if mouse is moving towards top of screen (exit intent)
-      if (e.clientY <= 0 && !hasShownPopup && !showExitIntent) {
-        // Check if user has been on page for at least 30 seconds
+    const handleMouseOut = (e) => {
+      // Check if mouse is leaving the window (going to top)
+      if (!e.relatedTarget && e.clientY < 10 && !hasShownPopup) {
         const timeOnPage = Date.now() - pageLoadTime
-        if (timeOnPage > 30000) {
+        // Show after 20 seconds (reduced from 30 for better testing)
+        if (timeOnPage > 20000) {
           hasShownPopup = true
           setShowExitIntent(true)
-          // Track exit intent event
           trackEvent('ExitIntent', {
             content_name: 'Exit Intent Popup Shown'
           })
@@ -54,8 +55,25 @@ function Pricing({ onSelectPlan, userData }) {
       }
     }
 
+    // Also listen for mouseleave on document
+    const handleMouseLeave = (e) => {
+      if (e.clientY <= 0 && !hasShownPopup) {
+        const timeOnPage = Date.now() - pageLoadTime
+        if (timeOnPage > 20000) {
+          hasShownPopup = true
+          setShowExitIntent(true)
+          trackEvent('ExitIntent', {
+            content_name: 'Exit Intent Popup Shown'
+          })
+        }
+      }
+    }
+
+    document.addEventListener('mouseout', handleMouseOut)
     document.addEventListener('mouseleave', handleMouseLeave)
+    
     return () => {
+      document.removeEventListener('mouseout', handleMouseOut)
       document.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [showExitIntent])
