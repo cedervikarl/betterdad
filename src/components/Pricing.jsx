@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { trackEvent } from '../utils/facebookPixel'
+import ExitIntentPopup from './ExitIntentPopup'
+import LiveActivity from './LiveActivity'
 import './Pricing.css'
 import testimonialMichael from '../assets/images/testimonial-michael.jpg'
 import testimonialDavid from '../assets/images/testimonial-david.jpg'
@@ -8,6 +10,7 @@ import testimonialRobert from '../assets/images/testimonial-robert.jpg'
 function Pricing({ onSelectPlan, userData }) {
   const [currency, setCurrency] = useState('EUR')
   const [timeLeft, setTimeLeft] = useState(5 * 60) // 5 minutes in seconds
+  const [showExitIntent, setShowExitIntent] = useState(false)
   
   // Auto-scroll to top when component mounts (desktop only)
   useEffect(() => {
@@ -29,6 +32,33 @@ function Pricing({ onSelectPlan, userData }) {
     
     return () => clearInterval(timer)
   }, [])
+
+  // Exit intent detection
+  useEffect(() => {
+    let pageLoadTime = Date.now()
+    let hasShownPopup = false
+
+    const handleMouseLeave = (e) => {
+      // Only trigger if mouse is moving towards top of screen (exit intent)
+      if (e.clientY <= 0 && !hasShownPopup && !showExitIntent) {
+        // Check if user has been on page for at least 30 seconds
+        const timeOnPage = Date.now() - pageLoadTime
+        if (timeOnPage > 30000) {
+          hasShownPopup = true
+          setShowExitIntent(true)
+          // Track exit intent event
+          trackEvent('ExitIntent', {
+            content_name: 'Exit Intent Popup Shown'
+          })
+        }
+      }
+    }
+
+    document.addEventListener('mouseleave', handleMouseLeave)
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [showExitIntent])
   
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60)
@@ -80,6 +110,9 @@ function Pricing({ onSelectPlan, userData }) {
   const currencySymbol = currency === 'GBP' ? '£' : '€'
 
   const handlePurchase = async () => {
+    // Close exit intent popup if open
+    setShowExitIntent(false)
+    
     const email = userData?.email || localStorage.getItem('betterdad_email') || 'likeikeab@gmail.com'
     
             try {
@@ -156,7 +189,16 @@ function Pricing({ onSelectPlan, userData }) {
   }
 
   return (
-    <div className="pricing-container">
+    <>
+      {showExitIntent && (
+        <ExitIntentPopup
+          onClose={() => setShowExitIntent(false)}
+          onPurchase={handlePurchase}
+          bundlePrice={bundlePrice}
+          currencySymbol={currencySymbol}
+        />
+      )}
+      <div className="pricing-container">
         <div className="pricing-content">
         {/* Dynamic Headline */}
         <div className="pricing-hero">
@@ -247,6 +289,9 @@ function Pricing({ onSelectPlan, userData }) {
             Due to high demand, we can only hold your personalized plan and the {currencySymbol}{(originalPrice - bundlePrice).toFixed(2)} discount for the next <strong className="pricing-timer">{formatTime(timeLeft)}</strong>. Only <strong className="pricing-spots-left">7 spots remain</strong> for today's intake.
           </p>
         </div>
+
+        {/* Live Activity / Social Proof */}
+        <LiveActivity />
 
         {/* Mobile Button (under scarcity) */}
         <div className="pricing-mobile-button-wrapper">
@@ -384,9 +429,9 @@ function Pricing({ onSelectPlan, userData }) {
                 <path d="M9 12L11 14L15 10" stroke="#52C41A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <h3 className="pricing-guarantee-title">30-Day Money-Back Guarantee</h3>
+            <h3 className="pricing-guarantee-title">Try It Risk-Free - 30-Day Money-Back Guarantee</h3>
             <p className="pricing-guarantee-description">
-              We believe that our plan will work for you, and you should see visible results in only 4 weeks! We're even ready to return your money if you can demonstrate that you followed the plan but didn't see any results.
+              <strong>Get your money back if you don't see results in 30 days.</strong> We believe that our plan will work for you, and you should see visible results in only 4 weeks! We're even ready to return your money if you can demonstrate that you followed the plan but didn't see any results. No questions asked.
             </p>
           </div>
         </div>
@@ -425,6 +470,7 @@ function Pricing({ onSelectPlan, userData }) {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

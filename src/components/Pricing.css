@@ -735,11 +735,23 @@
 .pricing-guarantee-content {
   width: 100%;
   padding: 2rem 1.5rem;
-  background-color: #fff;
-  border: 1px solid #E5E1DA;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+  border: 2px solid #52C41A;
   border-radius: 16px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-guarantee-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #52C41A 0%, #73D13D 50%, #52C41A 100%);
 }
 
 .pricing-guarantee-icon-wrapper {
@@ -749,24 +761,30 @@
 }
 
 .pricing-guarantee-shield {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
 }
 
 .pricing-guarantee-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #2b2b2b;
+  color: #1B3022;
   margin: 0 0 1rem;
   line-height: 1.3;
 }
 
 .pricing-guarantee-description {
-  font-size: 0.9375rem;
-  color: #4a4a4a;
-  line-height: 1.6;
+  font-size: 1rem;
+  color: #2b2b2b;
+  line-height: 1.7;
   margin: 0;
   text-align: left;
+}
+
+.pricing-guarantee-description strong {
+  color: #1B3022;
+  font-weight: 800;
+  font-size: 1.05em;
 }
 
 @media (min-width: 768px) {
