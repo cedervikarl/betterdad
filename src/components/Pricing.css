@@ -265,10 +265,6 @@
   box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
 }
 
 .pricing-bonus-window::before {
@@ -291,23 +287,6 @@
   }
 }
 
-.pricing-bonus-icon {
-  font-size: 2rem;
-  line-height: 1;
-  animation: pulse-icon 2s ease-in-out infinite;
-}
-
-@keyframes pulse-icon {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-
 .pricing-bonus-text {
   font-size: 0.9375rem;
   color: #2b2b2b;
@@ -321,8 +300,6 @@
   color: #d32f2f;
   font-weight: 700;
   font-size: 1.05em;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.05em;
 }
 
 .pricing-bonus-text strong {
