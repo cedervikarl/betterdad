@@ -121,7 +121,7 @@ function LoadingScreen({ onComplete, onConfidenceAnswer, userData }) {
         <h2 className="loading-title">Creating your personalized Better Dad Blueprint…</h2>
         
         <div className="loading-testimonial">
-          <p className="loading-testimonial-text">150 million people have chosen BetterDad</p>
+          <p className="loading-testimonial-text">100.000 people have chosen BetterDad</p>
           <div className="loading-rating">
             <span className="loading-stars">★★★★★</span>
             <span className="loading-review-text">"This program changed my life!"</span>

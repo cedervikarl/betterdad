@@ -38,7 +38,7 @@ function Success({ sessionId, email, planPrice, currency }) {
         </div>
 
         <div className="success-reviews">
-          <h3 className="success-reviews-title">Join 150,000+ dads who've transformed their lives</h3>
+          <h3 className="success-reviews-title">Join 100.000+ dads who've transformed their lives</h3>
           <div className="success-review-cards">
             <div className="success-review-card">
               <div className="success-review-stars">★★★★★</div>
