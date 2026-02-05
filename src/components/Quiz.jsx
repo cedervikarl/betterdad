@@ -227,27 +227,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     return true
   }
 
-  // Auto-dismiss info slides with autoDismiss property
-  useEffect(() => {
-    const currentStep = steps[currentStepIndex]
-    if (currentStep?.type === 'info' && currentStep.data.autoDismiss) {
-      // Check if this conditional slide should be shown
-      if (currentStep.data.condition) {
-        const shouldShow = checkConditionalSlide(currentStep.data, currentStep.data.position - 1)
-        if (!shouldShow) {
-          // Skip this slide immediately
-          handleInfoContinue()
-          return
-        }
-      }
-      
-      const timer = setTimeout(() => {
-        handleInfoContinue()
-      }, currentStep.data.autoDismiss)
-      
-      return () => clearTimeout(timer)
-    }
-  }, [currentStepIndex, steps, onEmailSubmit])
+  // Auto-dismiss removed - all info slides now use Continue button
 
 
   const currentStep = steps[currentStepIndex]
