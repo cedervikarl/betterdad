@@ -22,19 +22,19 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       matchingSlides.forEach(slide => {
         // For conditional slides, check if they should be shown
         if (slide.condition) {
-          if (slide.condition === 'bodyweight-only') {
-            // Check if user selected only "Just bodyweight"
+          // Only check condition for equipment question (id 7)
+          if (question.id === 7) {
             const equipmentAnswer = answers[question.id] || ''
-            if (equipmentAnswer.includes('Just bodyweight') && !equipmentAnswer.includes(',')) {
+            // Multi-select answers are stored as comma-separated strings
+            const selectedOptions = equipmentAnswer.split(',').map(s => s.trim())
+            const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
+            
+            if (slide.condition === 'bodyweight-only' && isBodyweightOnly) {
               allSteps.push({
                 type: 'info',
                 data: slide
               })
-            }
-          } else if (slide.condition === 'has-equipment') {
-            // Check if user selected any equipment (not just bodyweight, or bodyweight + other)
-            const equipmentAnswer = answers[question.id] || ''
-            if (!equipmentAnswer.includes('Just bodyweight') || equipmentAnswer.includes(',')) {
+            } else if (slide.condition === 'has-equipment' && !isBodyweightOnly) {
               allSteps.push({
                 type: 'info',
                 data: slide
