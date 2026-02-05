@@ -17,7 +17,8 @@
     max-width: 1200px;
   }
   
-  /* Make all sections equal width on desktop */
+  /* Make all sections equal width on desktop and center them */
+  .pricing-social-proof,
   .pricing-value-stack,
   .pricing-bundle,
   .pricing-urgency-timer,
@@ -36,13 +37,12 @@
     gap: 1.5rem;
   }
   
-  .pricing-testimonial {
-    flex-direction: column;
-    text-align: center;
+  .pricing-testimonial-overlay {
+    padding: 2.5rem 2rem 2rem;
   }
   
-  .pricing-testimonial-image {
-    margin: 0 auto;
+  .pricing-testimonial-text {
+    font-size: 1.0625rem;
   }
 }
 
@@ -631,52 +631,59 @@
 .pricing-testimonials-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .pricing-testimonial {
-  display: flex;
-  gap: 1rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-testimonial-image {
-  flex-shrink: 0;
+.pricing-testimonial-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 .pricing-testimonial-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 2px solid #e0ddd8;
+  display: block;
 }
 
-.pricing-testimonial-content {
-  flex: 1;
+.pricing-testimonial-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+  padding: 2rem 1.5rem 1.5rem;
+  color: #ffffff;
 }
 
 .pricing-testimonial-stars {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #FAAD14;
   letter-spacing: 2px;
   margin-bottom: 0.75rem;
 }
 
 .pricing-testimonial-text {
-  font-size: 0.9375rem;
-  color: #4a4a4a;
+  font-size: 1rem;
+  color: #ffffff;
   line-height: 1.6;
   margin-bottom: 0.75rem;
+  font-weight: 500;
 }
 
 .pricing-testimonial-name {
-  font-size: 0.875rem;
-  color: #6a6a6a;
+  font-size: 0.9375rem;
+  color: #ffffff;
   font-weight: 600;
+  opacity: 0.9;
 }
 
 /* FAQ */

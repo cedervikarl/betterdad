@@ -284,39 +284,39 @@ function Pricing({ onSelectPlan, userData }) {
           <h3 className="pricing-testimonials-title">What dads are saying</h3>
           <div className="pricing-testimonials-grid">
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-image">
+              <div className="pricing-testimonial-image-wrapper">
                 <img src={testimonialMichael} alt="Michael" className="pricing-testimonial-img" />
-              </div>
-              <div className="pricing-testimonial-content">
-                <div className="pricing-testimonial-stars">★★★★★</div>
-                <p className="pricing-testimonial-text">
-                  "Lost 8kg in 6 weeks and finally have energy to play with my kids after work. Best investment I've made."
-                </p>
-                <p className="pricing-testimonial-name">Michael J., 34</p>
+                <div className="pricing-testimonial-overlay">
+                  <div className="pricing-testimonial-stars">★★★★★</div>
+                  <p className="pricing-testimonial-text">
+                    "Lost 8kg in 6 weeks and finally have energy to play with my kids after work. Best investment I've made."
+                  </p>
+                  <p className="pricing-testimonial-name">Michael J., 34</p>
+                </div>
               </div>
             </div>
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-image">
+              <div className="pricing-testimonial-image-wrapper">
                 <img src={testimonialDavid} alt="David" className="pricing-testimonial-img" />
-              </div>
-              <div className="pricing-testimonial-content">
-                <div className="pricing-testimonial-stars">★★★★★</div>
-                <p className="pricing-testimonial-text">
-                  "The workouts fit perfectly into my busy schedule. No excuses anymore - I can do this at home!"
-                </p>
-                <p className="pricing-testimonial-name">David S., 41</p>
+                <div className="pricing-testimonial-overlay">
+                  <div className="pricing-testimonial-stars">★★★★★</div>
+                  <p className="pricing-testimonial-text">
+                    "The workouts fit perfectly into my busy schedule. No excuses anymore - I can do this at home!"
+                  </p>
+                  <p className="pricing-testimonial-name">David S., 41</p>
+                </div>
               </div>
             </div>
             <div className="pricing-testimonial">
-              <div className="pricing-testimonial-image">
+              <div className="pricing-testimonial-image-wrapper">
                 <img src={testimonialRobert} alt="Robert" className="pricing-testimonial-img" />
-              </div>
-              <div className="pricing-testimonial-content">
-                <div className="pricing-testimonial-stars">★★★★★</div>
-                <p className="pricing-testimonial-text">
-                  "Finally a plan that understands dads. Simple, effective, and I'm seeing results faster than I expected."
-                </p>
-                <p className="pricing-testimonial-name">Robert K., 38</p>
+                <div className="pricing-testimonial-overlay">
+                  <div className="pricing-testimonial-stars">★★★★★</div>
+                  <p className="pricing-testimonial-text">
+                    "Finally a plan that understands dads. Simple, effective, and I'm seeing results faster than I expected."
+                  </p>
+                  <p className="pricing-testimonial-name">Robert K., 38</p>
+                </div>
               </div>
             </div>
           </div>
