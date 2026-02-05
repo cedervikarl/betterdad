@@ -2,7 +2,7 @@
 .pricing-container {
   min-height: 100vh;
   padding: 1rem 1rem;
-  padding-top: calc(1rem + 90px); /* Space for sticky header (logo is ~90px on mobile) */
+  padding-top: calc(0.5rem + 90px); /* Space for sticky header (logo is ~90px on mobile) */
   padding-bottom: 100px; /* Space for sticky footer */
   background-color: #f5f3f0;
   display: flex;
@@ -40,8 +40,8 @@
 
 @media (min-width: 768px) {
   .pricing-container {
-    padding: 1.5rem 1.5rem;
-    padding-top: calc(1.5rem + 110px); /* Space for sticky header on desktop (logo is ~110px) */
+    padding: 1rem 1.5rem;
+    padding-top: calc(0.75rem + 110px); /* Space for sticky header on desktop (logo is ~110px) */
     padding-bottom: 100px;
     align-items: flex-start;
   }
