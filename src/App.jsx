@@ -140,7 +140,7 @@ const INFO_SLIDES = [
   {
     id: 'info-2',
     text: "Michael, 34, lost 6 kg in 4 weeks and finally has the energy to play with his kids after work.",
-    position: 5, // After question 5 (main goal)
+    position: 3, // After question 5 (main goal) - question 5 is at index 2, so position is 3
     image: infoImage2
   },
   {

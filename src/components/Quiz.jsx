@@ -214,15 +214,21 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     if (!question || question.id !== 7) return true // Only equipment question has conditions
     
     const equipmentAnswer = answers[question.id] || ''
-    if (!equipmentAnswer) return false // No answer yet, don't show
+    if (!equipmentAnswer) {
+      // No answer yet - don't show conditional slides
+      return false
+    }
     
     // Multi-select answers are stored as comma-separated strings
-    const selectedOptions = equipmentAnswer.split(',').map(s => s.trim())
+    const selectedOptions = equipmentAnswer.split(',').map(s => s.trim()).filter(s => s.length > 0)
+    
+    // Check if only "Just bodyweight" is selected (and nothing else)
     const isBodyweightOnly = selectedOptions.length === 1 && selectedOptions[0] === 'Just bodyweight'
     
     if (slide.condition === 'bodyweight-only') {
       return isBodyweightOnly
     } else if (slide.condition === 'has-equipment') {
+      // Show if NOT bodyweight-only (either has equipment OR bodyweight + other equipment)
       return !isBodyweightOnly
     }
     
