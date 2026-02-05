@@ -156,7 +156,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 16, // After question 17 (idx 15 in array, so position = 15 + 1 = 16)
+    position: 13, // After question 16 (last question, now position 13 since we removed 4 questions)
     image: infoImage5
   }
 ]
