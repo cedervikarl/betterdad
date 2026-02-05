@@ -350,11 +350,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  margin-bottom: 0.75rem;
   min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -375,6 +375,23 @@
 
 .pricing-trust-badge-mobile-inline .pricing-trust-icon {
   font-size: 1rem;
+}
+
+.pricing-trust-badge-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #4a4a4a;
+}
+
+.pricing-trust-badge-mobile .pricing-trust-icon {
+  font-size: 1rem;
+}
+
+.pricing-trust-badge-mobile .pricing-trust-text {
+  font-weight: 500;
 }
 
 .pricing-desktop-button-wrapper {
