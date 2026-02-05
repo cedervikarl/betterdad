@@ -67,16 +67,28 @@ const QUIZ_CONFIG = [
     microcopy: "Every dad deserves to feel strong and confident again."
   },
   {
-    id: 6,
-    question: "How much time do you realistically have per day?",
-    options: ["20 minutes", "30 minutes", "45 minutes", "1 hour plus"],
-    microcopy: "We respect your time. No fluff, just results."
+    id: 4,
+    question: "What can you realistically commit to?",
+    questionType: 'slider',
+    microcopy: "Be honest with yourself. Small commitments lead to big results.",
+    sliderA: {
+      label: "Days per week",
+      min: 2,
+      max: 5,
+      defaultValue: 3
+    },
+    sliderB: {
+      label: "Minutes per session",
+      min: 15,
+      max: 45,
+      defaultValue: 20
+    }
   },
   {
     id: 7,
     question: "What equipment do you have access to?",
     questionType: 'multi-select',
-    options: ["Full gym access", "Dumbbells at home", "Kettlebells", "Resistance bands", "Pull-up bar", "No equipment - just bodyweight"],
+    options: ["Full gym access", "Dumbbells at home", "Kettlebells", "Resistance bands", "Pull-up bar", "Just bodyweight"],
     microcopy: "Select all that apply. We'll create the perfect plan based on what you actually have available."
   },
   {
@@ -94,14 +106,8 @@ const QUIZ_CONFIG = [
   {
     id: 11,
     question: "What would you like to improve the most for your family?",
-    options: ["Have more energy for my kids", "Be a better example", "Feel proud of how I look", "All of the above"],
+    options: ["Energy to actually play with my kids after work.", "Being a fit role model for my children.", "The confidence to take my shirt off at the beach.", "Living a long, healthy life for my family."],
     microcopy: "This is about more than just you. It's about being the dad they deserve."
-  },
-  {
-    id: 12,
-    question: "How does your food budget look?",
-    options: ["Tight budget - need affordable options", "Normal budget - can afford quality food", "Flexible budget - can prioritize premium choices"],
-    microcopy: "We'll tailor your meal plan to what works for your wallet."
   },
   {
     id: 13,
@@ -115,12 +121,6 @@ const QUIZ_CONFIG = [
     options: ["Complete beginner", "Some experience but out of shape", "Moderately fit", "Already quite fit"],
     microcopy: "We'll start where you are, not where you wish you were."
   },
-  {
-    id: 16,
-    question: "How many days per week can you realistically commit to working out?",
-    options: ["2-3 days", "3-4 days", "4-5 days", "5-6 days"],
-    microcopy: "Consistency beats perfection. We'll build a schedule you can actually stick to."
-  },
 ]
 
 const INFO_SLIDES = [
@@ -133,19 +133,19 @@ const INFO_SLIDES = [
   {
     id: 'info-2',
     text: "Michael, 34, lost 6 kg in 4 weeks and finally has the energy to play with his kids after work.",
-    position: 4, // After question 5 (main goal) - index 3 in array
+    position: 5, // After question 4 (slider - time & days)
     image: infoImage2
   },
   {
     id: 'info-3',
     text: "Most dads fail because plans don't fit their real life. This quiz builds your plan around your time, your goals and your equipment.",
-    position: 6, // After question 7 (equipment) - index 5 in array
+    position: 6, // After question 7 (equipment)
     image: infoImage3
   },
   {
     id: 'info-4',
     text: "You're almost done! Hang in there — we're building something that actually works for you.",
-    position: 8, // After question 10 (middle of quiz) - index 7 in array
+    position: 8, // After question 10 (middle of quiz)
     image: null, // No image for this one
     review: {
       name: "James, 38",
@@ -156,7 +156,7 @@ const INFO_SLIDES = [
   {
     id: 'info-5',
     text: "Better dad offers a 100% Money-Back Guarantee If you don't reach the goals you set in this quiz!",
-    position: 12, // After question 16 (last question) - index 11 in array
+    position: 11, // After question 15 (last question)
     image: infoImage5
   }
 ]

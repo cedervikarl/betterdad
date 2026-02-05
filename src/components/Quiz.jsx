@@ -32,6 +32,7 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [selectedImageOption, setSelectedImageOption] = useState(null)
   const [multiSelectAnswers, setMultiSelectAnswers] = useState({}) // Store multi-select answers
+  const [sliderAnswers, setSliderAnswers] = useState({}) // Store slider answers
 
   const totalSteps = steps.length
 
@@ -42,6 +43,23 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
       window.scrollTo({ top: 0, behavior: 'auto' })
     }
   }, [currentStepIndex])
+
+  // Initialize slider values when slider question appears
+  useEffect(() => {
+    const currentStep = steps[currentStepIndex]
+    if (currentStep?.type === 'question' && currentStep.data.questionType === 'slider') {
+      const question = currentStep.data
+      if (!sliderAnswers[question.id]) {
+        setSliderAnswers(prev => ({
+          ...prev,
+          [question.id]: {
+            days: question.sliderA?.defaultValue || 3,
+            minutes: question.sliderB?.defaultValue || 20
+          }
+        }))
+      }
+    }
+  }, [currentStepIndex, steps, sliderAnswers])
 
 
   const handleOptionClick = (option) => {
@@ -114,6 +132,47 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
     }
   }
 
+  const handleSliderChange = (questionId, sliderType, value) => {
+    setSliderAnswers(prev => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        [sliderType]: value
+      }
+    }))
+  }
+
+  const handleSliderNext = () => {
+    const currentStep = steps[currentStepIndex]
+    if (currentStep.type === 'question' && currentStep.data.questionType === 'slider') {
+      const question = currentStep.data
+      const questionId = question.id
+      const sliderValues = sliderAnswers[questionId] || {}
+      
+      // Save both values - days per week and minutes per session
+      if (sliderValues.days !== undefined && sliderValues.minutes !== undefined) {
+        // Save as formatted string for backend compatibility
+        const daysValue = `${sliderValues.days} days per week`
+        const minutesValue = `${sliderValues.minutes} minutes`
+        
+        // Save days per week (old question 16 format)
+        onAnswer(16, daysValue)
+        // Save time per day (old question 6 format)
+        onAnswer(6, minutesValue)
+      }
+    }
+    
+    if (currentStepIndex < steps.length - 1) {
+      setTimeout(() => {
+        setCurrentStepIndex(prev => prev + 1)
+      }, 300)
+    } else {
+      setTimeout(() => {
+        onEmailSubmit('', false) // Quiz complete, move to data collection
+      }, 300)
+    }
+  }
+
   const handleInfoContinue = () => {
     if (currentStepIndex < steps.length - 1) {
       setTimeout(() => {
@@ -154,6 +213,11 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
   // Question step
   const question = currentStep.data
   const isImageQuestion = question.questionType === 'image'
+  const isSliderQuestion = question.questionType === 'slider'
+  const sliderValues = isSliderQuestion ? (sliderAnswers[question.id] || {
+    days: question.sliderA?.defaultValue || 3,
+    minutes: question.sliderB?.defaultValue || 20
+  }) : null
   
   return (
     <div className="quiz-container">
@@ -169,7 +233,51 @@ function Quiz({ config, infoSlides, answers, onAnswer, onEmailSubmit }) {
             <p className="microcopy">{question.microcopy}</p>
           )}
           <h2 className="question-text">{question.question}</h2>
-          {isImageQuestion ? (
+          {isSliderQuestion ? (
+            <div className="slider-container">
+              <div className="slider-group">
+                <label className="slider-label">
+                  {question.sliderA.label}: <strong>{sliderValues.days}</strong>
+                </label>
+                <input
+                  type="range"
+                  min={question.sliderA.min}
+                  max={question.sliderA.max}
+                  value={sliderValues.days}
+                  onChange={(e) => handleSliderChange(question.id, 'days', parseInt(e.target.value))}
+                  className="slider-input"
+                />
+                <div className="slider-labels">
+                  <span>{question.sliderA.min}</span>
+                  <span>{question.sliderA.max}</span>
+                </div>
+              </div>
+              <div className="slider-group">
+                <label className="slider-label">
+                  {question.sliderB.label}: <strong>{sliderValues.minutes}</strong>
+                </label>
+                <input
+                  type="range"
+                  min={question.sliderB.min}
+                  max={question.sliderB.max}
+                  value={sliderValues.minutes}
+                  onChange={(e) => handleSliderChange(question.id, 'minutes', parseInt(e.target.value))}
+                  className="slider-input"
+                />
+                <div className="slider-labels">
+                  <span>{question.sliderB.min}</span>
+                  <span>{question.sliderB.max}</span>
+                </div>
+              </div>
+              <button
+                className="submit-button"
+                onClick={handleSliderNext}
+                style={{ marginTop: '2rem' }}
+              >
+                Next Step
+              </button>
+            </div>
+          ) : isImageQuestion ? (
             <div className="image-options-grid">
               {question.options.map((option, index) => {
                 const optionImage = question.images && question.images[index] ? question.images[index] : null
