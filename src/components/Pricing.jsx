@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { trackEvent } from '../utils/facebookPixel'
 import ExitIntentPopup from './ExitIntentPopup'
-import LiveActivity from './LiveActivity'
 import './Pricing.css'
 import testimonialMichael from '../assets/images/testimonial-michael.jpg'
 import testimonialDavid from '../assets/images/testimonial-david.jpg'
@@ -277,8 +276,6 @@ function Pricing({ onSelectPlan, userData }) {
           </p>
         </div>
 
-        {/* Live Activity / Social Proof */}
-        <LiveActivity />
 
         {/* Mobile Button (under scarcity) */}
         <div className="pricing-mobile-button-wrapper">
