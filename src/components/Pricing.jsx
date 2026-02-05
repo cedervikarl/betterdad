@@ -190,7 +190,7 @@ function Pricing({ onSelectPlan, userData }) {
         {/* Dynamic Headline */}
         <div className="pricing-hero">
           <h1 className="pricing-hero-title">
-            Your personalized plan is ready! Based on your <strong className="pricing-highlight-green">{getCurrentShape()}</strong> and goal to become <strong className="pricing-highlight-green">{getDreamBody()}</strong>, we've created a custom transformation plan just for you.
+            You are <strong className="pricing-highlight-green">28 days</strong> away from a new you.
           </h1>
           
           {/* Target Weight Visualization */}
