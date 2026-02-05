@@ -240,8 +240,9 @@ function Pricing({ onSelectPlan, userData }) {
 
         {/* Scarcity Message */}
         <div className="pricing-bonus-window">
+          <div className="pricing-bonus-icon">⏰</div>
           <p className="pricing-bonus-text">
-            Due to high demand, we can only hold your personalized plan and the {currencySymbol}{(originalPrice - bundlePrice).toFixed(2)} discount for the next <strong>{formatTime(timeLeft)}</strong>. Only <strong className="pricing-spots-left">7 spots remain</strong> for today's intake.
+            Due to high demand, we can only hold your personalized plan and the {currencySymbol}{(originalPrice - bundlePrice).toFixed(2)} discount for the next <strong className="pricing-timer">{formatTime(timeLeft)}</strong>. Only <strong className="pricing-spots-left">7 spots remain</strong> for today's intake.
           </p>
         </div>
 
